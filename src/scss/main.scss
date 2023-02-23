@@ -1,2 +1,7 @@
-@import 'Components/navbar';
+@import "settings/variables";
 @import "generic/reset";
+@import "base/base";
+
+@import 'components/navbar';
+@import "components/app_container";
+

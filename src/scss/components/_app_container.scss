@@ -1,0 +1,19 @@
+.app {
+
+  &__container {
+    display: flex;
+    height: calc(100vh - 80px);
+  }
+
+  &__sidebar {
+    flex-basis: 250px;
+    background: $color-primary-light-1;
+    flex-shrink: 0;
+  }
+
+  &__main {
+    background: #eee;
+    width: calc(100vw - $aside-width);
+    flex-grow: 0;
+  }
+}
