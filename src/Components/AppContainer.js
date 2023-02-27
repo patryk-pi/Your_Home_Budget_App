@@ -2,17 +2,16 @@ import React from "react";
 import AppSidebar from "./AppSidebar";
 import AppMain from "./AppMain";
 import SpendingsTable from "./SpendingsTable";
-import operations from "../data/operations.json";
+import SpendingForm from "./SpendingForm";
 
-const AppContainer = (props) => {
+const AppContainer = () => {
     return (
         <>
-            <div>{props.children}</div>
             <div className='app__container'>
-                <AppSidebar>
-                </AppSidebar>
+                <AppSidebar />
                 <AppMain>
-                    <SpendingsTable operations={operations} />
+                    <SpendingsTable />
+                    <SpendingForm />
                 </AppMain>
             </div>
         </>
