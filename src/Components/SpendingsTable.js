@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState , useEffect } from "react";
 import Table from '@mui/joy/Table';
 
+export const URL = "http://localhost:3005/operations";
 
 const SpendingTable = ({operations}) => {
     return (
