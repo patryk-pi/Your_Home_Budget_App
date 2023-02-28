@@ -18,5 +18,43 @@
       "amount": 24.54,
       "date": "27.02.2023"
     }
+  ],
+  "categories": [
+    {
+      "description": "Kredyty",
+      "icon": null
+    },
+    {
+      "description": "Czynsz",
+      "icon": null
+    },
+    {
+      "description": "Rachunki",
+      "icon": null
+    },
+    {
+      "description": "Jedzenie",
+      "icon": null
+    },
+    {
+      "description": "Transport",
+      "icon": null
+    },
+    {
+      "description": "Sport",
+      "icon": null
+    },
+    {
+      "description": "Rozrywka",
+      "icon": null
+    },
+    {
+      "description": "Ubrania",
+      "icon": null
+    },
+    {
+      "description": "Zdrowie",
+      "icon": null
+    }
   ]
 }

@@ -11,7 +11,7 @@ const AppContainer = () => {
                 <AppSidebar />
                 <AppMain>
                     <SpendingsTable />
-                    <SpendingForm />
+
                 </AppMain>
             </div>
         </>
