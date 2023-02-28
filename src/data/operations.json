@@ -1,23 +1,6 @@
 {
   "operations": [
-    {
-      "description": "Zakupy w markecie",
-      "type": "Food",
-      "amount": 24.54,
-      "date": "27.02.2023"
-    },
-    {
-      "description": "Zakupy w markecie",
-      "type": "Food",
-      "amount": 24.54,
-      "date": "27.02.2023"
-    },
-    {
-      "description": "Zakupy w markecie",
-      "type": "Food",
-      "amount": 24.54,
-      "date": "27.02.2023"
-    }
+    
   ],
   "categories": [
     {

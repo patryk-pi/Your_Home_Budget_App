@@ -8,6 +8,23 @@ const SpendingTable = () => {
 
     const [operations, setOperations] = useState([]);
 
+    const handleAdd = operation => {
+        console.log(operation)
+        fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(operation)
+        })
+            .then(r => {
+                console.log(r);
+                return r.json();
+            })
+            .then(data => setOperations(prev => [...prev, data]))
+            .catch(err => console.log(err))
+    }
+
 
     useEffect(() => {
         fetch(URL)
@@ -16,18 +33,7 @@ const SpendingTable = () => {
             .catch(err => console.log(err))
     }, []);
 
-    const handleAdd = operation => {
-        fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(operation)
-        })
-            .then(r => r.json())
-            .then(data => setOperations(prev => [...prev, data]))
-            .catch(err => console.log(err))
-    }
+
 
     return (
 <>
