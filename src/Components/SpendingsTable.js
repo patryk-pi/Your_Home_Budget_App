@@ -34,22 +34,34 @@ const SpendingTable = () => {
     }, []);
 
 
+    if (!operations.length) {
+        return (
+            <>
+                <h1>W tym miesiącu nie było żadnych operacji :( </h1>
+                <SpendingForm add={handleAdd}/>
+            </>
+        )
+    }
+
 
     return (
 <>
         <Table >
             <thead>
             <tr>
-                <th>Column width (40%)</th>
-                <th>amount</th>
-                <th>date</th>
+                <th>Kategoria</th>
+                <th>Opis</th>
+                <th>Kwota</th>
+                <th>Data</th>
 
             </tr>
             </thead>
             <tbody>
-            {operations.map(({type, amount, date}, i) => (
-                <tr key={i}>
-                    <td>{type}</td>
+
+            {operations.map(({category, description, amount, date, id}, ) => (
+                <tr key={id}>
+                    <td>{category}</td>
+                    <td>{description}</td>
                     <td>{amount}</td>
                     <td>{date}</td>
                 </tr>

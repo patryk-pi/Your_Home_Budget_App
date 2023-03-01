@@ -1,6 +1,11 @@
 {
   "operations": [
-    
+    {
+      "category": "Jedzenie",
+      "description": "123413",
+      "amount": 13,
+      "id": 1
+    }
   ],
   "categories": [
     {

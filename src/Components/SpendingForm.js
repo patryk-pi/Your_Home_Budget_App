@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {FormControl, MenuItem, InputLabel, Select, Input, Button, TextField} from "@mui/material";
 import {LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 export const categoriesURL = "http://localhost:3005/categories";
 
@@ -12,20 +13,17 @@ const SpendingForm = ({add}) => {
     // const [category, setCategory] = useState('');
     const [categories, setCategories] = useState([]);
     const [value, setValue] = useState(null);
+    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState(0)
+    const [date, setDate] = useState(dayjs.date)
 
-    const [values, setValues] = useState({
-        category: "",
-        description: "",
-        amount: "",
-        date: ""
-    })
 
-    const {id, category, description, amount, date} = values;
+
 
     const handleSubmit = e => {
         e.preventDefault();
         add({
-            id,
             category,
             description,
             amount,
@@ -33,21 +31,22 @@ const SpendingForm = ({add}) => {
         })
     }
 
-    const handleChange = ({target: {name, value}}) => {
-        setValues(prev => ({
+
+/*    const handleChange = (event, setValue) => {
+        setValue(prev => ({
             ...prev,
-            [name]: value
+            changedValue: event.target.value
         }))
-    }
+    }*/
 
 
-    const handleCategoryChange = (e) => {
+   /* const handleCategoryChange = (e) => {
         setValues(prev => ({
                 ...prev,
                 category: e.target.value
             })
         )
-    }
+    }*/
 
     // const categories = ['Kredyty', 'Czynsz', 'Rachunki', 'Jedzenie', 'Transport', 'Rozrywka', 'Sport', 'Ubrania', 'Zdrowie'];
 
@@ -62,11 +61,12 @@ const SpendingForm = ({add}) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
+                <FormControl>
                 <InputLabel label={"Kategoria"}>Kategoria</InputLabel>
                 <Select
                     value={category}
                     label="Kategoria"
-                    onChange={handleCategoryChange}
+                    onChange={e => setCategory(e.target.value)}
                 >
                     {categories.map(({description}, id) => {
                         return (
@@ -74,14 +74,14 @@ const SpendingForm = ({add}) => {
                         )
                     })}
                 </Select>
-                <TextField label={"Opis"} onChange={handleChange}></TextField>
-                <TextField label={"Kwota"} type={'number'} onChange={handleChange}></TextField>
-                <LocalizationProvider dateAdapter={AdapterDayjs} onChange={handleChange}>
-                    <DatePicker inputFormat={'DD/MM/YYYY'} onChange={(newValue) => setValue(newValue)} value={value}
+                <TextField label={"Opis"} onChange={e => setDescription(e.target.value)}></TextField>
+                <TextField label={"Kwota"} type={'number'} onChange={e => setAmount(+e.target.value)}></TextField>
+              {/*  <LocalizationProvider dateAdapter={AdapterDayjs} onChange={e => handleChange(e, date, setDate)}>
+                    <DatePicker inputFormat={'DD/MM/YYYY'} onChange={(newValue) => setValue(newValue)} value={date}
                                 renderInput={(props) => <TextField {...props}/>} label={'Select date'}/>
-                </LocalizationProvider>
+                </LocalizationProvider>*/}
                 <Button type={'submit'}>Dodaj</Button>
-
+                </FormControl>
             </form>
 
         </>
