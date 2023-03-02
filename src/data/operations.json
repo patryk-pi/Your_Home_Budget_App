@@ -26,6 +26,132 @@
       "amount": null,
       "date": "02/03/2023",
       "id": 4
+    },
+    {
+      "category": "Czynsz",
+      "description": "Czynsz Marzec",
+      "amount": 2500,
+      "date": "02/03/2023",
+      "id": 5
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 6
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 7
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 8
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 9
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 10
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 11
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 12
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 13
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 14
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 15
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 16
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 17
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 18
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 19
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 20
+    },
+    {
+      "category": "",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 21
+    },
+    {
+      "category": "Pensja",
+      "description": "",
+      "amount": 0,
+      "date": "02/03/2023",
+      "id": 22
     }
   ],
   "categories": [

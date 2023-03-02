@@ -3,6 +3,12 @@
   &__container {
     display: flex;
     height: calc(100vh - 80px);
+
+    &__heading {
+      text-align: center;
+      font-size: 5rem;
+      padding: 3rem 0 0;
+    }
   }
 
   &__sidebar {

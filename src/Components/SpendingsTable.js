@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import Table from '@mui/joy/Table';
 import SpendingForm from "./SpendingForm";
+import {Box} from "@mui/material";
+
 
 export const URL = "http://localhost:3005/operations";
 
@@ -43,33 +45,52 @@ const SpendingTable = () => {
         )
     }
 
-
     return (
-<>
-        <Table >
-            <thead>
-            <tr>
-                <th>Kategoria</th>
-                <th>Opis</th>
-                <th>Kwota</th>
-                <th>Data</th>
+        <>
+            <h1 className={'app__container__heading'}>Przegląd miesięczny</h1>
+            <Box sx={{
+                height: 'calc(100% - 8rem)',
+                display: 'flex',
+                padding: '5rem',
+                gap: '2rem',
+                flexShrink: 1,
+            }}>
+                <div style={{
+                    height: '100%',
+                    padding: '3rem',
+                    width: '70%',
+                    overflow: 'scroll',
+                    border: '1px solid lightgray',
+                    borderRadius: '20px'
+                }}>
+                    <Table sx={{
 
-            </tr>
-            </thead>
-            <tbody>
+                    }}>
+                        <thead>
+                        <tr>
+                            <th>Kategoria</th>
+                            <th>Opis</th>
+                            <th>Kwota</th>
+                            <th>Data</th>
 
-            {operations.map(({category, description, amount, date, id}, ) => (
-                <tr key={id}>
-                    <td>{category}</td>
-                    <td>{description}</td>
-                    <td>{amount}</td>
-                    <td>{date}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
-    <SpendingForm add={handleAdd}/>
-    </>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {operations.map(({category, description, amount, date, id},) => (
+                            <tr key={id}>
+                                <td>{category}</td>
+                                <td>{description}</td>
+                                <td>{amount}</td>
+                                <td>{date}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </Table>
+                </div>
+                <SpendingForm add={handleAdd}/>
+            </Box>
+        </>
     )
 
 }
