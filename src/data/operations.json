@@ -5,43 +5,83 @@
       "description": "123413",
       "amount": 13,
       "id": 1
+    },
+    {
+      "category": "Czynsz",
+      "description": "asd",
+      "amount": -234,
+      "date": "02/03/2023",
+      "id": 2
+    },
+    {
+      "category": "Rachunki",
+      "description": "",
+      "amount": 2313,
+      "date": "02/03/2023",
+      "id": 3
+    },
+    {
+      "category": "Rachunki",
+      "description": "",
+      "amount": null,
+      "date": "02/03/2023",
+      "id": 4
     }
   ],
   "categories": [
     {
       "description": "Kredyty",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Czynsz",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Rachunki",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Jedzenie",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Transport",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Sport",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Rozrywka",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Ubrania",
+      "type": "expense",
       "icon": null
     },
     {
       "description": "Zdrowie",
+      "type": "expense",
+      "icon": null
+    },
+    {
+      "description": "Pensja",
+      "type": "income",
+      "icon": null
+    },
+    {
+      "description": "Inne wpływy",
+      "type": "income",
       "icon": null
     }
   ]
