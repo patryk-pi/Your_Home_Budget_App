@@ -3,6 +3,7 @@ import SpendingsTable from "./SpendingsTable";
 import SpendingForm from "./SpendingForm";
 import {Box} from "@mui/material";
 import dayjs from "dayjs";
+import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 
 
 export const URL = "http://localhost:3005/operations";
@@ -68,6 +69,7 @@ const SpendingsOverview = () => {
                     border: '1px solid lightgray',
                     borderRadius: '20px'
                 }}>
+                    <MonthlyBalanceOverview operations={operations} filterOperations={filterOperationsByMonth} />
                     <SpendingsTable operations={operations} filterOperations={filterOperationsByMonth}
                                     currentMonth={currentMonth}/>
                 </div>
