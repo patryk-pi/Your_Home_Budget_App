@@ -1,12 +1,6 @@
 {
   "operations": [
-    {
-      "category": "Czynsz",
-      "description": "Marzec",
-      "amount": 2500,
-      "date": "02/03/2023",
-      "id": 1
-    }
+
   ],
   "categories": [
     {

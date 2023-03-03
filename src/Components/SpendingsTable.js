@@ -2,11 +2,15 @@ import React, {useState, useEffect} from "react";
 import Table from '@mui/joy/Table';
 import SpendingForm from "./SpendingForm";
 import {Box} from "@mui/material";
+import dayjs from "dayjs";
 
 
 export const URL = "http://localhost:3005/operations";
 
 const SpendingTable = () => {
+
+const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    console.log(currentMonth);
 
     const [operations, setOperations] = useState([]);
 
@@ -28,12 +32,23 @@ const SpendingTable = () => {
     }
 
 
+
     useEffect(() => {
         fetch(URL)
             .then(r => r.json())
-            .then(data => setOperations(data))
+            .then(data => {
+                const filteredData = data.filter(operation => {
+                    const operationMonth = dayjs(operation.date, 'DD/MM/YYYY').month();
+                    console.log(operation.date)
+                    console.log(operationMonth)
+                    return operationMonth === currentMonth;
+                });
+                setOperations(filteredData)
+            })
             .catch(err => console.log(err))
     }, []);
+
+
 
 
     if (!operations.length) {
@@ -55,6 +70,7 @@ const SpendingTable = () => {
                 gap: '2rem',
                 flexShrink: 1,
             }}>
+                <SpendingForm add={handleAdd}/>
                 <div style={{
                     height: '100%',
                     padding: '3rem',
@@ -77,7 +93,14 @@ const SpendingTable = () => {
                         </thead>
                         <tbody>
 
-                        {operations.map(({category, description, amount, date, id},) => (
+                        {operations
+                            .filter(({date}) => {
+                            const operationMonth = dayjs(date, 'DD/MM/YYYY').month();
+                            console.log(date)
+                            console.log(operationMonth)
+                            return operationMonth === currentMonth;
+                            })
+                            .map(({category, description, amount, date, id},) => (
                             <tr key={id}>
                                 <td>{category}</td>
                                 <td>{description}</td>
@@ -88,7 +111,7 @@ const SpendingTable = () => {
                         </tbody>
                     </Table>
                 </div>
-                <SpendingForm add={handleAdd}/>
+
             </Box>
         </>
     )
