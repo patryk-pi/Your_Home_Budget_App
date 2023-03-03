@@ -16,6 +16,8 @@ const SpendingForm = ({add}) => {
     const [amount, setAmount] = useState('')
     const [date, setDate] = useState(dayjs(new Date()).format('DD/MM/YYYY'));
     const [month, setMonth] = useState(dayjs(new Date()).format('MM/YYYY'));
+    const [expense, setExpense] = useState(true)
+    const [income, setIncome] = useState(false)
 
     const [filteredCategory, setFilteredCategory] = useState([])
 
@@ -24,7 +26,10 @@ const SpendingForm = ({add}) => {
         console.log(month)*/
 
 
-    const filterCategories = (typeOfOperation) => {
+    const filterCategories = (event) => {
+        setIncome(!income);
+        setExpense(!expense);
+        const typeOfOperation = event.target.dataset.value
         setFilteredCategory(categories.filter(({type}) => type === typeOfOperation));
     }
 
@@ -36,7 +41,7 @@ const SpendingForm = ({add}) => {
         add({
             category,
             description,
-            amount,
+            amount: expense === true ? -amount : amount,
             date: dayjs(new Date(date)).format('DD/MM/YYYY')
         });
 

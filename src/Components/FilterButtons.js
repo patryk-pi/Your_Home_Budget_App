@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import {Button} from "@mui/material";
 
 const FormFilterButtons = ({filterCategories}) => {
-    const [expense, setExpense] = useState(true)
-    const [income, setIncome] = useState(false)
+    const [ifExpense, setIfExpense] = useState(true)
+    const [ifIncome, setIfIncome] = useState(false)
 
     const handleClick = (event) => {
-        setIncome(!income);
-        setExpense(!expense);
-        const typeOfOperation = event.target.dataset.value
-        filterCategories(typeOfOperation);
+        setIfIncome(!ifIncome);
+        setIfExpense(!ifExpense);
+        filterCategories(event);
     }
 
 
     return (
         <>
-            <Button data-value="expense" disabled={expense} value={expense} onClick={handleClick}>Wydatki</Button>
-            <Button data-value="income" disabled={income} value={income} onClick={handleClick}>Wpływy</Button>
+            <Button data-value="expense" disabled={ifExpense} value={ifExpense} onClick={handleClick}>Wydatki</Button>
+            <Button data-value="income" disabled={ifIncome} value={ifIncome} onClick={handleClick}>Wpływy</Button>
         </>
     )
 }

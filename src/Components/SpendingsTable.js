@@ -3,15 +3,10 @@ import dayjs from "dayjs";
 import Table from "@mui/joy/Table";
 
 
-const SpendingsTable = ({operations, currentMonth}) => {
+const SpendingsTable = ({operations, filterOperations}) => {
 
     if (operations
-        .filter(({date}) => {
-            const operationMonth = dayjs(date, 'DD/MM/YYYY').month();
-            console.log(date)
-            console.log(operationMonth)
-            return operationMonth === currentMonth;
-        }).length === 0 ) {
+        .filter((operation) => filterOperations(operation)).length === 0 ) {
         return (
             <h1>Brak danych</h1>
         )
@@ -34,12 +29,7 @@ const SpendingsTable = ({operations, currentMonth}) => {
         <tbody>
 
         {operations
-            .filter(({date}) => {
-                const operationMonth = dayjs(date, 'DD/MM/YYYY').month();
-                console.log(date)
-                console.log(operationMonth)
-                return operationMonth === currentMonth;
-            })
+            .filter((operation) => filterOperations(operation))
             .map(({category, description, amount, date, id},) => (
                 <tr key={id}>
                     <td>{category}</td>
