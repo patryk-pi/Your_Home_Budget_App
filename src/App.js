@@ -1,6 +1,6 @@
 
 import operations from "./data/operations.json";
-import SpendingsTable from "./Components/SpendingsTable";
+import SpendingsTable from "./Components/SpendingsOverview";
 import Navbar from "./Components/Navbar";
 import AppContainer from "./Components/AppContainer";
 
