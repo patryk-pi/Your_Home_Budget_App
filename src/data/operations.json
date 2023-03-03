@@ -6,13 +6,6 @@
       "amount": -3000,
       "date": "03/03/2023",
       "id": 1
-    },
-    {
-      "category": "Pensja",
-      "description": "Marzec",
-      "amount": 7000,
-      "date": "03/03/2023",
-      "id": 2
     }
   ],
   "categories": [

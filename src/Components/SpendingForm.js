@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {FormControl, MenuItem, InputLabel, Select, Input, Button, TextField, Box} from "@mui/material";
+import {FormControl, MenuItem, Button, TextField, Box} from "@mui/material";
 import {LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
+import {NumericFormat} from "react-number-format";
 
 export const categoriesURL = "http://localhost:3005/categories";
 
@@ -111,6 +112,7 @@ const SpendingForm = ({add}) => {
                             </TextField>
                         <TextField label={"Opis"} type={"text"}
                                    onChange={e => setDescription(e.target.value)} value={description}></TextField>
+
                         <TextField value={amount} label={"Kwota"} type={'text'} InputProps={{inputProps: {min: 0}}} onChange={(e) => {
                             const value = e.target.value;
                             // validate input using regex to accept decimal numbers with up to 2 decimal places

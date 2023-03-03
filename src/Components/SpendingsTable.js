@@ -1,5 +1,4 @@
 import React from "react";
-import dayjs from "dayjs";
 import Table from "@mui/joy/Table";
 
 
@@ -14,27 +13,31 @@ const SpendingsTable = ({operations, filterOperations}) => {
 
     return (
 
-    <Table sx={{
-
+    <Table size="lg"
+           stripe='even'
+            borderAxis={"none"}
+           sx={{
+        textAlign: 'center',
+        fontSize: '1.4rem',
     }}>
-        <thead>
-        <tr>
-            <th>Kategoria</th>
-            <th>Opis</th>
-            <th>Kwota</th>
-            <th>Data</th>
+        <thead >
+        <tr >
+            <th className='spendings__table__head'>Kategoria</th>
+            <th className='spendings__table__head'>Opis</th>
+            <th className='spendings__table__head'>Kwota</th>
+            <th className='spendings__table__head'>Data</th>
 
         </tr>
         </thead>
-        <tbody>
+        <tbody >
 
         {operations
             .filter((operation) => filterOperations(operation))
             .map(({category, description, amount, date, id},) => (
-                <tr key={id}>
+                <tr key={id} >
                     <td>{category}</td>
                     <td>{description}</td>
-                    <td>{amount}</td>
+                    <td className={amount < 0 ? "spendings__table__expense" : "spendings__table__income"}>{amount}</td>
                     <td>{date}</td>
                 </tr>
             ))}

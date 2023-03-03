@@ -1,0 +1,30 @@
+.JoyTable-root {
+
+
+  .spendings__table {
+
+    &__head {
+      text-align: center;
+    }
+
+    &__expense {
+      color: red;
+      font-weight: 700;
+    }
+
+    &__income {
+      color: green;
+      font-weight: 700;
+    }
+
+  }
+
+  tbody {
+
+    tr {
+      background: #f5f5f5;
+    }
+  }
+
+}
+

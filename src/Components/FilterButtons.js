@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {Button} from "@mui/material";
+import SavingsIcon from '@mui/icons-material/Savings';
+import PaymentsIcon from '@mui/icons-material/Payments';
 
 const FormFilterButtons = ({filterCategories}) => {
     const [ifExpense, setIfExpense] = useState(true)
@@ -14,8 +16,8 @@ const FormFilterButtons = ({filterCategories}) => {
 
     return (
         <>
-            <Button data-value="expense" disabled={ifExpense} value={ifExpense} onClick={handleClick}>Wydatki</Button>
-            <Button data-value="income" disabled={ifIncome} value={ifIncome} onClick={handleClick}>Wpływy</Button>
+            <Button data-value="expense" disabled={ifExpense} value={ifExpense} onClick={handleClick} startIcon={ <PaymentsIcon />} >Wydatki</Button>
+            <Button data-value="income" disabled={ifIncome} value={ifIncome} onClick={handleClick} startIcon={ <SavingsIcon />}>Wpływy</Button>
         </>
     )
 }
