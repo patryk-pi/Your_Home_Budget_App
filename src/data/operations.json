@@ -6,6 +6,13 @@
       "amount": -3000,
       "date": "03/03/2023",
       "id": 1
+    },
+    {
+      "category": "Transport",
+      "description": "123",
+      "amount": -123,
+      "date": "08/03/2022",
+      "id": 2
     }
   ],
   "categories": [

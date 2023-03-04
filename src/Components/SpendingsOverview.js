@@ -10,7 +10,9 @@ export const URL = "http://localhost:3005/operations";
 
 const SpendingsOverview = () => {
 
+    // States needed for displaying filtered table with operations
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
 
     const [operations, setOperations] = useState([]);
 
@@ -33,9 +35,10 @@ const SpendingsOverview = () => {
 
     const filterOperationsByMonth = operation => {
         const operationMonth = dayjs(operation.date, 'DD/MM/YYYY').month();
+        const operationYear = dayjs(operation.date, 'DD/MM/YYYY').year();
         console.log(operation.date)
-        console.log(operationMonth)
-        return operationMonth === currentMonth;
+        console.log(operationYear)
+        return operationMonth === currentMonth && operationYear === currentYear
     }
 
 

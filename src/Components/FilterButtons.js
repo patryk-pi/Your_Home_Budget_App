@@ -16,7 +16,11 @@ const FormFilterButtons = ({filterCategories}) => {
 
     return (
         <>
-            <Button data-value="expense" disabled={ifExpense} value={ifExpense} onClick={handleClick} startIcon={ <PaymentsIcon />} >Wydatki</Button>
+            <Button sx={{
+                fontSize: "2rem"
+            }
+            }
+             data-value="expense" disabled={ifExpense} value={ifExpense} onClick={handleClick} startIcon={ <PaymentsIcon />} >Wydatki</Button>
             <Button data-value="income" disabled={ifIncome} value={ifIncome} onClick={handleClick} startIcon={ <SavingsIcon />}>Wpływy</Button>
         </>
     )

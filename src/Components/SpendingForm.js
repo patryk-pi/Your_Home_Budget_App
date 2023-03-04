@@ -16,11 +16,11 @@ const SpendingForm = ({add}) => {
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('')
     const [date, setDate] = useState(dayjs(new Date()).format('DD/MM/YYYY'));
-    const [month, setMonth] = useState(dayjs(new Date()).format('MM/YYYY'));
     const [expense, setExpense] = useState(true)
     const [income, setIncome] = useState(false)
 
     const [filteredCategory, setFilteredCategory] = useState([])
+    const [month, setMonth] = useState(dayjs(new Date()).format('MM/YYYY'));
 
 
     /*    console.log(date)
