@@ -16,6 +16,7 @@ const SpendingsOverview = () => {
 
     const [operations, setOperations] = useState([]);
 
+
     const handleAdd = operation => {
         fetch(URL, {
             method: "POST",
@@ -36,8 +37,6 @@ const SpendingsOverview = () => {
     const filterOperationsByMonth = operation => {
         const operationMonth = dayjs(operation.date, 'DD/MM/YYYY').month();
         const operationYear = dayjs(operation.date, 'DD/MM/YYYY').year();
-        console.log(operation.date)
-        console.log(operationYear)
         return operationMonth === currentMonth && operationYear === currentYear
     }
 
@@ -55,7 +54,8 @@ const SpendingsOverview = () => {
 
     return (
         <>
-            <h1 className={'app__container__heading'}>Przegląd miesięczny</h1>
+            <h1 className={'app__container__heading'}>{} {currentYear}
+            </h1>
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',

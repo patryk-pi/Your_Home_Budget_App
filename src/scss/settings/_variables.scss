@@ -3,5 +3,10 @@
 $color-primary: #49b6ff;
 $color-primary-light-1: #c8e9ff;
 
+:export {
+  colorPrimary: $color-primary;
+  colorPrimaryLight1: $color-primary-light-1
+}
+
 //WIDTH
 $aside-width: 25rem;
