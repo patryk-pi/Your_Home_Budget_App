@@ -64,21 +64,20 @@ const SpendingsOverview = () => {
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',
-                padding: '5rem',
+                padding: '2rem',
                 gap: '2rem',
                 flexShrink: 1,
             }}>
                 <SpendingForm add={handleAdd}/>
                 <div style={{
                     height: '100%',
-                    padding: '3rem',
+
                     width: '70%',
-                    overflow: 'scroll',
-                    border: '1px solid lightgray',
-                    borderRadius: '20px',
+                    // border: '1px solid lightgray',
+                    // borderRadius: '20px',
                 }}>
                     {loading ?
-                        <>
+                        < >
                             <MonthlyBalanceOverview operations={operations} filterOperations={filterOperationsByMonth}/>
                             <SpendingsTable operations={operations} filterOperations={filterOperationsByMonth}
                                             currentMonth={currentMonth}/>

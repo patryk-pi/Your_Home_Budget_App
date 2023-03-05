@@ -55,6 +55,76 @@
       "amount": 7000,
       "date": "04/03/2023",
       "id": 8
+    },
+    {
+      "category": "Sport",
+      "description": "Bilety",
+      "amount": -843.22,
+      "date": "05/03/2023",
+      "id": 9
+    },
+    {
+      "category": "Czynsz",
+      "description": "Marzec",
+      "amount": -3000,
+      "date": "03/03/2023",
+      "id": 1
+    },
+    {
+      "category": "Transport",
+      "description": "123",
+      "amount": -123,
+      "date": "08/03/2022",
+      "id": 2
+    },
+    {
+      "category": "Czynsz",
+      "description": "7655",
+      "amount": -64345,
+      "date": "03/04/2023",
+      "id": 3
+    },
+    {
+      "category": "Czynsz",
+      "description": "Marzec",
+      "amount": -3232,
+      "date": "03/04/2023",
+      "id": 4
+    },
+    {
+      "category": "Kredyty",
+      "description": "OPP",
+      "amount": -143,
+      "date": "02/03/2023",
+      "id": 5
+    },
+    {
+      "category": "Jedzenie",
+      "description": "Auchan",
+      "amount": -240,
+      "date": "04/03/2023",
+      "id": 6
+    },
+    {
+      "category": "Czynsz",
+      "description": "Marcze",
+      "amount": -3000,
+      "date": "04/03/2023",
+      "id": 7
+    },
+    {
+      "category": "Pensja",
+      "description": "Wyplata",
+      "amount": 7000,
+      "date": "04/03/2023",
+      "id": 8
+    },
+    {
+      "category": "Sport",
+      "description": "Bilety",
+      "amount": -843.22,
+      "date": "05/03/2023",
+      "id": 9
     }
   ],
   "categories": [

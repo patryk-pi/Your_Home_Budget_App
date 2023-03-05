@@ -13,13 +13,25 @@ const SpendingsTable = ({operations, filterOperations}) => {
 
     return (
 
+        <div style={{
+
+
+            border: '1px solid lightgray',
+            borderRadius: '20px',
+            padding: '2rem',
+            height: 'calc(100% - 15rem)',
+            overflow: 'scroll'
+
+
+        }}>
     <Table size="lg"
            stripe='even'
             borderAxis={"none"}
            sx={{
-        textAlign: 'center',
-        fontSize: '1.4rem',
-    }}>
+               textAlign: 'center',
+               fontSize: '1.4rem',
+           }}
+           >
         <thead >
         <tr >
             <th className='spendings__table__head'>Kategoria</th>
@@ -43,6 +55,7 @@ const SpendingsTable = ({operations, filterOperations}) => {
             ))}
         </tbody>
     </Table>
+        </div>
     )
 }
 
