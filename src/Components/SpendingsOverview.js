@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
 import SpendingsTable from "./SpendingsTable";
 import SpendingForm from "./SpendingForm";
-import {Box} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import dayjs from "dayjs";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
 import variables from '../scss/settings/_variables.scss'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 const {colorPrimary} = variables
 
@@ -17,6 +20,8 @@ const SpendingsOverview = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
     const [loading, setLoading] = useState(false)
+
+    const [currentMonthString, setCurrentMonthString] = useState('')
 
     const [operations, setOperations] = useState([]);
 
@@ -44,6 +49,27 @@ const SpendingsOverview = () => {
         return operationMonth === currentMonth && operationYear === currentYear
     }
 
+    const nextMonth = () => {
+        setCurrentMonth(prev => {
+            return prev + 1 > 11 ? 0 : prev + 1
+        })
+
+        if (currentMonth > 10) {
+            setCurrentYear(prev => prev + 1)
+        }
+        console.log(currentYear)
+    }
+
+    const prevMonth = () => {
+        setCurrentMonth(prev => {
+            return prev - 1 < 0 ? 11 : prev - 1
+        })
+
+        if (currentMonth < 1) {
+            setCurrentYear(prev => prev - 1)
+        }
+    }
+
 
     useEffect(() => {
         fetch(URL)
@@ -57,10 +83,67 @@ const SpendingsOverview = () => {
     }, [currentMonth]);
 
 
+    useEffect(() => {
+        switch (currentMonth) {
+            case 0:
+                setCurrentMonthString('Styczeń');
+                break;
+            case 1:
+                setCurrentMonthString('Luty');
+                break;
+            case 2:
+                setCurrentMonthString('Marzec');
+                break;
+            case 3:
+                setCurrentMonthString('Kwiecień');
+                break;
+            case 4:
+                setCurrentMonthString('Maj');
+                break;
+            case 5:
+                setCurrentMonthString('Czerwiec');
+                break;
+            case 6:
+                setCurrentMonthString('Lipiec');
+                break;
+            case 7:
+                setCurrentMonthString('Sierpień');
+                break;
+            case 8:
+                setCurrentMonthString('Wrzesień');
+                break;
+            case 9:
+                setCurrentMonthString('Październik');
+                break;
+            case 10:
+                setCurrentMonthString('Listopad');
+                break;
+            case 11:
+                setCurrentMonthString('Grudzień');
+                break;
+            default:
+                setCurrentMonthString('');
+                break;
+        }
+    }, [currentMonth]);
+
+
     return (
         <>
-            <h1 className={'app__container__heading'}>{currentMonth} {currentYear}
-            </h1>
+            <div style={{
+                display: 'flex',
+                justifyContent: "space-around",
+                alignItems: 'center',
+                padding: '3rem 0 0'
+            }}>
+                <IconButton size='large' onClick={prevMonth}>
+                    <ArrowBackIosNewIcon fontSize={'large'}/>
+                </IconButton>
+                <h1 className={'app__container__heading'}>{currentMonthString} {currentYear}</h1>
+                <IconButton size='large' onClick={nextMonth}>
+                    <ArrowForwardIosIcon fontSize={'large'}/>
+                </IconButton>
+            </div>
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',
@@ -104,7 +187,6 @@ const SpendingsOverview = () => {
                     }
 
                 </div>
-
             </Box>
         </>
     )

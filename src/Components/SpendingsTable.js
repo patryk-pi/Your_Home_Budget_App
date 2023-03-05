@@ -49,7 +49,12 @@ const SpendingsTable = ({operations, filterOperations}) => {
                 <tr key={id} >
                     <td>{category}</td>
                     <td>{description}</td>
-                    <td className={amount < 0 ? "spendings__table__expense" : "spendings__table__income"}>{amount}</td>
+                    <td className={amount < 0 ? "spendings__table__expense" : "spendings__table__income"}>{amount.toLocaleString('pl', {
+                        style: 'currency',
+                        currency: 'PLN',
+                        minimumFractionDigits: 2,
+                        useGrouping: 'always'
+                    })}</td>
                     <td>{date}</td>
                 </tr>
             ))}

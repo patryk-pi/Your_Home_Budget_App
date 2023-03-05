@@ -18,7 +18,10 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     .reduce((acc, curr) => {
                         return acc + curr.amount
                     }, 0)
-                    .toFixed(2)
+                    .toLocaleString('pl', {
+                        style: 'currency',
+                        currency: 'PLN'
+                    })
             }</h2>
             <h2 style={{
                 fontSize: '3rem'
@@ -29,7 +32,11 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     .reduce((acc, curr) => {
                         return acc + curr.amount
                     }, 0)
-                    .toFixed(2)
+                    .toLocaleString('pl', {
+                        style: 'currency',
+                        currency: 'PLN'
+                    })
+
             }</h2>
             <h2 style={{
                 fontSize: '3rem'
@@ -39,7 +46,11 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     .reduce((acc, curr) => {
                         return acc + curr.amount
                     }, 0)
-                    .toFixed(2)
+
+                    .toLocaleString('pl', {
+                        style: 'currency',
+                        currency: 'PLN'
+                    })
             }</h2>
         </div>
     )

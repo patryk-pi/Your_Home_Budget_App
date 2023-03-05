@@ -66,9 +66,6 @@ const SpendingForm = ({add}) => {
         setFilteredCategory(categories.filter(({type}) => type === "expense"));
     }, [categories])
 
-    useEffect(() => {
-
-    })
 
 
     return (
@@ -118,13 +115,13 @@ const SpendingForm = ({add}) => {
                             customInput={TextField}
                             value={amount}
                             label={"Kwota"}
-                            thousandSeparator={' '}
+                            type={"text"}
                             decimalScale={2}
                             allowedDecimalSeparators={[',','.']}
                             InputProps={{inputProps: {min: 0}}} onChange={(e) => {
-                            const value = e.target.value;
+                            const value = +(e.target.value);
                             console.log(value)
-                            setAmount(value)  }}  >
+                            setAmount(parseFloat(value))}}  >
                         </NumericFormat>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
