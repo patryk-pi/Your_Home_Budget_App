@@ -30,6 +30,7 @@ const SpendingForm = ({add}) => {
     const filterCategories = (event) => {
         setIncome(!income);
         setExpense(!expense);
+        setCategory('');
         const typeOfOperation = event.target.dataset.value
         setFilteredCategory(categories.filter(({type}) => type === typeOfOperation));
     }
@@ -113,12 +114,12 @@ const SpendingForm = ({add}) => {
                         <TextField label={"Opis"} type={"text"}
                                    onChange={e => setDescription(e.target.value)} value={description}></TextField>
 
-                        <TextField value={amount} label={"Kwota"} type={'text'} InputProps={{inputProps: {min: 0}}} onChange={(e) => {
+                        <NumericFormat customInput={TextField} value={amount} label={"Kwota"} type={'text'} InputProps={{inputProps: {min: 0}}} onChange={(e) => {
                             const value = e.target.value;
                             // validate input using regex to accept decimal numbers with up to 2 decimal places
-                            setAmount(parseFloat(value))
-                        }}>
-                        </TextField>
+                            setAmount(value)  }}  >
+                        </NumericFormat>
+
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker inputFormat={'DD/MM/YYYY'} onChange={(date) => {
                                 console.log(dayjs(date).format('DD/MM/YYYY'))

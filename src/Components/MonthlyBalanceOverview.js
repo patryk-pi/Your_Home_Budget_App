@@ -4,7 +4,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
 
     return (
         <>
-            <h2>Wpływy: {
+            <h2 style={{
+                fontSize: '3rem'
+            }}>Wpływy: {
                 operations
                     .filter(operation => filterOperations(operation))
                     .filter(operation => operation.amount > 0)
@@ -12,7 +14,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                         return acc + curr.amount
                     }, 0)
             }</h2>
-            <h2>Wydatki: {
+            <h2 style={{
+                fontSize: '3rem'
+            }}>Wydatki: {
                 operations
                     .filter(operation => filterOperations(operation))
                     .filter(operation => operation.amount < 0)
@@ -20,7 +24,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                         return acc + curr.amount
                     }, 0)
             }</h2>
-            <h2>Bilans: {
+            <h2 style={{
+                fontSize: '3rem'
+            }}>Bilans: {
                 operations
                     .filter(operation => filterOperations(operation))
                     .reduce((acc, curr) => {

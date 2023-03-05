@@ -18,12 +18,13 @@ const theme = createTheme({
                     "&.MuiButton-textPrimary": {
 
                         background: "#dadada",
-                        color: '#fafafa'
+                        color: '#fafafa',
+
                     },
                     "&.Mui-disabled": {
                         background: colorPrimary,
                         color: "color-primary",
-                        // color: "$color-primary"
+                        boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, .3)'
                     }
                 }
             }

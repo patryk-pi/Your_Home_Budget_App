@@ -34,6 +34,34 @@
       "amount": -143,
       "date": "02/03/2023",
       "id": 5
+    },
+    {
+      "category": "Jedzenie",
+      "description": "Auchan",
+      "amount": -240,
+      "date": "04/03/2023",
+      "id": 6
+    },
+    {
+      "category": "Czynsz",
+      "description": "Marcze",
+      "amount": -3000,
+      "date": "04/03/2023",
+      "id": 7
+    },
+    {
+      "category": "Pensja",
+      "description": "Wyplata",
+      "amount": 7000,
+      "date": "04/03/2023",
+      "id": 8
+    },
+    {
+      "category": "Czynsz",
+      "description": "1e12e",
+      "amount": -134,
+      "date": "05/03/2023",
+      "id": 9
     }
   ],
   "categories": [

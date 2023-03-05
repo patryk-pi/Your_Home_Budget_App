@@ -54,7 +54,7 @@ const SpendingsOverview = () => {
 
     return (
         <>
-            <h1 className={'app__container__heading'}>{} {currentYear}
+            <h1 className={'app__container__heading'}>{currentMonth} {currentYear}
             </h1>
             <Box sx={{
                 height: 'calc(100% - 8rem)',
