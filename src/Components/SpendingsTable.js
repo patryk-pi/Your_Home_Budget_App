@@ -7,7 +7,25 @@ const SpendingsTable = ({operations, filterOperations}) => {
     if (operations
         .filter((operation) => filterOperations(operation)).length === 0 ) {
         return (
-            <h1>Brak danych</h1>
+
+            <div style={{
+
+
+                border: '1px solid lightgray',
+                borderRadius: '20px',
+                padding: '2rem',
+                height: 'calc(100% - 15rem)',
+                overflow: 'scroll',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+
+
+            }}>
+            <h1 style={{
+                fontSize: '3rem'
+            }}>Brak danych :(</h1>
+            </div>
         )
     }
 

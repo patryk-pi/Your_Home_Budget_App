@@ -1,8 +1,8 @@
 
-import operations from "./data/operations.json";
-import SpendingsTable from "./Components/SpendingsOverview";
 import Navbar from "./Components/Navbar";
 import AppContainer from "./Components/AppContainer";
+import {HashRouter, Routes, Route, Link} from "react-router-dom";
+import React from "react";
 
 
 
@@ -10,7 +10,11 @@ function App() {
   return (
    <>
        <Navbar></Navbar>
-       <AppContainer />
+       <HashRouter>
+           <Routes>
+               <Route path='/' element={<AppContainer />} />
+           </Routes>
+       </HashRouter>
 
    </>
   );

@@ -20,7 +20,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     }, 0)
                     .toLocaleString('pl', {
                         style: 'currency',
-                        currency: 'PLN'
+                        currency: 'PLN',
+                        minimumFractionDigits: 2,
+                        useGrouping: 'always'
                     })
             }</h2>
             <h2 style={{
@@ -34,7 +36,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     }, 0)
                     .toLocaleString('pl', {
                         style: 'currency',
-                        currency: 'PLN'
+                        currency: 'PLN',
+                        minimumFractionDigits: 2,
+                        useGrouping: 'always'
                     })
 
             }</h2>
@@ -49,7 +53,9 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
 
                     .toLocaleString('pl', {
                         style: 'currency',
-                        currency: 'PLN'
+                        currency: 'PLN',
+                        minimumFractionDigits: 2,
+                        useGrouping: 'always'
                     })
             }</h2>
         </div>

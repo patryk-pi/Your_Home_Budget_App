@@ -4,19 +4,20 @@ import AppMain from "./AppMain";
 import SpendingsOverview from "./SpendingsOverview";
 
 
-
 const AppContainer = () => {
     return (
         <>
             <div className='app__container'>
-                <AppSidebar />
-                <AppMain>
-                    <SpendingsOverview />
+                <AppSidebar>
 
-                </AppMain>
+                    </AppSidebar>
+                    <AppMain>
+                        <SpendingsOverview/>
+
+                    </AppMain>
             </div>
         </>
-    )
+)
 }
 
 export default AppContainer;

@@ -8,6 +8,7 @@ import {ProgressBar} from "react-loader-spinner";
 import variables from '../scss/settings/_variables.scss'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 
 
 const {colorPrimary} = variables
@@ -130,20 +131,7 @@ const SpendingsOverview = () => {
 
     return (
         <>
-            <div style={{
-                display: 'flex',
-                justifyContent: "space-around",
-                alignItems: 'center',
-                padding: '3rem 0 0'
-            }}>
-                <IconButton size='large' onClick={prevMonth}>
-                    <ArrowBackIosNewIcon fontSize={'large'}/>
-                </IconButton>
-                <h1 className={'app__container__heading'}>{currentMonthString} {currentYear}</h1>
-                <IconButton size='large' onClick={nextMonth}>
-                    <ArrowForwardIosIcon fontSize={'large'}/>
-                </IconButton>
-            </div>
+            <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString} currentYear={currentYear} />
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',
@@ -180,8 +168,6 @@ const SpendingsOverview = () => {
                                 wrapperClass="progress-bar-wrapper"
                                 borderColor={colorPrimary}
                                 barColor='#ddd'
-
-
                             />
                         </div>
                     }
