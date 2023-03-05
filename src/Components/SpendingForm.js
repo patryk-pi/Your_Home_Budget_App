@@ -43,7 +43,7 @@ const SpendingForm = ({add}) => {
         add({
             category,
             description,
-            amount: expense === true ? -amount : amount,
+            amount: expense === true ? -parseFloat(amount) : parseFloat(amount),
             date: dayjs(new Date(date)).format('DD/MM/YYYY')
         });
 
@@ -114,9 +114,16 @@ const SpendingForm = ({add}) => {
                         <TextField label={"Opis"} type={"text"}
                                    onChange={e => setDescription(e.target.value)} value={description}></TextField>
 
-                        <NumericFormat customInput={TextField} value={amount} label={"Kwota"} type={'text'} InputProps={{inputProps: {min: 0}}} onChange={(e) => {
+                        <NumericFormat
+                            customInput={TextField}
+                            value={amount}
+                            label={"Kwota"}
+                            thousandSeparator={' '}
+                            decimalScale={2}
+                            allowedDecimalSeparators={[',','.']}
+                            InputProps={{inputProps: {min: 0}}} onChange={(e) => {
                             const value = e.target.value;
-                            // validate input using regex to accept decimal numbers with up to 2 decimal places
+                            console.log(value)
                             setAmount(value)  }}  >
                         </NumericFormat>
 
