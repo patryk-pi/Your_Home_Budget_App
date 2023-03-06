@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const MonthlyBalanceOverview = ({operations, filterOperations}) => {
 
@@ -7,27 +7,60 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
             border: '1px solid lightgray',
             borderRadius: '20px',
             padding: '2rem',
-            marginBottom: '2rem'
+            marginBottom: '2rem',
+            display: "flex",
+            justifyContent: "space-between",
         }}>
-            <h2 style={{
-                fontSize: '3rem'
-            }}>Wpływy: {
-                operations
-                    .filter(operation => filterOperations(operation))
-                    .filter(operation => operation.amount > 0)
-                    .reduce((acc, curr) => {
-                        return acc + curr.amount
-                    }, 0)
-                    .toLocaleString('pl', {
-                        style: 'currency',
-                        currency: 'PLN',
-                        minimumFractionDigits: 2,
-                        useGrouping: 'always'
-                    })
-            }</h2>
-            <h2 style={{
-                fontSize: '3rem'
-            }}>Wydatki: {
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                width: '100%'
+            }}>
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+            }}>
+                <h2 style={{
+                    fontSize: '3rem'
+                }}>Wpływy: </h2>
+                <h2 style={{
+                    fontSize: '3rem',
+                    color: 'green',
+                    fontWeight: '700'
+                }}>{
+                    operations
+                        .filter(operation => filterOperations(operation))
+                        .filter(operation => operation.amount > 0)
+                        .reduce((acc, curr) => {
+                            return acc + curr.amount
+                        }, 0)
+                        .toLocaleString('pl', {
+                            style: 'currency',
+                            currency: 'PLN',
+                            minimumFractionDigits: 2,
+                            useGrouping: 'always'
+                        })
+                }
+                </h2>
+            </div>
+
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+            }}>
+                <h2 style={{
+                    fontSize: '3rem'
+                }}>
+                    Wydatki:</h2> <h2
+                style={{
+                    fontSize: '3rem',
+                    color: 'red',
+                    fontWeight: '700'
+                }}
+            >{
                 operations
                     .filter(operation => filterOperations(operation))
                     .filter(operation => operation.amount < 0)
@@ -42,22 +75,36 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     })
 
             }</h2>
-            <h2 style={{
-                fontSize: '3rem'
-            }}>Bilans: {
-                operations
-                    .filter(operation => filterOperations(operation))
-                    .reduce((acc, curr) => {
-                        return acc + curr.amount
-                    }, 0)
+            </div>
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+            }}>
+                <h2 style={{
+                    fontSize: '3rem'
+                }}>Bilans: </h2>
+                <h2 style={{
+                    fontSize: '3rem',
+                    color: "lightgrey",
+                    fontWeight: '700'
+                }}>{
+                    operations
+                        .filter(operation => filterOperations(operation))
+                        .reduce((acc, curr) => {
+                            return acc + curr.amount
+                        }, 0)
 
-                    .toLocaleString('pl', {
-                        style: 'currency',
-                        currency: 'PLN',
-                        minimumFractionDigits: 2,
-                        useGrouping: 'always'
-                    })
-            }</h2>
+                        .toLocaleString('pl', {
+                            style: 'currency',
+                            currency: 'PLN',
+                            minimumFractionDigits: 2,
+                            useGrouping: 'always'
+                        })
+                }</h2>
+
+            </div>
+            </div>
         </div>
     )
 }

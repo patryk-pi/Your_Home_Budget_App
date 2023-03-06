@@ -132,6 +132,20 @@
       "amount": -2500.43,
       "date": "12/10/2022",
       "id": 10
+    },
+    {
+      "category": "Czynsz",
+      "description": "Czerwiec ",
+      "amount": -2500.64,
+      "date": "11/06/2024",
+      "id": 11
+    },
+    {
+      "category": "Pensja",
+      "description": "Wypłata ",
+      "amount": 10000,
+      "date": "12/06/2024",
+      "id": 12
     }
   ],
   "categories": [
@@ -190,5 +204,6 @@
       "type": "income",
       "icon": null
     }
-  ]
+  ],
+  "goals": []
 }

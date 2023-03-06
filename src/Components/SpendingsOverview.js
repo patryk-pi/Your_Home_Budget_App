@@ -9,6 +9,7 @@ import variables from '../scss/settings/_variables.scss'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
+import AppSidebar from "./AppSidebar";
 
 
 const {colorPrimary} = variables

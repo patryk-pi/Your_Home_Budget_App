@@ -4,20 +4,20 @@ import AppMain from "./AppMain";
 import SpendingsOverview from "./SpendingsOverview";
 
 
-const AppContainer = () => {
+
+const OverviewMain = () => {
     return (
         <>
             <div className='app__container'>
-                <AppSidebar>
 
-                    </AppSidebar>
-                    <AppMain>
-                        <SpendingsOverview/>
+                <AppSidebar/>
+                <AppMain>
+                    <SpendingsOverview/>
 
-                    </AppMain>
+                </AppMain>
             </div>
         </>
-)
+    )
 }
 
-export default AppContainer;
+export default OverviewMain;

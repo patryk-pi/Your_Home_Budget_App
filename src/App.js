@@ -1,8 +1,9 @@
 
 import Navbar from "./Components/Navbar";
-import AppContainer from "./Components/AppContainer";
+import OverviewMain from "./Components/OverviewMain";
 import {HashRouter, Routes, Route, Link} from "react-router-dom";
 import React from "react";
+import GoalsSetterMain from "./Components/GoalsSetterMain";
 
 
 
@@ -12,7 +13,8 @@ function App() {
        <Navbar></Navbar>
        <HashRouter>
            <Routes>
-               <Route path='/' element={<AppContainer />} />
+               <Route path='/' element={<OverviewMain />} />
+               <Route path='goals' element={<GoalsSetterMain/>} />
            </Routes>
        </HashRouter>
 

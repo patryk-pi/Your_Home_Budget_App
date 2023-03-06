@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {FormControl, MenuItem, Button, TextField, Box} from "@mui/material";
+import {FormControl, MenuItem, Button, TextField, Box, Snackbar, IconButton} from "@mui/material";
 import {LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
+import {GridCloseIcon} from "@mui/x-data-grid";
 
 export const categoriesURL = "http://localhost:3005/categories";
 
@@ -20,7 +21,6 @@ const SpendingForm = ({add}) => {
     const [income, setIncome] = useState(false)
 
     const [filteredCategory, setFilteredCategory] = useState([])
-
 
 
     /*    console.log(date)
@@ -39,7 +39,9 @@ const SpendingForm = ({add}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!category || !amount || !date) return
+        if (!category || !amount || !date) {
+            return
+        }
         add({
             category,
             description,
@@ -86,11 +88,11 @@ const SpendingForm = ({add}) => {
                 <form style={{
                     width: '100%'
                 }} onSubmit={handleSubmit}>
-                    <FormControl fullWidth={true} sx={{
-
+                    <FormControl
+                        fullWidth={true}
+                        sx={{
                         width: '100%',
                         padding: '5rem',
-
                     }}>
 
                             <TextField
