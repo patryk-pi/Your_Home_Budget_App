@@ -1,17 +1,22 @@
 import React, {useState, useEffect} from "react";
-import {Button} from "@mui/material";
+import {Button, FormControl, TextField} from "@mui/material";
+import {NumericFormat} from "react-number-format";
+import dayjs from "dayjs";
+import nextMonth from './SpendingsOverview'
 
-const GoalSetForm = ({add}) => {
+const GoalSetForm = ({add, children}) => {
 
-    const [monthAndYear, setMonthAndYear] = useState('05/2022');
-    const [category, setCategory] = useState(  "jedzenie")
-    const [goal, setGoal] = useState(2300)
+    const [monthAndYear, setMonthAndYear] = useState(dayjs(new Date()).format("MM/YYYY"));
+    const [category, setCategory] = useState("czynsz")
+    const [goal, setGoal] = useState(2300);
+    console.log(monthAndYear)
 
     const [categoryAndGoal, setCategoryAndGoal] = useState({
         monthAndYear,
         category,
         goal
     })
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,13 +24,37 @@ const GoalSetForm = ({add}) => {
             monthAndYear,
             category,
             goal
-
         })
         add(categoryAndGoal)
     }
 
     return (
-        <Button onClick={handleSubmit}>Dodaj</Button>
+        <>
+            <form>
+
+                <FormControl
+                    fullWidth={true}
+                    sx={{
+                        width: '100%',
+                        padding: '5rem',
+                    }}>
+                    {children}
+                    <NumericFormat
+                        customInput={TextField}
+
+                        label={"Kwota"}
+                        type={"text"}
+                        decimalScale={2}
+                        allowedDecimalSeparators={[',','.']}
+                        InputProps={{inputProps: {min: 0}}} onChange={(e) => {
+                        const value = +(e.target.value);
+                        console.log(value)
+                        }}  >
+                    </NumericFormat>
+                </FormControl>
+            </form>
+            <Button onClick={handleSubmit}>Dodaj</Button>
+        </>
     )
 
 }

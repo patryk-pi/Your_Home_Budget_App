@@ -154,6 +154,20 @@
         "goal": 2000
       },
       "id": 13
+    },
+    {
+      "category": "Czynsz",
+      "description": "asda",
+      "amount": -42343,
+      "date": "06/03/2023",
+      "id": 14
+    },
+    {
+      "category": "Czynsz",
+      "description": "1212312",
+      "amount": -14123123,
+      "date": "17/04/2023",
+      "id": 15
     }
   ],
   "categories": [
@@ -217,7 +231,7 @@
     {
       "monthAndYear": "06/2022",
       "category": "czynsz",
-      "goal": 35000,
+      "goal": 2300,
       "id": 1
     },
     {
@@ -237,6 +251,12 @@
       "category": "jedzenie",
       "goal": 23700,
       "id": 4
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "czynsz",
+      "goal": 2300,
+      "id": 5
     }
   ]
 }

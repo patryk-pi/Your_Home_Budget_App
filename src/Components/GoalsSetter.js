@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import dayjs from "dayjs";
 
 import GoalSetForm from "./GoalSetForm";
+import {categoriesURL} from "./SpendingForm";
 
 const GoalsSetter = () => {
 
@@ -11,6 +12,7 @@ const GoalsSetter = () => {
     // STATES
     const [goals, setGoals] = useState([]);
     const [date, setDate] = useState(dayjs(new Date()));
+    const [categories, setCategories] = useState([]);
 
 
     useEffect(() => {
@@ -20,6 +22,13 @@ const GoalsSetter = () => {
                 setGoals(data);
                 console.log(data)
             })
+            .catch(err => console.log(err))
+    }, []);
+
+    useEffect(() => {
+        fetch(categoriesURL)
+            .then(r => r.json())
+            .then(data => setCategories(data))
             .catch(err => console.log(err))
     }, []);
 
@@ -55,8 +64,18 @@ const GoalsSetter = () => {
     };
 
 
+
+
     return (
-        <GoalSetForm add={handleAdd}/>
+<>
+        {categories.map((cat, id) => {
+            return (
+                <GoalSetForm add={handleAdd}>
+                    <h1>{cat.description}</h1>
+                </GoalSetForm>
+            )
+            })}
+</>
     )
 
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import SpendingsTable from "./SpendingsTable";
 import SpendingForm from "./SpendingForm";
-import {Box, IconButton} from "@mui/material";
+import {Box} from "@mui/material";
 import dayjs from "dayjs";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
@@ -129,7 +129,8 @@ const SpendingsOverview = () => {
 
     return (
         <>
-            <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString} currentYear={currentYear} />
+            <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
+                                     currentYear={currentYear}/>
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',
@@ -174,7 +175,7 @@ const SpendingsOverview = () => {
             </Box>
         </>
     )
-
 }
+export default SpendingsOverview
 
-export default SpendingsOverview;
+
