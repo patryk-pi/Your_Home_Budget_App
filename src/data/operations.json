@@ -146,6 +146,14 @@
       "amount": 10000,
       "date": "12/06/2024",
       "id": 12
+    },
+    {
+      "monthAndYear": "06/2022",
+      "categories": {
+        "category": "czynsz",
+        "goal": 2000
+      },
+      "id": 13
     }
   ],
   "categories": [
@@ -205,5 +213,30 @@
       "icon": null
     }
   ],
-  "goals": []
+  "goals": [
+    {
+      "monthAndYear": "06/2022",
+      "category": "czynsz",
+      "goal": 35000,
+      "id": 1
+    },
+    {
+      "monthAndYear": "05/2022",
+      "category": "czynsz",
+      "goal": 23000,
+      "id": 2
+    },
+    {
+      "monthAndYear": "05/2022",
+      "category": "jedzenie",
+      "goal": 2300,
+      "id": 3
+    },
+    {
+      "monthAndYear": "03/2022",
+      "category": "jedzenie",
+      "goal": 23700,
+      "id": 4
+    }
+  ]
 }

@@ -6,11 +6,9 @@ import dayjs from "dayjs";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
 import variables from '../scss/settings/_variables.scss'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 import AppSidebar from "./AppSidebar";
-
 
 const {colorPrimary} = variables
 
@@ -56,10 +54,9 @@ const SpendingsOverview = () => {
             return prev + 1 > 11 ? 0 : prev + 1
         })
 
-        if (currentMonth > 10) {
+        if (currentMonth + 1 > 11) {
             setCurrentYear(prev => prev + 1)
         }
-        console.log(currentYear)
     }
 
     const prevMonth = () => {
@@ -67,7 +64,7 @@ const SpendingsOverview = () => {
             return prev - 1 < 0 ? 11 : prev - 1
         })
 
-        if (currentMonth < 1) {
+        if (currentMonth - 1 < 0) {
             setCurrentYear(prev => prev - 1)
         }
     }
