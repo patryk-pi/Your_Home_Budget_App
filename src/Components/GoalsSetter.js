@@ -5,6 +5,7 @@ import GoalSetForm from "./GoalSetForm";
 import {categoriesURL} from "./SpendingForm";
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 import {AppContext} from "../context/AppProvider";
+import {Box} from '@mui/material'
 
 
 const GoalsSetter = () => {
@@ -78,18 +79,34 @@ const GoalsSetter = () => {
 <>
     <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
                              currentYear={currentYear} setCurrentMonth={setCurrentMonth}/>
-    <div style={{
-        width: '50%',
-        padding: '3rem'
+    <Box sx={{
+        height: 'calc(100% - 8rem)',
+        display: 'flex',
+        padding: '2rem',
+        gap: '2rem',
+        flexShrink: 1,
     }}>
+        <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "40%",
+            border: '1px solid lightgray',
+            overflow: 'scroll',
+           height: '100%',
+            borderRadius: '20px',
+            padding: '1rem'
+
+        }}>
         {categories.map((cat, id) => {
             return (
-                <GoalSetForm add={handleAdd}>
+                <GoalSetForm key={id} add={handleAdd}>
                     <h1>{cat.description}</h1>
                 </GoalSetForm>
             )
             })}
-    </div>
+        </Box>
+    </Box>
 </>
     )
 

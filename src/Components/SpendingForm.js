@@ -5,8 +5,7 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
-
-
+import main from '../scss/main.scss'
 
 
 export const categoriesURL = "http://localhost:3005/categories";
@@ -81,7 +80,6 @@ const SpendingForm = ({add}) => {
     }, [categories])
 
 
-
     return (
         <>
             <Box sx={{
@@ -93,35 +91,41 @@ const SpendingForm = ({add}) => {
                 overflow: 'scroll',
                 maxHeight: '53rem',
                 borderRadius: '20px',
-                padding: '1rem'
+                padding: '1rem',
 
             }}>
                 <FormFilterButtons filterCategories={filterCategories}/>
                 <form style={{
-                    width: '100%'
-                }} onSubmit={handleSubmit}>
+                    width: '100%',
+                }}
+                      onSubmit={handleSubmit}
+                      className="spending__form"
+                >
+
                     <FormControl
                         fullWidth={true}
                         sx={{
-                        width: '100%',
-                        padding: '5rem',
-                    }}>
+                            width: '100%',
+                            padding: '5rem',
 
-                            <TextField
-                                value={category}
-                                label="Kategoria"
-                                onChange={e => setCategory(e.target.value)}
-                                select={true}
-                            >
-                                {filteredCategory.map(({description, id}) => {
-                                    return (
-                                        <MenuItem sx={{
-                                            marginBottom: '.8rem',
-                                            fontSize: '1.2rem'
-                                        }} key={id} value={description}>{description}</MenuItem>
-                                    )
-                                })}
-                            </TextField>
+                        }}
+                    >
+
+                        <TextField
+                            value={category}
+                            label="Kategoria"
+                            onChange={e => setCategory(e.target.value)}
+                            select={true}
+                        >
+                            {filteredCategory.map(({description, id}) => {
+                                return (
+                                    <MenuItem sx={{
+                                        marginBottom: '.8rem',
+                                        fontSize: '1.2rem'
+                                    }} key={id} value={description}>{description}</MenuItem>
+                                )
+                            })}
+                        </TextField>
                         <TextField label={"Opis"} type={"text"}
                                    onChange={e => setDescription(e.target.value)} value={description}></TextField>
 
@@ -131,11 +135,12 @@ const SpendingForm = ({add}) => {
                             label={"Kwota"}
                             type={"text"}
                             decimalScale={2}
-                            allowedDecimalSeparators={[',','.']}
+                            allowedDecimalSeparators={[',', '.']}
                             InputProps={{inputProps: {min: 0}}} onChange={(e) => {
                             const value = +(e.target.value);
                             console.log(value)
-                            setAmount(parseFloat(value))}}  >
+                            setAmount(parseFloat(value))
+                        }}>
                         </NumericFormat>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -145,7 +150,7 @@ const SpendingForm = ({add}) => {
                             }
                             }
                                         value={date}
-                                        renderInput={(props) => <TextField {...props}/>} label={'Select date'} />
+                                        renderInput={(props) => <TextField {...props}/>} label={'Select date'}/>
                         </LocalizationProvider>
                         <Button type={'submit'}>Dodaj</Button>
                         <Snackbar
@@ -154,9 +159,9 @@ const SpendingForm = ({add}) => {
                             onClose={handleClose}
                             ClickAwayListenerProps
                             severity="error"
-                            >
+                        >
                             <Alert onClose={handleClose} severity="error" sx={{
-                                width: '100%' ,
+                                width: '100%',
                                 fontSize: '1.4rem',
                                 color: 'white',
                                 fontWeight: '700',
@@ -168,7 +173,7 @@ const SpendingForm = ({add}) => {
                                 Uzupełnij wszystkie pola!
                             </Alert>
                         </Snackbar>
-                        
+
                     </FormControl>
                 </form>
             </Box>

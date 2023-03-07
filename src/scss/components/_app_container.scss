@@ -10,6 +10,10 @@
     }
   }
 
+  &__textfield {
+    margin-bottom: 30px;
+  }
+
   &__sidebar {
     flex-basis: 250px;
     background: $color-primary-light-1;
@@ -20,9 +24,13 @@
     width: calc(100vw - $aside-width);
     flex-grow: 0;
   }
+
+
+
+
 }
 
-.MuiInputBase-formControl {
+.spending__form .MuiInputBase-formControl {
   margin-bottom: 3rem;
 }
 

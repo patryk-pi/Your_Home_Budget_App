@@ -32,13 +32,16 @@ const GoalSetForm = ({add, children}) => {
 
     return (
         <>
-            <form>
+
+            <form style={{
+                width: '100%',
+                padding: '2rem 2rem 0'
+            }}>
 
                 <FormControl
                     fullWidth={true}
                     sx={{
                         width: '100%',
-                        padding: '5rem',
                     }}>
                     {children}
                     <NumericFormat
@@ -52,9 +55,12 @@ const GoalSetForm = ({add, children}) => {
                         console.log(value)
                         }}  >
                     </NumericFormat>
+                    <Button onClick={handleSubmit}>Dodaj</Button>
                 </FormControl>
+
             </form>
-            <Button onClick={handleSubmit}>Dodaj</Button>
+
+
         </>
     )
 
