@@ -17,14 +17,20 @@ export const URL = "http://localhost:3005/operations";
 
 const SpendingsOverview = () => {
 
-    // States needed for displaying filtered table with operations
-/*    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear())*/
+// APP PROVIDER
+    const {
+        currentMonth,
+        setCurrentMonth,
+        currentYear,
+        setCurrentYear,
+        currentMonthString,
+        setCurrentMonthString,
+        nextMonth,
+        prevMonth
+    } = useContext(AppContext);
+
     const [loading, setLoading] = useState(false);
 
-    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth} = useContext(AppContext)
-
-    // const [currentMonthString, setCurrentMonthString] = useState('')
 
     const [operations, setOperations] = useState([]);
 
@@ -52,26 +58,6 @@ const SpendingsOverview = () => {
         return operationMonth === currentMonth && operationYear === currentYear
     }
 
-/*    const nextMonth = () => {
-        setCurrentMonth(prev => {
-            return prev + 1 > 11 ? 0 : prev + 1
-        })
-
-        if (currentMonth + 1 > 11) {
-            setCurrentYear(prev => prev + 1)
-        }
-    }
-
-    const prevMonth = () => {
-        setCurrentMonth(prev => {
-            return prev - 1 < 0 ? 11 : prev - 1
-        })
-
-        if (currentMonth - 1 < 0) {
-            setCurrentYear(prev => prev - 1)
-        }
-    }*/
-
 
     useEffect(() => {
         fetch(URL)
@@ -82,51 +68,6 @@ const SpendingsOverview = () => {
                 setLoading(true)
             })
             .catch(err => console.log(err))
-    }, [currentMonth]);
-
-
-    useEffect(() => {
-        switch (currentMonth) {
-            case 0:
-                setCurrentMonthString('Styczeń');
-                break;
-            case 1:
-                setCurrentMonthString('Luty');
-                break;
-            case 2:
-                setCurrentMonthString('Marzec');
-                break;
-            case 3:
-                setCurrentMonthString('Kwiecień');
-                break;
-            case 4:
-                setCurrentMonthString('Maj');
-                break;
-            case 5:
-                setCurrentMonthString('Czerwiec');
-                break;
-            case 6:
-                setCurrentMonthString('Lipiec');
-                break;
-            case 7:
-                setCurrentMonthString('Sierpień');
-                break;
-            case 8:
-                setCurrentMonthString('Wrzesień');
-                break;
-            case 9:
-                setCurrentMonthString('Październik');
-                break;
-            case 10:
-                setCurrentMonthString('Listopad');
-                break;
-            case 11:
-                setCurrentMonthString('Grudzień');
-                break;
-            default:
-                setCurrentMonthString('');
-                break;
-        }
     }, [currentMonth]);
 
 

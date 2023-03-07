@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {FormControl, MenuItem, Button, TextField, Box, Snackbar, IconButton} from "@mui/material";
+import {FormControl, MenuItem, Button, TextField, Box, Snackbar, Alert, AlertTitle} from "@mui/material";
 import {LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
-import {GridCloseIcon} from "@mui/x-data-grid";
+
+
+
 
 export const categoriesURL = "http://localhost:3005/categories";
 
@@ -17,14 +19,23 @@ const SpendingForm = ({add}) => {
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('')
     const [date, setDate] = useState(dayjs(new Date()));
-    const [expense, setExpense] = useState(true)
-    const [income, setIncome] = useState(false)
+    const [expense, setExpense] = useState(true);
+    const [income, setIncome] = useState(false);
+    const [open, setOpen] = useState(false)
 
     const [filteredCategory, setFilteredCategory] = useState([])
 
 
     /*    console.log(date)
         console.log(month)*/
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
 
     const filterCategories = (event) => {
@@ -40,7 +51,8 @@ const SpendingForm = ({add}) => {
         e.preventDefault();
 
         if (!category || !amount || !date) {
-            return
+            setOpen(true);
+            return;
         }
         add({
             category,
@@ -136,6 +148,27 @@ const SpendingForm = ({add}) => {
                                         renderInput={(props) => <TextField {...props}/>} label={'Select date'} />
                         </LocalizationProvider>
                         <Button type={'submit'}>Dodaj</Button>
+                        <Snackbar
+                            open={open}
+                            autoHideDuration={4000}
+                            onClose={handleClose}
+                            ClickAwayListenerProps
+                            severity="error"
+                            >
+                            <Alert onClose={handleClose} severity="error" sx={{
+                                width: '100%' ,
+                                fontSize: '1.4rem',
+                                color: 'white',
+                                fontWeight: '700',
+
+                            }}
+                                   variant='filled'
+                            >
+
+                                Uzupełnij wszystkie pola!
+                            </Alert>
+                        </Snackbar>
+                        
                     </FormControl>
                 </form>
             </Box>

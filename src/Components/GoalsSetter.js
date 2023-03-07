@@ -20,49 +20,7 @@ const GoalsSetter = () => {
 
     const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth} = useContext(AppContext)
 
-    useEffect(() => {
-        switch (currentMonth) {
-            case 0:
-                setCurrentMonthString('Styczeń');
-                break;
-            case 1:
-                setCurrentMonthString('Luty');
-                break;
-            case 2:
-                setCurrentMonthString('Marzec');
-                break;
-            case 3:
-                setCurrentMonthString('Kwiecień');
-                break;
-            case 4:
-                setCurrentMonthString('Maj');
-                break;
-            case 5:
-                setCurrentMonthString('Czerwiec');
-                break;
-            case 6:
-                setCurrentMonthString('Lipiec');
-                break;
-            case 7:
-                setCurrentMonthString('Sierpień');
-                break;
-            case 8:
-                setCurrentMonthString('Wrzesień');
-                break;
-            case 9:
-                setCurrentMonthString('Październik');
-                break;
-            case 10:
-                setCurrentMonthString('Listopad');
-                break;
-            case 11:
-                setCurrentMonthString('Grudzień');
-                break;
-            default:
-                setCurrentMonthString('');
-                break;
-        }
-    }, [currentMonth]);
+
 
 
     useEffect(() => {
