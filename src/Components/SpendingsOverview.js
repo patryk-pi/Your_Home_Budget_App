@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import SpendingsTable from "./SpendingsTable";
 import SpendingForm from "./SpendingForm";
 import {Box} from "@mui/material";
@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
 import variables from '../scss/settings/_variables.scss'
+import {AppContext} from "../context/AppProvider";
 
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 import AppSidebar from "./AppSidebar";
@@ -17,11 +18,13 @@ export const URL = "http://localhost:3005/operations";
 const SpendingsOverview = () => {
 
     // States needed for displaying filtered table with operations
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
-    const [loading, setLoading] = useState(false)
+/*    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear())*/
+    const [loading, setLoading] = useState(false);
 
-    const [currentMonthString, setCurrentMonthString] = useState('')
+    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth} = useContext(AppContext)
+
+    // const [currentMonthString, setCurrentMonthString] = useState('')
 
     const [operations, setOperations] = useState([]);
 
@@ -49,7 +52,7 @@ const SpendingsOverview = () => {
         return operationMonth === currentMonth && operationYear === currentYear
     }
 
-    const nextMonth = () => {
+/*    const nextMonth = () => {
         setCurrentMonth(prev => {
             return prev + 1 > 11 ? 0 : prev + 1
         })
@@ -67,7 +70,7 @@ const SpendingsOverview = () => {
         if (currentMonth - 1 < 0) {
             setCurrentYear(prev => prev - 1)
         }
-    }
+    }*/
 
 
     useEffect(() => {
@@ -130,7 +133,7 @@ const SpendingsOverview = () => {
     return (
         <>
             <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
-                                     currentYear={currentYear}/>
+                                     currentYear={currentYear} setCurrentMonth={setCurrentMonth}/>
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',

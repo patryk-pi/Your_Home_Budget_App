@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import dayjs from "dayjs";
 
 import GoalSetForm from "./GoalSetForm";
 import {categoriesURL} from "./SpendingForm";
+import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
+import {AppContext} from "../context/AppProvider";
+
 
 const GoalsSetter = () => {
 
@@ -13,6 +16,53 @@ const GoalsSetter = () => {
     const [goals, setGoals] = useState([]);
     const [date, setDate] = useState(dayjs(new Date()));
     const [categories, setCategories] = useState([]);
+
+
+    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth} = useContext(AppContext)
+
+    useEffect(() => {
+        switch (currentMonth) {
+            case 0:
+                setCurrentMonthString('Styczeń');
+                break;
+            case 1:
+                setCurrentMonthString('Luty');
+                break;
+            case 2:
+                setCurrentMonthString('Marzec');
+                break;
+            case 3:
+                setCurrentMonthString('Kwiecień');
+                break;
+            case 4:
+                setCurrentMonthString('Maj');
+                break;
+            case 5:
+                setCurrentMonthString('Czerwiec');
+                break;
+            case 6:
+                setCurrentMonthString('Lipiec');
+                break;
+            case 7:
+                setCurrentMonthString('Sierpień');
+                break;
+            case 8:
+                setCurrentMonthString('Wrzesień');
+                break;
+            case 9:
+                setCurrentMonthString('Październik');
+                break;
+            case 10:
+                setCurrentMonthString('Listopad');
+                break;
+            case 11:
+                setCurrentMonthString('Grudzień');
+                break;
+            default:
+                setCurrentMonthString('');
+                break;
+        }
+    }, [currentMonth]);
 
 
     useEffect(() => {
@@ -68,6 +118,12 @@ const GoalsSetter = () => {
 
     return (
 <>
+    <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
+                             currentYear={currentYear} setCurrentMonth={setCurrentMonth}/>
+    <div style={{
+        width: '50%',
+        padding: '3rem'
+    }}>
         {categories.map((cat, id) => {
             return (
                 <GoalSetForm add={handleAdd}>
@@ -75,6 +131,7 @@ const GoalsSetter = () => {
                 </GoalSetForm>
             )
             })}
+    </div>
 </>
     )
 

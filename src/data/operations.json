@@ -222,6 +222,11 @@
       "icon": null
     },
     {
+      "description": "Akcje",
+      "type": "income",
+      "icon": null
+    },
+    {
       "description": "Inne wpływy",
       "type": "income",
       "icon": null

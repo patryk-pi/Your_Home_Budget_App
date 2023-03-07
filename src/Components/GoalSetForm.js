@@ -16,6 +16,8 @@ const GoalSetForm = ({add, children}) => {
         category,
         goal
     })
+
+
     
 
     const handleSubmit = (e) => {
@@ -41,7 +43,6 @@ const GoalSetForm = ({add, children}) => {
                     {children}
                     <NumericFormat
                         customInput={TextField}
-
                         label={"Kwota"}
                         type={"text"}
                         decimalScale={2}
