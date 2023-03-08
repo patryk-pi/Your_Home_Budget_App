@@ -5,7 +5,9 @@ import GoalSetForm from "./GoalSetForm";
 import {categoriesURL} from "./SpendingForm";
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 import {AppContext} from "../context/AppProvider";
-import {Box} from '@mui/material'
+import {Box, TextField} from '@mui/material'
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 
 const GoalsSetter = () => {
@@ -77,6 +79,15 @@ const GoalsSetter = () => {
 
     return (
 <>
+{/*    <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker views={['year', 'month']} inputFormat={'MM/YYYY'} onChange={(date) => {
+            console.log(dayjs(date).format('DD/MM/YYYY'))
+            setDate(dayjs(date).format('MM/DD/YYYY'))
+        }
+        }
+                    value={date}
+                    renderInput={(props) => <TextField {...props}/>} label={'Select date'}/>
+    </LocalizationProvider>*/}
     <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
                              currentYear={currentYear} setCurrentMonth={setCurrentMonth}/>
     <Box sx={{
@@ -100,8 +111,7 @@ const GoalsSetter = () => {
         }}>
         {categories.map((cat, id) => {
             return (
-                <GoalSetForm key={id} add={handleAdd}>
-                    <h1>{cat.description}</h1>
+                <GoalSetForm description={cat.description} key={id} add={handleAdd}>
                 </GoalSetForm>
             )
             })}

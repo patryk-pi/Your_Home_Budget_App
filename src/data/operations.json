@@ -168,6 +168,27 @@
       "amount": -14123123,
       "date": "17/04/2023",
       "id": 15
+    },
+    {
+      "category": "Transport",
+      "description": "Paliwo",
+      "amount": -648.34,
+      "date": "08/03/2023",
+      "id": 16
+    },
+    {
+      "category": "Czynsz",
+      "description": "254",
+      "amount": -3453,
+      "date": "08/03/2023",
+      "id": 17
+    },
+    {
+      "category": "Czynsz",
+      "description": "Maj",
+      "amount": -4000,
+      "date": "16/05/2023",
+      "id": 18
     }
   ],
   "categories": [
@@ -234,34 +255,70 @@
   ],
   "goals": [
     {
-      "monthAndYear": "06/2022",
-      "category": "czynsz",
-      "goal": 2300,
+      "monthAndYear": "02/2023",
+      "category": "Kredyty",
+      "goal": 6444444,
       "id": 1
     },
     {
-      "monthAndYear": "05/2022",
-      "category": "czynsz",
-      "goal": 23000,
+      "monthAndYear": "02/2023",
+      "category": "Rachunki",
+      "goal": 354,
       "id": 2
     },
     {
-      "monthAndYear": "05/2022",
-      "category": "jedzenie",
-      "goal": 2300,
+      "monthAndYear": "02/2023",
+      "category": "Jedzenie",
+      "goal": 6542,
       "id": 3
     },
     {
-      "monthAndYear": "03/2022",
-      "category": "jedzenie",
-      "goal": 23700,
+      "monthAndYear": "03/2023",
+      "category": "Czynsz",
+      "goal": 242,
       "id": 4
     },
     {
-      "monthAndYear": "03/2023",
-      "category": "czynsz",
-      "goal": 2300,
+      "monthAndYear": "02/2023",
+      "category": "Czynsz",
+      "goal": 5444444,
       "id": 5
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Transport",
+      "goal": 5234,
+      "id": 6
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Sport",
+      "goal": 52342,
+      "id": 7
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Pensja",
+      "goal": 53444,
+      "id": 8
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Inne wpływy",
+      "goal": 2343,
+      "id": 9
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Ubrania",
+      "goal": 344,
+      "id": 10
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Ubrania",
+      "goal": 5344,
+      "id": 11
     }
   ]
 }

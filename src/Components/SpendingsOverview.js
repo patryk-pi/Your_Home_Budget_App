@@ -9,7 +9,6 @@ import variables from '../scss/settings/_variables.scss'
 import {AppContext} from "../context/AppProvider";
 
 import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
-import AppSidebar from "./AppSidebar";
 
 const {colorPrimary} = variables
 

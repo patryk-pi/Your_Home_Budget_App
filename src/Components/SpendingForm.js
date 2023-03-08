@@ -5,7 +5,6 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
-import main from '../scss/main.scss'
 
 
 export const categoriesURL = "http://localhost:3005/categories";
