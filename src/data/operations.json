@@ -189,6 +189,48 @@
       "amount": -4000,
       "date": "16/05/2023",
       "id": 18
+    },
+    {
+      "category": "Jedzenie",
+      "description": "zakupy",
+      "amount": -756.98,
+      "date": "22/03/2023",
+      "id": 19
+    },
+    {
+      "category": "Inne wpływy",
+      "description": "lotto",
+      "amount": 1500,
+      "date": "08/03/2023",
+      "id": 20
+    },
+    {
+      "category": "Czynsz",
+      "description": "42",
+      "amount": -123,
+      "date": "08/03/2023",
+      "id": 21
+    },
+    {
+      "category": "Kredyty",
+      "description": "124",
+      "amount": -3223,
+      "date": "08/03/2023",
+      "id": 22
+    },
+    {
+      "category": "Czynsz",
+      "description": "24",
+      "amount": -12,
+      "date": "08/03/2023",
+      "id": 23
+    },
+    {
+      "category": "Pensja",
+      "description": "534",
+      "amount": 53434,
+      "date": "08/03/2023",
+      "id": 24
     }
   ],
   "categories": [
@@ -319,6 +361,12 @@
       "category": "Ubrania",
       "goal": 5344,
       "id": 11
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Kredyty",
+      "goal": 758,
+      "id": 12
     }
   ]
 }

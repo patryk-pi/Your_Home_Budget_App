@@ -109,6 +109,7 @@ const GoalsSetter = () => {
             padding: '1rem'
 
         }}>
+            <h2 className='goals__setter__header'>Dodaj cele miesieczne</h2>
         {categories.map((cat, id) => {
             return (
                 <GoalSetForm description={cat.description} key={id} add={handleAdd}>

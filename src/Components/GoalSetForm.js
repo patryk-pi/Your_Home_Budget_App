@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useContext, useRef} from "react";
-import {Button, FormControl, TextField} from "@mui/material";
+import React, {useState, useEffect, useContext} from "react";
+import {Button, FormControl, TextField, Box} from "@mui/material";
 import {NumericFormat} from "react-number-format";
 import dayjs from "dayjs";
 import {AppContext} from "../context/AppProvider";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const GoalSetForm = ({add, description}) => {
 
@@ -12,8 +13,6 @@ const GoalSetForm = ({add, description}) => {
     const [inputValue, setInputValue] = useState('')
 
 
-    const formRef = useRef(null);
-
     const {
         currentMonth,
         currentYear,
@@ -22,7 +21,7 @@ const GoalSetForm = ({add, description}) => {
     console.log(monthAndYear)
 
     useEffect(() => {
-        const newMonthAndYear = dayjs(`${currentYear}-${currentMonth+1}`).format('MM/YYYY');
+        const newMonthAndYear = dayjs(`${currentYear}-${currentMonth + 1}`).format('MM/YYYY');
         setMonthAndYear(newMonthAndYear);
         console.log(newMonthAndYear)
     }, [currentMonth, currentYear]);
@@ -33,7 +32,6 @@ const GoalSetForm = ({add, description}) => {
         category,
         goal
     })
-
 
 
     const handleSubmit = (e) => {
@@ -55,44 +53,56 @@ const GoalSetForm = ({add, description}) => {
     }, [categoryAndGoal]);
 
 
-
     return (
         <>
 
-            <form style={{
-                width: '100%',
-                padding: '2rem 2rem 0'
-            }}
-            onFocus={() => {
-                setCategory(description)
-                console.log(description)
-            }}
+            <form className="goal__set--form"
+                  onFocus={() => {
+                      setCategory(description)
+                      console.log(description)
+                  }}
                   onSubmit={handleSubmit}
             >
-
+                <h3 className='goal__set__header'>{description}</h3>
                 <FormControl
                     fullWidth={true}
                     sx={{
                         width: '100%',
                     }}
                 >
-                    <h3>{description}</h3>
-                    <NumericFormat
-                        customInput={TextField}
-                        label={"Kwota"}
-                        type={"text"}
-                        decimalScale={2}
-                        value={inputValue}
-                        allowedDecimalSeparators={[',','.']}
-                        InputProps={{inputProps: {min: 0}}}
-                        onChange={(e) => {
-                        const value = +(e.target.value);
-                        console.log(value);
-                        setGoal(parseFloat(value));
-                            setInputValue(value)
-                        }}  >
-                    </NumericFormat>
-                    <Button type={'submit'}>Dodaj</Button>
+                    <Box sx={{
+                        display: 'flex',
+                        width: '100%',
+                        gap: '2rem',
+                    }}>
+                        <NumericFormat
+                            customInput={TextField}
+                            label={"Kwota"}
+                            type={"text"}
+                            decimalScale={2}
+                            style={{
+                                flexGrow: 1
+                            }}
+                            value={inputValue}
+                            allowedDecimalSeparators={[',', '.']}
+                            InputProps={{inputProps: {min: 0}}}
+                            onChange={(e) => {
+                                const value = +(e.target.value);
+                                console.log(value);
+                                setGoal(parseFloat(value));
+                                setInputValue(value)
+                            }}>
+                        </NumericFormat>
+                        <Button
+                            sx={{
+                                boxShadow: 3,
+                                transition: 'all .1s',
+                                '&:active': {
+                                    boxShadow: 1,
+                                },
+                            }}
+                            startIcon={<AddCircleOutlineIcon />} type={'submit'}>Dodaj</Button>
+                    </Box>
                 </FormControl>
 
             </form>
