@@ -17,20 +17,8 @@ const GoalsSetter = () => {
     const goalsURL = 'http://localhost:3005/goals';
 
     // STATES
+    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth, goals, setGoals, categories, setCategories} = useContext(AppContext)
 
-    const [date, setDate] = useState(dayjs(new Date()));
-    const [categories, setCategories] = useState([]);
-
-
-    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth, goals, setGoals} = useContext(AppContext)
-
-
-    useEffect(() => {
-        fetch(categoriesURL)
-            .then(r => r.json())
-            .then(data => setCategories(data))
-            .catch(err => console.log(err))
-    }, []);
 
 
     // FUNCTION CREATING AN OBJECT WITH THE GOAL FOR THE SELECTED MONTH AND CATEGORY
@@ -72,8 +60,8 @@ const GoalsSetter = () => {
 
         }}>
 
-            <h2 className='goals__setter__header'>Dodaj cele miesieczne</h2>
-        {categories.map((cat, type, id) => {
+            <h2 className='goals__setter__header'>Dodaj cele miesięczne</h2>
+        {categories.map((cat, type, goal, id) => {
             return (
                 <>
                 <GoalSetForm type={cat.type} description={cat.description} key={id}>
