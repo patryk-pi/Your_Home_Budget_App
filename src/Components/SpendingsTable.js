@@ -1,11 +1,32 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import Table from "@mui/joy/Table";
+import {AppContext} from "../context/AppProvider";
 
 
-const SpendingsTable = ({operations, filterOperations}) => {
+const SpendingsTable = () => {
+
+    const {
+        currentMonth,
+        setCurrentMonth,
+        currentYear,
+        setCurrentYear,
+        currentMonthString,
+        setCurrentMonthString,
+        nextMonth,
+        prevMonth,
+        operations,
+        setOperations,
+        loading,
+        setLoading,
+        handleAdd,
+        filterOperationsByMonth
+    } = useContext(AppContext);
+
+    const [filteredOperations, setFilteredOperations] = useState(operations);
+
 
     if (operations
-        .filter((operation) => filterOperations(operation)).length === 0 ) {
+        .filter((operation) => filterOperationsByMonth(operation)).length === 0 ) {
         return (
 
             <div style={{
@@ -62,8 +83,8 @@ const SpendingsTable = ({operations, filterOperations}) => {
         <tbody >
 
         {operations
-            .filter((operation) => filterOperations(operation))
-            .map(({category, description, amount, date, id},) => (
+            .filter(operation => filterOperationsByMonth(operation))
+            .map(({category, description, amount, date, id}) => (
                 <tr key={id} >
                     <td>{category}</td>
                     <td>{description}</td>

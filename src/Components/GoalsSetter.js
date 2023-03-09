@@ -101,7 +101,7 @@ const GoalsSetter = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "40%",
+            width: "35%",
             border: '1px solid lightgray',
             overflow: 'scroll',
            height: '100%',
@@ -117,6 +117,7 @@ const GoalsSetter = () => {
             )
             })}
         </Box>
+
     </Box>
 </>
     )

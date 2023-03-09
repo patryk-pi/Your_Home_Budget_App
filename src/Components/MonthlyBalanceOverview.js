@@ -1,6 +1,26 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {AppContext} from "../context/AppProvider";
 
-const MonthlyBalanceOverview = ({operations, filterOperations}) => {
+
+
+const MonthlyBalanceOverview = () => {
+
+    const {
+        currentMonth,
+        setCurrentMonth,
+        currentYear,
+        setCurrentYear,
+        currentMonthString,
+        setCurrentMonthString,
+        nextMonth,
+        prevMonth,
+        operations,
+        setOperations,
+        loading,
+        setLoading,
+        handleAdd,
+        filterOperationsByMonth
+    } = useContext(AppContext);
 
     return (
         <div style={{
@@ -31,7 +51,7 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     fontWeight: '700'
                 }}>{
                     operations
-                        .filter(operation => filterOperations(operation))
+                        .filter(operation => filterOperationsByMonth(operation))
                         .filter(operation => operation.amount > 0)
                         .reduce((acc, curr) => {
                             return acc + curr.amount
@@ -62,7 +82,7 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                 }}
             >{
                 operations
-                    .filter(operation => filterOperations(operation))
+                    .filter(operation => filterOperationsByMonth(operation))
                     .filter(operation => operation.amount < 0)
                     .reduce((acc, curr) => {
                         return acc + curr.amount
@@ -90,7 +110,7 @@ const MonthlyBalanceOverview = ({operations, filterOperations}) => {
                     fontWeight: '700'
                 }}>{
                     operations
-                        .filter(operation => filterOperations(operation))
+                        .filter(operation => filterOperationsByMonth(operation))
                         .reduce((acc, curr) => {
                             return acc + curr.amount
                         }, 0)

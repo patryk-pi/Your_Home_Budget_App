@@ -25,49 +25,22 @@ const SpendingsOverview = () => {
         currentMonthString,
         setCurrentMonthString,
         nextMonth,
-        prevMonth
+        prevMonth,
+        operations,
+        setOperations,
+        loading,
+        setLoading,
+        handleAdd,
+        filterOperationsByMonth
     } = useContext(AppContext);
 
-    const [loading, setLoading] = useState(false);
 
 
-    const [operations, setOperations] = useState([]);
 
 
-    const handleAdd = operation => {
-        fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(operation)
-        })
-            .then(r => {
-                return r.json();
-            })
-            .then(data => setOperations(prev => [...prev, data]))
-            .catch(err => console.log(err))
-    }
-
-    // Function filtering operations by month
-
-    const filterOperationsByMonth = operation => {
-        const operationMonth = dayjs(operation.date, 'DD/MM/YYYY').month();
-        const operationYear = dayjs(operation.date, 'DD/MM/YYYY').year();
-        return operationMonth === currentMonth && operationYear === currentYear
-    }
 
 
-    useEffect(() => {
-        fetch(URL)
-            .then(r => r.json())
-            .then(data => {
-                const filteredData = data.filter(operation => filterOperationsByMonth(operation));
-                setOperations(filteredData);
-                setLoading(true)
-            })
-            .catch(err => console.log(err))
-    }, [currentMonth]);
+
 
 
     return (
