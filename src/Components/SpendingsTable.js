@@ -1,30 +1,14 @@
 import React, {useContext, useState} from "react";
 import Table from "@mui/joy/Table";
 import {AppContext} from "../context/AppProvider";
+import {Box} from "@mui/material";
 
 
 const SpendingsTable = () => {
 
-    const {
-        currentMonth,
-        setCurrentMonth,
-        currentYear,
-        setCurrentYear,
-        currentMonthString,
-        setCurrentMonthString,
-        nextMonth,
-        prevMonth,
-        operations,
-        setOperations,
-        loading,
-        setLoading,
-        handleAdd,
-        filterOperationsByMonth
-    } = useContext(AppContext);
+    const {operations, filterOperationsByMonth} = useContext(AppContext);
 
-    const [filteredOperations, setFilteredOperations] = useState(operations);
-
-
+    // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
     if (operations
         .filter((operation) => filterOperationsByMonth(operation)).length === 0 ) {
         return (
@@ -50,18 +34,16 @@ const SpendingsTable = () => {
         )
     }
 
+
+    // RENDER OPERATIONS FOR CHOSEN MONTH
     return (
 
-        <div style={{
-
-
+        <Box sx={{
             border: '1px solid lightgray',
             borderRadius: '20px',
             padding: '2rem',
             height: 'calc(100% - 15rem)',
             overflow: 'scroll'
-
-
         }}>
     <Table size="lg"
            stripe='even'
@@ -80,8 +62,10 @@ const SpendingsTable = () => {
 
         </tr>
         </thead>
-        <tbody >
 
+        {/*FILTERING OPERATIONS BY CURRENT MONTH (TAKEN FROM CONTEXT)*/}
+
+        <tbody>
         {operations
             .filter(operation => filterOperationsByMonth(operation))
             .map(({category, description, amount, date, id}) => (
@@ -99,7 +83,7 @@ const SpendingsTable = () => {
             ))}
         </tbody>
     </Table>
-        </div>
+        </Box>
     )
 }
 

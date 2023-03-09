@@ -182,6 +182,20 @@
       "amount": -2323,
       "date": "09/03/2023",
       "id": 26
+    },
+    {
+      "category": "Rachunki",
+      "description": "Prąd",
+      "amount": -200,
+      "date": "12/07/2023",
+      "id": 27
+    },
+    {
+      "category": "Pensja",
+      "description": "Wypłata",
+      "amount": 100000,
+      "date": "19/07/2023",
+      "id": 28
     }
   ],
   "categories": [
@@ -268,7 +282,7 @@
     {
       "monthAndYear": "03/2023",
       "category": "Czynsz",
-      "goal": 242,
+      "goal": 234,
       "id": 4
     },
     {
@@ -316,8 +330,32 @@
     {
       "monthAndYear": "03/2023",
       "category": "Kredyty",
-      "goal": 758,
+      "goal": 555,
       "id": 12
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Jedzenie",
+      "goal": 15333,
+      "id": 13
+    },
+    {
+      "monthAndYear": "05/2023",
+      "category": "Sport",
+      "goal": 156,
+      "id": 14
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Rachunki",
+      "goal": 123,
+      "id": 15
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Akcje",
+      "goal": 54455,
+      "id": 16
     }
   ]
 }

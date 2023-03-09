@@ -1,12 +1,12 @@
 import React from "react";
-import {IconButton} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const SpendingsOverviewHeader = ({prevMonth, nextMonth, currentMonthString, currentYear}) => {
 
     return (
-        <div style={{
+        <Box sx={{
             display: 'flex',
             justifyContent: "space-between",
             alignItems: 'center',
@@ -25,7 +25,7 @@ const SpendingsOverviewHeader = ({prevMonth, nextMonth, currentMonthString, curr
             }}>
                 <ArrowForwardIosIcon fontSize={'large'}/>
             </IconButton>
-        </div>
+        </Box>
     )
 }
 

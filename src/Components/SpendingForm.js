@@ -158,7 +158,6 @@ const SpendingForm = ({add}) => {
                             open={openError}
                             autoHideDuration={4000}
                             onClose={() => handleClose(null, null, setOpenError)}
-                            ClickAwayListenerProps
                             severity="error"
                         >
                             <Alert onClose={() => handleClose(null, null, setOpenError)} severity="error" sx={{
@@ -178,7 +177,6 @@ const SpendingForm = ({add}) => {
                             open={openSucces}
                             autoHideDuration={4000}
                             onClose={() => handleClose(null, null, setOpenSucces)}
-                            ClickAwayListenerProps
                             severity="success"
                         >
                             <Alert onClose={() => handleClose(null, null, setOpenSucces)} severity="success"

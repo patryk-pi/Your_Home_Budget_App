@@ -8,6 +8,7 @@ import {AppContext} from "../context/AppProvider";
 import {Box, TextField} from '@mui/material'
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import GoalsTable from "./GoalsTable";
 
 
 const GoalsSetter = () => {
@@ -16,25 +17,13 @@ const GoalsSetter = () => {
     const goalsURL = 'http://localhost:3005/goals';
 
     // STATES
-    const [goals, setGoals] = useState([]);
+
     const [date, setDate] = useState(dayjs(new Date()));
     const [categories, setCategories] = useState([]);
 
 
-    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth} = useContext(AppContext)
+    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth, goals, setGoals} = useContext(AppContext)
 
-
-
-
-    useEffect(() => {
-        fetch(goalsURL)
-            .then(r => r.json())
-            .then(data => {
-                setGoals(data);
-                console.log(data)
-            })
-            .catch(err => console.log(err))
-    }, []);
 
     useEffect(() => {
         fetch(categoriesURL)
@@ -109,15 +98,33 @@ const GoalsSetter = () => {
             padding: '1rem'
 
         }}>
+
             <h2 className='goals__setter__header'>Dodaj cele miesieczne</h2>
         {categories.map((cat, id) => {
             return (
+                <>
                 <GoalSetForm description={cat.description} key={id} add={handleAdd}>
                 </GoalSetForm>
+                </>
             )
-            })}
-        </Box>
 
+        })}
+
+        </Box>
+        <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "65%",
+            border: '1px solid lightgray',
+            overflow: 'scroll',
+            height: '100%',
+            borderRadius: '20px',
+            padding: '1rem'
+
+        }}>
+        <GoalsTable />
+        </Box>
     </Box>
 </>
     )
