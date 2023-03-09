@@ -5,20 +5,22 @@ import dayjs from "dayjs";
 import {AppContext} from "../context/AppProvider";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-const GoalSetForm = ({add, description}) => {
+const GoalSetForm = ({description, type}) => {
 
     const [monthAndYear, setMonthAndYear] = useState(dayjs(new Date()).format("MM/YYYY"));
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("");
+    const [goalType, setGoalType] = useState('')
     const [goal, setGoal] = useState(null);
     const [inputValue, setInputValue] = useState('')
+
 
 
     const {
         currentMonth,
         currentYear,
+        handleAddGoal
     } = useContext(AppContext);
 
-    console.log(monthAndYear)
 
     useEffect(() => {
         const newMonthAndYear = dayjs(`${currentYear}-${currentMonth + 1}`).format('MM/YYYY');
@@ -39,14 +41,15 @@ const GoalSetForm = ({add, description}) => {
         setCategoryAndGoal({
             monthAndYear,
             category,
-            goal
+            type,
+            goal: type === 'expense' ? -goal : goal
         });
         setInputValue('');
     };
 
     useEffect(() => {
         if (categoryAndGoal.monthAndYear && categoryAndGoal.category && categoryAndGoal.goal) {
-            add(categoryAndGoal);
+            handleAddGoal(categoryAndGoal);
             setGoal('');
 
         }
@@ -58,8 +61,9 @@ const GoalSetForm = ({add, description}) => {
 
             <form className="goal__set--form"
                   onFocus={() => {
-                      setCategory(description)
-                      console.log(description)
+                      setCategory(description);
+                      setGoalType(type)
+                      console.log(description, type)
                   }}
                   onSubmit={handleSubmit}
             >

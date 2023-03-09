@@ -9,7 +9,8 @@ const AppProvider = ({children}) => {
 
     // DATABASE URLs
 
-    const goalURL = 'http://localhost:3005/goals'
+    const goalURL = 'http://localhost:3005/goals';
+
 
 
     // DATES STATES
@@ -45,6 +46,42 @@ const AppProvider = ({children}) => {
             .then(data => setOperations(prev => [...prev, data]))
             .catch(err => console.log(err))
     }
+
+    const handleAddGoal = goal => {
+        const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
+        if (index === -1) {
+            fetch(goalURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(goal),
+            })
+                .then((r) => {
+                    return r.json();
+                })
+                .then((data) => setGoals((prev) => [...prev, data]))
+                .catch((err) => console.log(err));
+        } else {
+            fetch(`${goalURL}/${goals[index].id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(goal),
+            })
+                .then(r => r.json())
+                .then(data => setGoals(prev => prev.map(obj => {
+                    if (obj.id === data.id) {
+                        return data;
+                    } else {
+                        return obj;
+                    }
+                })))
+                .catch((err) => console.log(err));
+        }
+    };
+
 
     // FUNCTION FILTERING OPERATIONS BY MONTH
     const filterOperationsByMonth = operation => {
@@ -159,7 +196,7 @@ const AppProvider = ({children}) => {
 
 
     return (
-        <AppContext.Provider value={{currentMonth, currentMonthString, setCurrentMonthString, currentYear, setCurrentYear,  setCurrentMonth, nextMonth, prevMonth, loading, setLoading, operations, setOperations,handleAdd, filterOperationsByMonth, filterGoalsByMonth, goals, setGoals, categories, setCategories}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{currentMonth, currentMonthString, setCurrentMonthString, currentYear, setCurrentYear,  setCurrentMonth, nextMonth, prevMonth, loading, setLoading, operations, setOperations,handleAdd, filterOperationsByMonth, filterGoalsByMonth, goals, setGoals, categories, setCategories, handleAddGoal}}>{children}</AppContext.Provider>
     )
 }
 

@@ -34,34 +34,7 @@ const GoalsSetter = () => {
 
 
     // FUNCTION CREATING AN OBJECT WITH THE GOAL FOR THE SELECTED MONTH AND CATEGORY
-    const handleAdd = (goal) => {
 
-        const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
-        if (index === -1) {
-            fetch(goalsURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(goal),
-            })
-                .then((r) => {
-                    return r.json();
-                })
-                .then((data) => setGoals((prev) => [...prev, data]))
-                .catch((err) => console.log(err));
-        } else {
-            fetch(`${goalsURL}/${goals[index].id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(goal),
-            })
-                .then(data => setGoals(prev => [...prev, data]))
-                .catch((err) => console.log(err));
-        }
-    };
 
 
 
@@ -100,10 +73,10 @@ const GoalsSetter = () => {
         }}>
 
             <h2 className='goals__setter__header'>Dodaj cele miesieczne</h2>
-        {categories.map((cat, id) => {
+        {categories.map((cat, type, id) => {
             return (
                 <>
-                <GoalSetForm description={cat.description} key={id} add={handleAdd}>
+                <GoalSetForm type={cat.type} description={cat.description} key={id}>
                 </GoalSetForm>
                 </>
             )

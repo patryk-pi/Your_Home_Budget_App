@@ -26,6 +26,7 @@ const GoalsTable = () => {
                 <thead >
                 <tr >
                     <th className='spendings__table__head'>Kategoria</th>
+                    <th className='spendings__table__head'>Typ</th>
                     <th className='spendings__table__head'>Cel</th>
 
                 </tr>
@@ -36,10 +37,16 @@ const GoalsTable = () => {
                 <tbody>
                 {goals
                     .filter(goalRecord => filterGoalsByMonth(goalRecord))
-                    .map(({category, goal, id}) => (
+                    .map(({category, goal, type, id}) => (
                         <tr key={id} >
                             <td>{category}</td>
-                            <td>{goal}</td>
+                            <td>{type === 'expense' ? 'Wydatki' : 'Wpływy'}</td>
+                            <td>{goal.toLocaleString('pl', {
+                                style: 'currency',
+                                currency: 'PLN',
+                                minimumFractionDigits: 2,
+                                useGrouping: 'always'
+                            })}</td>
                         </tr>
                     ))}
                 </tbody>
