@@ -7,7 +7,6 @@ const GoalsTable = () => {
 
     const {goals, filterGoalsByMonth} = useContext(AppContext)
 
-    console.log(goals)
     return (
 
         <Box sx={{

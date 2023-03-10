@@ -28,7 +28,7 @@ const SpendingsOverview = () => {
         prevMonth,
         operations,
         setOperations,
-        loading,
+        loadingOperations,
         setLoading,
         handleAdd,
         filterOperationsByMonth
@@ -62,7 +62,7 @@ const SpendingsOverview = () => {
                     // border: '1px solid lightgray',
                     // borderRadius: '20px',
                 }}>
-                    {loading ?
+                    {loadingOperations ?
                         < >
                             <MonthlyBalanceOverview operations={operations} filterOperations={filterOperationsByMonth}/>
                             <SpendingsTable operations={operations} filterOperations={filterOperationsByMonth}

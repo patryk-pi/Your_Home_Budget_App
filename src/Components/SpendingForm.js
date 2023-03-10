@@ -25,9 +25,6 @@ const SpendingForm = ({add}) => {
     const [filteredCategory, setFilteredCategory] = useState([])
 
 
-    /*    console.log(date)
-        console.log(month)*/
-
     const handleClose = (event, reason, setter) => {
         if (reason === 'clickaway') {
             return;
@@ -49,7 +46,7 @@ const SpendingForm = ({add}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!category || !amount || !date) {
+        if (!category || !description || !amount || !date) {
             setOpenError(true);
             return;
         }

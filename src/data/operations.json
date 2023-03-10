@@ -202,185 +202,132 @@
     {
       "description": "Kredyty",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 1
     },
     {
       "description": "Czynsz",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 2
     },
     {
       "description": "Rachunki",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 3
     },
     {
       "description": "Jedzenie",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 4
     },
     {
       "description": "Transport",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 5
     },
     {
       "description": "Sport",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 6
     },
     {
       "description": "Rozrywka",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 7
     },
     {
       "description": "Ubrania",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 8
     },
     {
       "description": "Zdrowie",
       "type": "expense",
-      "icon": null
+      "icon": null,
+      "id": 9
     },
     {
       "description": "Pensja",
       "type": "income",
-      "icon": null
+      "icon": null,
+      "id": 10
     },
     {
       "description": "Akcje",
       "type": "income",
-      "icon": null
+      "icon": null,
+      "id": 11
     },
     {
       "description": "Inne wpływy",
       "type": "income",
-      "icon": null
+      "icon": null,
+      "id": 12
     }
   ],
   "goals": [
     {
-      "monthAndYear": "02/2023",
+      "monthAndYear": "03/2023",
       "category": "Kredyty",
-      "goal": 6444444,
+      "type": "expense",
+      "goal": -1546,
       "id": 1
     },
     {
-      "monthAndYear": "02/2023",
-      "category": "Rachunki",
-      "goal": 354,
+      "monthAndYear": "03/2023",
+      "category": "Czynsz",
+      "type": "expense",
+      "goal": -123,
       "id": 2
     },
     {
-      "monthAndYear": "02/2023",
-      "category": "Jedzenie",
-      "goal": 6542,
+      "monthAndYear": "03/2023",
+      "category": "Rachunki",
+      "type": "expense",
+      "goal": -34352,
       "id": 3
     },
     {
       "monthAndYear": "03/2023",
-      "category": "Czynsz",
-      "goal": 1,
-      "id": 4
-    },
-    {
-      "monthAndYear": "02/2023",
-      "category": "Czynsz",
-      "goal": 5444444,
-      "id": 5
-    },
-    {
-      "monthAndYear": "02/2023",
       "category": "Transport",
-      "goal": 5234,
-      "id": 6
-    },
-    {
-      "monthAndYear": "02/2023",
-      "category": "Sport",
-      "goal": 52342,
-      "id": 7
-    },
-    {
-      "monthAndYear": "02/2023",
-      "category": "Pensja",
-      "goal": 53444,
-      "id": 8
-    },
-    {
-      "monthAndYear": "02/2023",
-      "category": "Inne wpływy",
-      "goal": 2343,
-      "id": 9
-    },
-    {
-      "monthAndYear": "02/2023",
-      "category": "Ubrania",
-      "goal": 344,
-      "id": 10
-    },
-    {
-      "monthAndYear": "03/2023",
-      "category": "Ubrania",
-      "goal": 5,
-      "id": 11
-    },
-    {
-      "monthAndYear": "03/2023",
-      "category": "Kredyty",
       "type": "expense",
-      "goal": 534,
-      "id": 12
+      "goal": -9678,
+      "id": 4
     },
     {
       "monthAndYear": "03/2023",
       "category": "Jedzenie",
-      "goal": 1,
-      "id": 13
-    },
-    {
-      "monthAndYear": "05/2023",
-      "category": "Sport",
-      "goal": 156,
-      "id": 14
-    },
-    {
-      "monthAndYear": "03/2023",
-      "category": "Rachunki",
-      "goal": 1,
-      "id": 15
-    },
-    {
-      "monthAndYear": "03/2023",
-      "category": "Akcje",
-      "goal": 64,
-      "id": 16
-    },
-    {
-      "monthAndYear": "04/2023",
-      "category": "Kredyty",
-      "goal": 975,
-      "id": 17
-    },
-    {
-      "monthAndYear": "03/2023",
-      "category": "Transport",
-      "goal": 1,
-      "id": 18
+      "type": "expense",
+      "goal": -32,
+      "id": 5
     },
     {
       "monthAndYear": "03/2023",
       "category": "Sport",
-      "goal": 1,
-      "id": 19
+      "type": "expense",
+      "goal": -232,
+      "id": 6
     },
     {
       "monthAndYear": "03/2023",
       "category": "Rozrywka",
-      "goal": 4,
-      "id": 20
+      "type": "expense",
+      "goal": -123,
+      "id": 7
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Ubrania",
+      "type": "expense",
+      "goal": -23423423,
+      "id": 8
     }
   ]
 }

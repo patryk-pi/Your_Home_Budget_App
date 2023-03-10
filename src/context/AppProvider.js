@@ -19,7 +19,8 @@ const AppProvider = ({children}) => {
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
     // STATE FOR FETCHING DATA
-    const [loading, setLoading] = useState(false);
+    const [loadingOperations, setLoadingOperations] = useState(false);
+    const [loadingGoals, setLoadingGoals] = useState(false);
 
     // OPERATIONS TABLE
     const [operations, setOperations] = useState([]);
@@ -124,7 +125,7 @@ const AppProvider = ({children}) => {
             .then(r => r.json())
             .then(data => {
                 setOperations(data);
-                setLoading(true)
+                setLoadingOperations(true)
             })
             .catch(err => console.log(err))
     }, []);
@@ -135,6 +136,7 @@ const AppProvider = ({children}) => {
             .then(r => r.json())
             .then(data => {
                 setGoals(data);
+                setLoadingGoals(true)
             })
             .catch(err => console.log(err))
     }, []);
@@ -196,7 +198,7 @@ const AppProvider = ({children}) => {
 
 
     return (
-        <AppContext.Provider value={{currentMonth, currentMonthString, setCurrentMonthString, currentYear, setCurrentYear,  setCurrentMonth, nextMonth, prevMonth, loading, setLoading, operations, setOperations,handleAdd, filterOperationsByMonth, filterGoalsByMonth, goals, setGoals, categories, setCategories, handleAddGoal}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{currentMonth, currentMonthString, setCurrentMonthString, currentYear, setCurrentYear,  setCurrentMonth, nextMonth, prevMonth, loadingGoals, setLoadingGoals, loadingOperations, setLoadingOperations, operations, setOperations,handleAdd, filterOperationsByMonth, filterGoalsByMonth, goals, setGoals, categories, setCategories, handleAddGoal}}>{children}</AppContext.Provider>
     )
 }
 

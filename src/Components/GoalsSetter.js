@@ -17,12 +17,11 @@ const GoalsSetter = () => {
     const goalsURL = 'http://localhost:3005/goals';
 
     // STATES
-    const {currentMonth, setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth, goals, setGoals, categories, setCategories} = useContext(AppContext)
+    const {currentMonth, filterGoalsByMonth,setCurrentMonth, currentYear, setCurrentYear, currentMonthString, setCurrentMonthString, nextMonth, prevMonth, goals, setGoals, categories, setCategories, loaddingOperations} = useContext(AppContext)
 
 
 
     // FUNCTION CREATING AN OBJECT WITH THE GOAL FOR THE SELECTED MONTH AND CATEGORY
-
 
 
 
@@ -61,11 +60,10 @@ const GoalsSetter = () => {
         }}>
 
             <h2 className='goals__setter__header'>Dodaj cele miesięczne</h2>
-        {categories.map((cat, type, goal, id) => {
+        {categories.map(({type, description, id}) => {
             return (
                 <>
-                <GoalSetForm type={cat.type} description={cat.description} key={id}>
-                </GoalSetForm>
+                <GoalSetForm key={id} type={type} description={description}  />
                 </>
             )
 
