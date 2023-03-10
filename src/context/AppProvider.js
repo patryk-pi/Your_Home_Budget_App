@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useContext, createContext} from "react";
 import dayjs from "dayjs";
-import {URL} from "../Components/SpendingsOverview";
-import {categoriesURL} from "../Components/SpendingForm";
+
 
 export const AppContext = createContext(null)
 
@@ -9,9 +8,9 @@ const AppProvider = ({children}) => {
 
     // DATABASE URLs
 
-    const goalURL = 'http://localhost:3005/goals';
-
-
+    const URL = "http://localhost:3005/operations";
+    const goalURL = "http://localhost:3005/goals";
+    const categoriesURL = "http://localhost:3005/categories";
 
     // DATES STATES
     const [currentMonthString, setCurrentMonthString] = useState('');

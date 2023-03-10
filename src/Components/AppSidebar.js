@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
-const AppSidebar = (props) => {
+const AppSidebar = () => {
 
     const buttonStyle = {
         height: '7rem',

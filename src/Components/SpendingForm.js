@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {FormControl, MenuItem, Button, TextField, Box, Snackbar, Alert, AlertTitle} from "@mui/material";
 import {LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
+import {AppContext} from "../context/AppProvider";
 
 
-export const categoriesURL = "http://localhost:3005/categories";
+const SpendingForm = () => {
+
+    const {categories, handleAdd} = useContext(AppContext)
 
 
-const SpendingForm = ({add}) => {
-
-    const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('')
@@ -24,14 +24,6 @@ const SpendingForm = ({add}) => {
 
     const [filteredCategory, setFilteredCategory] = useState([])
 
-
-    const handleClose = (event, reason, setter) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setter(false);
-    };
 
 
     const filterCategories = (event) => {
@@ -46,15 +38,16 @@ const SpendingForm = ({add}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
+        // CHECK IF NO FIELD IS EMPTY
         if (!category || !description || !amount || !date) {
             setOpenError(true);
             return;
         }
-        add({
+        handleAdd({
             category,
             description,
             amount: expense === true ? -parseFloat(amount) : parseFloat(amount),
-            date: dayjs(new Date(date)).format('DD/MM/YYYY')
+            date: dayjs(date).format('DD/MM/YYYY')
         });
 
         setOpenSucces(true)
@@ -62,15 +55,16 @@ const SpendingForm = ({add}) => {
         setCategory('');
         setDate(dayjs(new Date()).format('MM/DD/YYYY'));
         setDescription('')
-
     }
 
-    useEffect(() => {
-        fetch(categoriesURL)
-            .then(r => r.json())
-            .then(data => setCategories(data))
-            .catch(err => console.log(err))
-    }, []);
+    // HANDLER FUNCTION FOR SNACKBAR AND ALERT
+    const handleClose = (event, reason, setter) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setter(false);
+    };
+
 
 
     useEffect(() => {
@@ -136,14 +130,12 @@ const SpendingForm = ({add}) => {
                             allowedDecimalSeparators={[',', '.']}
                             InputProps={{inputProps: {min: 0}}} onChange={(e) => {
                             const value = +(e.target.value);
-                            console.log(value)
                             setAmount(parseFloat(value))
                         }}>
                         </NumericFormat>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker inputFormat={'DD/MM/YYYY'} onChange={(date) => {
-                                console.log(dayjs(date).format('DD/MM/YYYY'))
                                 setDate(dayjs(date).format('MM/DD/YYYY'))
                             }
                             }
@@ -166,7 +158,6 @@ const SpendingForm = ({add}) => {
                             }}
                                    variant='filled'
                             >
-
                                 Uzupełnij wszystkie pola!
                             </Alert>
                         </Snackbar>
@@ -192,7 +183,6 @@ const SpendingForm = ({add}) => {
                                 Dodano!
                             </Alert>
                         </Snackbar>
-
                     </FormControl>
                 </form>
             </Box>

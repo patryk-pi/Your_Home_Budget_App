@@ -7,7 +7,7 @@ import variables from '../scss/settings/_variables.scss'
 
 const {colorPrimary} = variables
 
-
+// THEME FOR BUTTONS
 const theme = createTheme({
     components: {
         MuiButton: {
@@ -32,9 +32,11 @@ const theme = createTheme({
     }
 });
 
+
 const FormFilterButtons = ({filterCategories}) => {
     const [ifExpense, setIfExpense] = useState(true)
     const [ifIncome, setIfIncome] = useState(false)
+
 
     const handleClick = (event) => {
         setIfIncome(!ifIncome);

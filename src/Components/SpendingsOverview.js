@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useContext } from "react";
 import SpendingsTable from "./SpendingsTable";
 import SpendingForm from "./SpendingForm";
 import {Box} from "@mui/material";
-import dayjs from "dayjs";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
 import variables from '../scss/settings/_variables.scss'
@@ -12,7 +11,6 @@ import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
 
 const {colorPrimary} = variables
 
-export const URL = "http://localhost:3005/operations";
 
 const SpendingsOverview = () => {
 
@@ -21,15 +19,11 @@ const SpendingsOverview = () => {
         currentMonth,
         setCurrentMonth,
         currentYear,
-        setCurrentYear,
         currentMonthString,
-        setCurrentMonthString,
         nextMonth,
         prevMonth,
         operations,
-        setOperations,
         loadingOperations,
-        setLoading,
         handleAdd,
         filterOperationsByMonth
     } = useContext(AppContext);

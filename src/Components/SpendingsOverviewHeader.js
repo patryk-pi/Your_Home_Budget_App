@@ -1,9 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Box, IconButton} from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import {AppContext} from "../context/AppProvider";
 
-const SpendingsOverviewHeader = ({prevMonth, nextMonth, currentMonthString, currentYear}) => {
+const SpendingsOverviewHeader = () => {
+
+    const {
+        currentYear,
+        currentMonthString,
+        nextMonth,
+        prevMonth,
+
+    } = useContext(AppContext)
 
     return (
         <Box sx={{

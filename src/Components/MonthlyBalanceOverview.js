@@ -6,19 +6,7 @@ import {AppContext} from "../context/AppProvider";
 const MonthlyBalanceOverview = () => {
 
     const {
-        currentMonth,
-        setCurrentMonth,
-        currentYear,
-        setCurrentYear,
-        currentMonthString,
-        setCurrentMonthString,
-        nextMonth,
-        prevMonth,
         operations,
-        setOperations,
-        loading,
-        setLoading,
-        handleAdd,
         filterOperationsByMonth
     } = useContext(AppContext);
 

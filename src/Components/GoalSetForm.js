@@ -6,14 +6,14 @@ import {AppContext} from "../context/AppProvider";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
 
-const GoalSetForm = ({description, type, amount}) => {
+const GoalSetForm = ({description, type}) => {
 
     const [monthAndYear, setMonthAndYear] = useState(dayjs(new Date()).format("MM/YYYY"));
     const [category, setCategory] = useState("");
     const [goalType, setGoalType] = useState('')
     const [goal, setGoal] = useState(null);
-    const [inputValue, setInputValue] = useState('');
-    const [isDisabled, setIsDisabled] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [filteredRecords, setFilteredRecords] = useState([])
     const [categoryAndGoal, setCategoryAndGoal] = useState({
         monthAndYear,
         category,
@@ -28,15 +28,13 @@ const GoalSetForm = ({description, type, amount}) => {
     } = useContext(AppContext);
 
     useEffect(() => {
-        const newMonthAndYear = dayjs(`${currentYear}-${currentMonth + 1}`).format('MM/YYYY');
-        setMonthAndYear(newMonthAndYear);
+        setMonthAndYear(dayjs(`${currentYear}-${currentMonth + 1}`).format('MM/YYYY'));
     }, [currentMonth, currentYear]);
 
-    const [filteredRecords, setFilteredRecords] = useState([])
+
 
     useEffect(() => {
-        const filteredGoals = goals.filter(goalRecord => filterGoalsByMonth(goalRecord));
-        setFilteredRecords(filteredGoals);
+        setFilteredRecords(goals.filter(goalRecord => filterGoalsByMonth(goalRecord)));
     }, [goals, currentMonth, currentYear]);
 
     useEffect(() => {
@@ -45,23 +43,18 @@ const GoalSetForm = ({description, type, amount}) => {
         } else {
             setIsDisabled(false)
         }
-    }, [filteredRecords, description])
+    }, [filteredRecords])
 
-    const handleFormSubmission = () => {
-        setIsDisabled(true);
+
+    const handleSubmit = e => {
+        e.preventDefault();
         setCategoryAndGoal({
             monthAndYear,
             category,
             type,
             goal: type === 'expense' ? -goal : goal
         });
-        setInputValue('');
         setIsDisabled(true)
-    };
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        handleFormSubmission();
     };
 
     const handleEdit = (e) => {
@@ -142,15 +135,12 @@ const GoalSetForm = ({description, type, amount}) => {
                                 style={{
                                     flexGrow: 1
                                 }}
-                                value={inputValue}
                                 disabled={isDisabled}
                                 allowedDecimalSeparators={[',', '.']}
                                 InputProps={{inputProps: {min: 0}}}
                                 onChange={(e) => {
                                     const value = +(e.target.value);
-                                    console.log(value);
                                     setGoal(parseFloat(value));
-                                    setInputValue(value)
                                 }}>
                             </NumericFormat>
                             <Button
