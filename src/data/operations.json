@@ -13,6 +13,48 @@
       "amount": -123,
       "date": "08/03/2022",
       "id": 2
+    },
+    {
+      "category": "Kredyty",
+      "description": "Marzec",
+      "amount": -300,
+      "date": "10/03/2023",
+      "id": 3
+    },
+    {
+      "category": "Pensja",
+      "description": "Wypłata",
+      "amount": 15000,
+      "date": "10/03/2023",
+      "id": 4
+    },
+    {
+      "category": "Transport",
+      "description": "Paliwo",
+      "amount": -300,
+      "date": "10/03/2023",
+      "id": 5
+    },
+    {
+      "category": "Inne wpływy",
+      "description": "Lotto",
+      "amount": 1000000,
+      "date": "10/03/2023",
+      "id": 6
+    },
+    {
+      "category": "Kredyty",
+      "description": "5000",
+      "amount": -5000,
+      "date": "16/05/2023",
+      "id": 7
+    },
+    {
+      "category": "Akcje",
+      "description": "786",
+      "amount": 6544,
+      "date": "11/03/2023",
+      "id": 8
     }
   ],
   "categories": [
@@ -90,6 +132,40 @@
     }
   ],
   "goals": [
-
+    {
+      "monthAndYear": "03/2023",
+      "category": "Kredyty",
+      "type": "expense",
+      "goal": -9999,
+      "id": 1
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Czynsz",
+      "type": "expense",
+      "goal": -865,
+      "id": 2
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Rachunki",
+      "type": "expense",
+      "goal": -754,
+      "id": 3
+    },
+    {
+      "monthAndYear": "04/2023",
+      "category": "Kredyty",
+      "type": "expense",
+      "goal": -3545,
+      "id": 4
+    },
+    {
+      "monthAndYear": "06/2023",
+      "category": "Kredyty",
+      "type": "expense",
+      "goal": -500,
+      "id": 5
+    }
   ]
 }
