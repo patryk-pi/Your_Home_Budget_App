@@ -1,17 +1,17 @@
-import React, {useContext} from "react";
+import React from "react";
 
 
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
-import {AppContext} from "../../context/AppProvider";
-
+import PieChart from "./PieChart";
 
 const ExpenseAndIncomeGraph = () => {
 
-    const { categories} = useContext(AppContext)
+
 
     return (
         <>
             <SpendingsOverviewHeader />
+            <PieChart />
         </>
     )
 }
