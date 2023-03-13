@@ -2,66 +2,38 @@
   "operations": [
     {
       "category": "Czynsz",
-      "description": "Marzec",
-      "amount": -3000,
-      "date": "03/03/2023",
+      "description": "1",
+      "amount": -500,
+      "date": "13/03/2023",
       "id": 1
     },
     {
-      "category": "Transport",
-      "description": "123",
-      "amount": -123,
-      "date": "08/03/2022",
+      "category": "Czynsz",
+      "description": "2",
+      "amount": -600,
+      "date": "13/03/2023",
       "id": 2
     },
     {
-      "category": "Kredyty",
-      "description": "Marzec",
-      "amount": -300,
-      "date": "10/03/2023",
+      "category": "Jedzenie",
+      "description": "3",
+      "amount": -240,
+      "date": "13/03/2023",
       "id": 3
     },
     {
       "category": "Pensja",
       "description": "Wypłata",
-      "amount": 15000,
-      "date": "10/03/2023",
+      "amount": 10000,
+      "date": "13/03/2023",
       "id": 4
     },
     {
-      "category": "Transport",
-      "description": "Paliwo",
-      "amount": -300,
-      "date": "10/03/2023",
+      "category": "Sport",
+      "description": "gftfy",
+      "amount": -500,
+      "date": "13/03/2023",
       "id": 5
-    },
-    {
-      "category": "Kredyty",
-      "description": "5000",
-      "amount": -5000,
-      "date": "16/05/2023",
-      "id": 7
-    },
-    {
-      "category": "Akcje",
-      "description": "786",
-      "amount": 6544,
-      "date": "11/03/2023",
-      "id": 8
-    },
-    {
-      "category": "Czynsz",
-      "description": "666",
-      "amount": -5000,
-      "date": "13/03/2023",
-      "id": 9
-    },
-    {
-      "category": "Kredyty",
-      "description": "999",
-      "amount": -600,
-      "date": "13/03/2023",
-      "id": 10
     }
   ],
   "categories": [
