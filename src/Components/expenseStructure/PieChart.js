@@ -21,7 +21,7 @@ const PieChart = ({transaction}) => {
         labels: categories,
         datasets: [
             {
-                label: 'Zł',
+                label: 'PLN',
                 data: categories.map(category =>
                     operations
                         .filter(operation => filterOperationsByMonth(operation))
@@ -36,11 +36,10 @@ const PieChart = ({transaction}) => {
     };
 
     const tooltipLabelCallback = (tooltipItem) => {
-        const label = data.labels[tooltipItem.index];
-        const value = data.datasets[0].data.find((obj) => obj.label === label)?.value ?? 0;
-        return `${label}: ${value} Zł`;
+        const label = tooltipItem.label;
+        const value = tooltipItem.parsed;
+        return `${label}: ${Math.abs(value)} PLN`;
     };
-
 
     const options = {
         plugins: {
