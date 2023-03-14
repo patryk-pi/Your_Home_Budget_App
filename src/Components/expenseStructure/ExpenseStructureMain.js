@@ -12,7 +12,7 @@ const ExpenseStructureMain = () => {
             <div className='app__container'>
                 <AppSidebar/>
                 <AppMain>
-                    <ExpenseAndIncomeGraph />
+                    <ExpenseAndIncomeGraph  />
                 </AppMain>
             </div>
         </>

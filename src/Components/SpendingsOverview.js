@@ -39,8 +39,7 @@ const SpendingsOverview = () => {
 
     return (
         <>
-            <SpendingsOverviewHeader nextMonth={nextMonth} prevMonth={prevMonth} currentMonthString={currentMonthString}
-                                     currentYear={currentYear} setCurrentMonth={setCurrentMonth}/>
+            <SpendingsOverviewHeader />
             <Box sx={{
                 height: 'calc(100% - 8rem)',
                 display: 'flex',
