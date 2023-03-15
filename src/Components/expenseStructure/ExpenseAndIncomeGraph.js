@@ -26,14 +26,16 @@ const ExpenseAndIncomeGraph = () => {
 
                 <Box sx={{
                     display: 'flex',
-                    height: 'calc(100% - 16rem)',
+                    height: 'calc(100% - 20rem)',
                     gap: '2rem',
                     width: '100%'
                 }}>
                     <div style={{ flex: 1 }}>
+                        <h2 className={'expense__income__graph__header'}>Wpływy</h2>
                         <PieChart transaction={'income'}/>
                     </div>
                     <div style={{ flex: 1 }}>
+                        <h2  className={'expense__income__graph__header'}>Wydatki</h2>
                         <PieChart transaction={'expense'}/>
                     </div>
                 </Box>

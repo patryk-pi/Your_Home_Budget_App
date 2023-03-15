@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { AppContext } from '../../context/AppProvider';
 import { Chart, ArcElement, Colors, Tooltip, Legend } from 'chart.js';
@@ -7,7 +7,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 Chart.register(ArcElement, Colors, Tooltip, Legend, ChartDataLabels);
 
 const PieChart = ({ graphStyle, transaction }) => {
-    const { operations, filterOperationsByMonth } = useContext(AppContext);
+    const { operations, filterOperationsByMonth, operationMonth } = useContext(AppContext);
 
     // Filter transactions by income or expense
     const filteredOperations =
@@ -16,9 +16,18 @@ const PieChart = ({ graphStyle, transaction }) => {
             : operations.filter(({ amount }) => amount < 0)
 
 
-
+    const [categories, setCategories] = useState([]);
     // Format data for Pie chart
-    const categories = [...new Set(filteredOperations.map(({ category }) => category))];
+
+    useEffect(() => {
+        const categories = [...new Set(filteredOperations
+            .filter((operation) => filterOperationsByMonth(operation))
+            .map(({ category }) => category))];
+        setCategories(categories);
+    }, [ operationMonth]);
+  /*  const categories = [...new Set(filteredOperations
+        .filter((operation) => filterOperationsByMonth(operation))
+        .map(({ category }) => category))];*/
 
     const data = {
         labels: categories,

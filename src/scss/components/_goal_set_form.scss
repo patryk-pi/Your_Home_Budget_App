@@ -8,8 +8,15 @@
 
   &__header {
     font-size: 1.3rem;
-    margin-bottom: 1.5rem;
+    //margin-bottom: 1.5rem;
     font-weight: 700;
+    vertical-align: middle;
+
+    &_form {
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 700
+    }
   }
 
 }

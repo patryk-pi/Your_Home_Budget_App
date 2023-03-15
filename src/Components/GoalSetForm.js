@@ -81,8 +81,13 @@ const GoalSetForm = ({description, type}) => {
                             display: 'flex',
                             width: '100%',
                             gap: '2rem',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            marginBottom: '1.5rem'
                         }}>
+                            <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}} >
                             <h3 className='goal__set__header'>{description}</h3>
+                        </div>
                             <p>Cel na ten miesiąc dodany!</p>
                             <Button
                                 sx={{
@@ -115,7 +120,7 @@ const GoalSetForm = ({description, type}) => {
                       }}
                       onSubmit={handleSubmit}
                 >
-                    <h3 className='goal__set__header'>{description}</h3>
+                    <h3 className='goal__set__header_form'>{description}</h3>
                     <FormControl
                         fullWidth={true}
                         sx={{

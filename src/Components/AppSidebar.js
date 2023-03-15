@@ -6,6 +6,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 
 const AppSidebar = () => {
 
@@ -32,6 +33,7 @@ const AppSidebar = () => {
                 <Link style={linkStyle} to='/'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></Link>
                 <Link style={linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></Link>
                 <Link style={linkStyle} to='/expensestructure'><Button endIcon={<QueryStatsIcon/>} sx={buttonStyle} fullWidth={true}>Struktura wydatków</Button></Link>
+                <Link style={linkStyle} to='/monthlyprogress'><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Status celów</Button></Link>
             </nav>
         </aside>
 

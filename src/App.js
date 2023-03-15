@@ -6,6 +6,7 @@ import React from "react";
 import GoalsSetterMain from "./Components/GoalsSetterMain";
 import ExpenseStructureMain from "./Components/expenseStructure/ExpenseStructureMain";
 import AppProvider from "./context/AppProvider";
+import MonthlyProgressMain from "./Components/monthlyProgress/MonthlyProgressMain";
 
 
 
@@ -19,6 +20,7 @@ function App() {
                <Route path='/' element={<OverviewMain />} />
                <Route path='goals' element={<GoalsSetterMain/>} />
                <Route path='expensestructure' element={<ExpenseStructureMain/>} />
+               <Route path='monthlyprogress' element={<MonthlyProgressMain/>} />
            </Routes>
        </HashRouter>
        </AppProvider>

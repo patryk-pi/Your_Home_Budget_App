@@ -62,6 +62,34 @@
       "amount": 600,
       "date": "15/03/2023",
       "id": 10
+    },
+    {
+      "category": "Kredyty",
+      "description": "Hipoteka",
+      "amount": -2900,
+      "date": "15/03/2023",
+      "id": 11
+    },
+    {
+      "category": "Kredyty",
+      "description": "HIpoteka",
+      "amount": -2900,
+      "date": "15/02/2023",
+      "id": 12
+    },
+    {
+      "category": "Pensja",
+      "description": "Wypłata ",
+      "amount": 5000,
+      "date": "16/05/2023",
+      "id": 13
+    },
+    {
+      "category": "Rachunki",
+      "description": "Prąd",
+      "amount": -150,
+      "date": "12/04/2023",
+      "id": 14
     }
   ],
   "categories": [
@@ -173,6 +201,27 @@
       "type": "expense",
       "goal": -500,
       "id": 5
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Jedzenie",
+      "type": "expense",
+      "goal": -450,
+      "id": 6
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Transport",
+      "type": "expense",
+      "goal": -500,
+      "id": 7
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Sport",
+      "type": "expense",
+      "goal": -1,
+      "id": 8
     }
   ]
 }
