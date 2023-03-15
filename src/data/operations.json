@@ -43,13 +43,6 @@
       "id": 6
     },
     {
-      "category": "Inne wpływy",
-      "description": "12",
-      "amount": 422,
-      "date": "14/03/2023",
-      "id": 7
-    },
-    {
       "category": "Akcje",
       "description": "8678",
       "amount": 700,
@@ -62,6 +55,13 @@
       "amount": -444,
       "date": "04/04/2023",
       "id": 9
+    },
+    {
+      "category": "Inne wpływy",
+      "description": "14",
+      "amount": 600,
+      "date": "15/03/2023",
+      "id": 10
     }
   ],
   "categories": [

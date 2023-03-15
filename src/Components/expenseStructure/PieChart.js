@@ -45,13 +45,22 @@ const PieChart = ({ graphStyle, transaction }) => {
     };
 
     const options = {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: true,
-                position: 'top',
+                fullWidth: true,
+                maxWidth: 1000,
+                fullSize: false,
+                position: transaction === 'income' ? 'left' : 'right',
                 labels: {
                     // Filter labels to only show those rendered in the chart
                     filter: (label, index) => data.datasets[0].data[index] !== 0,
+                    font: {
+                        size: 14,
+                    },
+
                 },
             },
             tooltip: {
@@ -71,7 +80,7 @@ const PieChart = ({ graphStyle, transaction }) => {
                 font: {
                     weight: 700,
                     size: 14
-                }
+                },
             },
         },
     };
@@ -86,7 +95,7 @@ const PieChart = ({ graphStyle, transaction }) => {
 
     return (
         <>
-            <Pie style={graphStyle} data={data} options={options} />
+            <Pie data={data} options={options} />
         </>
     );
 };

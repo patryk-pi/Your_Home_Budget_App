@@ -4,7 +4,7 @@ import {Box} from '@mui/material'
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import PieChart from "./PieChart";
 import MonthlyBalanceOverview from "../MonthlyBalanceOverview";
-import Navbar from "../Navbar";
+
 
 const ExpenseAndIncomeGraph = () => {
 
@@ -27,11 +27,15 @@ const ExpenseAndIncomeGraph = () => {
                 <Box sx={{
                     display: 'flex',
                     height: 'calc(100% - 16rem)',
-                    justifyContent: 'space-around'
+                    gap: '2rem',
+                    width: '100%'
                 }}>
-
-                    <PieChart transaction={'income'}/>
-                    <PieChart transaction={'expense'}/>
+                    <div style={{ flex: 1 }}>
+                        <PieChart transaction={'income'}/>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                        <PieChart transaction={'expense'}/>
+                    </div>
                 </Box>
 
             </Box>
