@@ -90,6 +90,34 @@
       "amount": -150,
       "date": "12/04/2023",
       "id": 14
+    },
+    {
+      "category": "Zdrowie",
+      "description": "Leki",
+      "amount": -150,
+      "date": "15/03/2023",
+      "id": 15
+    },
+    {
+      "category": "Ubrania",
+      "description": "Zara",
+      "amount": -500,
+      "date": "15/03/2023",
+      "id": 16
+    },
+    {
+      "category": "Rozrywka",
+      "description": "Koncert",
+      "amount": -300,
+      "date": "15/03/2023",
+      "id": 17
+    },
+    {
+      "category": "Kredyty",
+      "description": "2900",
+      "amount": -2900,
+      "date": "11/04/2023",
+      "id": 18
     }
   ],
   "categories": [
@@ -171,21 +199,21 @@
       "monthAndYear": "03/2023",
       "category": "Kredyty",
       "type": "expense",
-      "goal": -9999,
+      "goal": -123,
       "id": 1
     },
     {
       "monthAndYear": "03/2023",
       "category": "Czynsz",
       "type": "expense",
-      "goal": -865,
+      "goal": -43,
       "id": 2
     },
     {
       "monthAndYear": "03/2023",
       "category": "Rachunki",
       "type": "expense",
-      "goal": -754,
+      "goal": -12412,
       "id": 3
     },
     {
@@ -206,22 +234,64 @@
       "monthAndYear": "03/2023",
       "category": "Jedzenie",
       "type": "expense",
-      "goal": -450,
+      "goal": -524,
       "id": 6
     },
     {
       "monthAndYear": "03/2023",
       "category": "Transport",
       "type": "expense",
-      "goal": -500,
+      "goal": -235,
       "id": 7
     },
     {
       "monthAndYear": "03/2023",
       "category": "Sport",
       "type": "expense",
-      "goal": -1,
+      "goal": -5235,
       "id": 8
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Zdrowie",
+      "type": "expense",
+      "goal": -600,
+      "id": 9
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Rozrywka",
+      "type": "expense",
+      "goal": -23,
+      "id": 10
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Ubrania",
+      "type": "expense",
+      "goal": -23,
+      "id": 11
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Pensja",
+      "type": "income",
+      "goal": 0,
+      "id": 12
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Akcje",
+      "type": "income",
+      "goal": 433,
+      "id": 13
+    },
+    {
+      "monthAndYear": "03/2023",
+      "category": "Inne wpływy",
+      "type": "income",
+      "goal": 12423,
+      "id": 14
     }
   ]
 }

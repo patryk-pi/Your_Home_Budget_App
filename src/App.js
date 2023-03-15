@@ -14,7 +14,6 @@ function App() {
   return (
    <>
        <AppProvider>
-       <Navbar></Navbar>
        <HashRouter>
            <Routes>
                <Route path='/' element={<OverviewMain />} />

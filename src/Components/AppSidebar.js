@@ -7,6 +7,7 @@ import PieChartIcon from '@mui/icons-material/PieChart';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import logo from "../img/CompanyLogo.png";
 
 const AppSidebar = () => {
 
@@ -30,6 +31,9 @@ const AppSidebar = () => {
                 display: 'flex',
                 flexDirection: 'column'
             }}>
+                <div className={'navbar__container'}>
+                <img src={logo} alt={"logo"} className={'navbar__logo'}/>
+                </div>
                 <Link style={linkStyle} to='/'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></Link>
                 <Link style={linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></Link>
                 <Link style={linkStyle} to='/expensestructure'><Button endIcon={<QueryStatsIcon/>} sx={buttonStyle} fullWidth={true}>Struktura wydatków</Button></Link>

@@ -63,7 +63,7 @@ const GoalSetForm = ({description, type}) => {
     };
 
     useEffect(() => {
-        if (categoryAndGoal.monthAndYear && categoryAndGoal.category && categoryAndGoal.goal) {
+        if (categoryAndGoal.monthAndYear && categoryAndGoal.category && categoryAndGoal.goal !== null) {
             handleAddGoal(categoryAndGoal);
             setCategoryAndGoal({
                 monthAndYear,

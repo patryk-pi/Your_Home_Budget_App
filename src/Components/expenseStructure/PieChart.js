@@ -7,7 +7,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 Chart.register(ArcElement, Colors, Tooltip, Legend, ChartDataLabels);
 
 const PieChart = ({ graphStyle, transaction }) => {
-    const { operations, filterOperationsByMonth, operationMonth } = useContext(AppContext);
+    const { operations, filterOperationsByMonth, operationMonth, prevMonth, nextMonth } = useContext(AppContext);
 
     // Filter transactions by income or expense
     const filteredOperations =
@@ -24,10 +24,10 @@ const PieChart = ({ graphStyle, transaction }) => {
             .filter((operation) => filterOperationsByMonth(operation))
             .map(({ category }) => category))];
         setCategories(categories);
-    }, [ operationMonth]);
-  /*  const categories = [...new Set(filteredOperations
-        .filter((operation) => filterOperationsByMonth(operation))
-        .map(({ category }) => category))];*/
+    }, [filterOperationsByMonth]);
+
+
+    const colors = ['#FF6384', '#36A2EB', '#ff922b', '#22b8cf', '#6495ED', '#FFD700', '#fa5252', '#69db7c', '#9400D3'];
 
     const data = {
         labels: categories,
@@ -41,8 +41,8 @@ const PieChart = ({ graphStyle, transaction }) => {
                             .filter((operation) => operation.category === category)
                             .reduce((sum, { amount }) => sum + amount, 0)
                 ),
-                /*  backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#00FF00'],
-                          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#00FF00'],*/
+                backgroundColor: colors.slice(0, categories.length),
+                hoverBackgroundColor: colors.slice(0, categories.length),
             },
         ],
     };
@@ -90,6 +90,9 @@ const PieChart = ({ graphStyle, transaction }) => {
                     weight: 700,
                     size: 14
                 },
+                anchor: 'end',
+                align: 'end',
+                offset: -40,
             },
         },
     };

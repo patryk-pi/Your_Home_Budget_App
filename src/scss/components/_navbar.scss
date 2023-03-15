@@ -4,10 +4,17 @@
   background: $color-primary;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
 
+  &__container {
+    text-align: center;
+    vertical-align: middle;
+    height: 8rem;
+    background: $color-primary;
+  }
+
   &__logo {
     height: 4rem;
-    transform: translateY(50%);
-    margin-left: 2rem;
     border-radius: 10px;
+    width: 80%;
+    transform: translateY(50%);
   }
 }
