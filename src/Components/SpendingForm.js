@@ -9,7 +9,10 @@ import {AppContext} from "../context/AppProvider";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 
 
+
 const SpendingForm = () => {
+
+
 
     const theme = createTheme({
         typography: {
@@ -17,7 +20,7 @@ const SpendingForm = () => {
         }
     });
 
-    const {categories, handleAdd} = useContext(AppContext)
+    const {categories, handleAdd, user} = useContext(AppContext)
 
 
     const [category, setCategory] = useState('');
@@ -54,7 +57,7 @@ const SpendingForm = () => {
             category,
             description,
             amount: expense === true ? -parseFloat(amount) : parseFloat(amount),
-            date: dayjs(date).format('DD/MM/YYYY')
+            date: dayjs(date).format('DD/MM/YYYY'),
         });
 
         setOpenSucces(true)
@@ -63,6 +66,8 @@ const SpendingForm = () => {
         setDate(dayjs(new Date()).format('MM/DD/YYYY'));
         setDescription('')
     }
+
+    console.log(user)
 
     // HANDLER FUNCTION FOR SNACKBAR AND ALERT
     const handleClose = (event, reason, setter) => {

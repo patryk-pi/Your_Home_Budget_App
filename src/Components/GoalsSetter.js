@@ -11,7 +11,7 @@ import GoalsTable from "./GoalsTable";
 const GoalsSetter = () => {
 
     // STATES
-    const { categories} = useContext(AppContext)
+    const { categories } = useContext(AppContext)
 
 
     // FUNCTION CREATING AN OBJECT WITH THE GOAL FOR THE SELECTED MONTH AND CATEGORY
@@ -41,7 +41,7 @@ const GoalsSetter = () => {
                 }}>
 
                     <h2 className='goals__setter__header'>Dodaj cele miesięczne</h2>
-                    {categories.map(({type, description, id}) => {
+                    {categories.sort((a, b) => a.type === 'expense' ? -1 : 1).map(({type, description, id}) => {
                         return (
                             <>
                                 <GoalSetForm key={id} type={type} description={description}/>

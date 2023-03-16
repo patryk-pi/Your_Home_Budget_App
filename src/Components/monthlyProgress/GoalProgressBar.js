@@ -27,7 +27,7 @@ const GoalProgressBar = ({currentCategory}) => {
     const percentCompleted = currentGoal === 0 || currentOperations === undefined || currentGoal === undefined ? 0 :  currentOperations / currentGoal * 100
 
     return (
-        <ProgressBar completed={percentCompleted === undefined ? 0 :  Math.abs(percentCompleted).toFixed(2)} bgColor={'lightgreen'}
+        <ProgressBar completed={percentCompleted === undefined ? 0 :  +percentCompleted.toFixed(0)}  bgColor={'#69db7c'}
                      animateOnRender={true}
                      height={'3rem'}
                      labelAlignment={'right'}
