@@ -4,12 +4,13 @@ import {AppContext} from "../../context/AppProvider";
 
 const GoalProgressBar = ({currentCategory}) => {
 
-    const {categories, operations, filterOperationsByMonth, goals, filterGoalsByMonth} = useContext(AppContext);
+    const { operations, filterOperationsByMonth, goals, filterGoalsByMonth} = useContext(AppContext);
 
     const [currentGoal] = (goals
         .filter(goal => filterGoalsByMonth(goal))
         .filter(goal => goal.category === currentCategory.description)
-        .map(goal => goal.goal))
+        .map(goal => goal.goal)
+    );
 
 
     const currentOperations = (
@@ -18,13 +19,13 @@ const GoalProgressBar = ({currentCategory}) => {
             .filter(operation => operation.category === currentCategory.description)
             .map(operation => operation.amount)
             .reduce((acc, curr) => acc + curr, 0)
-    )
+    );
 
 
 
 
     const percentCompleted = currentGoal === 0 || currentOperations === undefined || currentGoal === undefined ? 0 :  currentOperations / currentGoal * 100
-    console.log(percentCompleted)
+
     return (
         <ProgressBar completed={percentCompleted === undefined ? 0 :  Math.abs(percentCompleted).toFixed(2)} bgColor={'lightgreen'}
                      animateOnRender={true}

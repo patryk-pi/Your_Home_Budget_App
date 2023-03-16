@@ -7,6 +7,7 @@ import GoalsSetterMain from "./Components/GoalsSetterMain";
 import ExpenseStructureMain from "./Components/expenseStructure/ExpenseStructureMain";
 import AppProvider from "./context/AppProvider";
 import MonthlyProgressMain from "./Components/monthlyProgress/MonthlyProgressMain";
+import SignInMain from "./Components/auth/SingInMain";
 
 
 
@@ -16,10 +17,11 @@ function App() {
        <AppProvider>
        <HashRouter>
            <Routes>
+               <Route path='login' element={<SignInMain />} />
                <Route path='/' element={<OverviewMain />} />
                <Route path='goals' element={<GoalsSetterMain/>} />
                <Route path='expensestructure' element={<ExpenseStructureMain/>} />
-               <Route path='monthlyprogress' element={<MonthlyProgressMain/>} />
+               <Route path='monthlyprogress' element={<MonthlyProgressMain/>}/>
            </Routes>
        </HashRouter>
        </AppProvider>

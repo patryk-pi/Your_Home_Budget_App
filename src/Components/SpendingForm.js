@@ -6,9 +6,16 @@ import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
 import {AppContext} from "../context/AppProvider";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 
 
 const SpendingForm = () => {
+
+    const theme = createTheme({
+        typography: {
+            fontSize: 18
+        }
+    });
 
     const {categories, handleAdd} = useContext(AppContext)
 
@@ -74,6 +81,7 @@ const SpendingForm = () => {
 
     return (
         <>
+            <ThemeProvider theme={theme}>
             <Box sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -186,6 +194,7 @@ const SpendingForm = () => {
                     </FormControl>
                 </form>
             </Box>
+            </ThemeProvider>
         </>
     )
 }

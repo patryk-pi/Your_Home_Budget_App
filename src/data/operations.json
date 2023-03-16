@@ -213,7 +213,7 @@
       "monthAndYear": "03/2023",
       "category": "Rachunki",
       "type": "expense",
-      "goal": -12412,
+      "goal": 0,
       "id": 3
     },
     {
@@ -234,7 +234,7 @@
       "monthAndYear": "03/2023",
       "category": "Jedzenie",
       "type": "expense",
-      "goal": -524,
+      "goal": -560,
       "id": 6
     },
     {
@@ -248,7 +248,7 @@
       "monthAndYear": "03/2023",
       "category": "Sport",
       "type": "expense",
-      "goal": -5235,
+      "goal": -769,
       "id": 8
     },
     {
@@ -262,14 +262,14 @@
       "monthAndYear": "03/2023",
       "category": "Rozrywka",
       "type": "expense",
-      "goal": -23,
+      "goal": -222,
       "id": 10
     },
     {
       "monthAndYear": "03/2023",
       "category": "Ubrania",
       "type": "expense",
-      "goal": -23,
+      "goal": 0,
       "id": 11
     },
     {
@@ -292,6 +292,27 @@
       "type": "income",
       "goal": 12423,
       "id": 14
+    },
+    {
+      "monthAndYear": "04/2023",
+      "category": "Czynsz",
+      "type": "expense",
+      "goal": 0,
+      "id": 15
+    },
+    {
+      "monthAndYear": "04/2023",
+      "category": "Rachunki",
+      "type": "expense",
+      "goal": -90,
+      "id": 16
+    },
+    {
+      "monthAndYear": "02/2023",
+      "category": "Kredyty",
+      "type": "expense",
+      "goal": -3000,
+      "id": 17
     }
   ]
 }
