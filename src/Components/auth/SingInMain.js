@@ -1,7 +1,8 @@
 import React from "react";
 import AppSidebar from "../AppSidebar";
 import AppMain from "../AppMain";
-import SignIn from "./SignIn";
+import LogIn from "./LogIn";
+import SignUp from "./SignUp";
 
 
 
@@ -12,7 +13,7 @@ const  SignInMain = () => {
             <div className='app__container'>
                 <AppSidebar/>
                 <AppMain>
-                    <SignIn />
+                    <SignUp/>
                 </AppMain>
             </div>
         </>

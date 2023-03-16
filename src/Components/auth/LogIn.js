@@ -1,6 +1,4 @@
-
-
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,20 +16,17 @@ import Copyright from "./Copyright";
 
 
 
+
 const theme = createTheme({
     typography: {
         fontSize: 20
     }
 });
 
-export default function SignIn() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+const SignIn = () => {
+
+    const handleSubmit =  () => {
+      console.log('Działam')
     };
 
     return (
@@ -106,3 +101,5 @@ export default function SignIn() {
         </ThemeProvider>
     );
 }
+
+export default SignIn
