@@ -1,15 +1,25 @@
-import React, { useContext } from "react";
-import { Navigate} from "react-router-dom";
+import React, {useContext, useState, useEffect} from "react";
+import {Navigate, Outlet} from "react-router-dom";
 import {AppContext} from "../../context/AppProvider";
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = () => {
 
-    const {user} = useContext(AppContext)
+    const {user} = useContext(AppContext);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, []);
+
+    if (isLoading) {
+        return null; // or a loading spinner or some other component
+    }
 
     if (!user) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/" replace/>;
     }
-    return children;
+    return <Outlet/>
 }
+
 
 export default ProtectedRoute;
