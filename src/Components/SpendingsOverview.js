@@ -17,20 +17,16 @@ const SpendingsOverview = () => {
 // APP PROVIDER
     const {
         currentMonth,
-        setCurrentMonth,
-        currentYear,
-        currentMonthString,
-        nextMonth,
-        prevMonth,
         operations,
         loadingOperations,
         handleAdd,
-        filterOperationsByMonth
+        filterOperationsByMonth,
+        user
     } = useContext(AppContext);
 
 
 
-
+console.log(user)
 
 
 

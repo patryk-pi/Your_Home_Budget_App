@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from "./Copyright";
 
+import { auth, googleProvider } from '../.././config/firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+
+
 
 
 
@@ -25,8 +29,31 @@ const theme = createTheme({
 
 const SignIn = () => {
 
-    const handleSubmit =  () => {
-      console.log('Działam')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (event) => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleClickGoogle = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
     };
 
     return (
@@ -58,6 +85,7 @@ const SignIn = () => {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={handleEmailChange}
 
                         />
                         <TextField
@@ -69,6 +97,7 @@ const SignIn = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={handlePasswordChange}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -95,6 +124,9 @@ const SignIn = () => {
                             </Grid>
                         </Grid>
                     </Box>
+                    <Button
+                        type='button'
+                        onClick={handleClickGoogle} > Google </Button>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>

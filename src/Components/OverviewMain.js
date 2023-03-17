@@ -1,5 +1,5 @@
 import React from "react";
-import AppSidebar from "./AppSidebar";
+import AppSidebar from "./nav/AppSidebar";
 import AppMain from "./AppMain";
 import SpendingsOverview from "./SpendingsOverview";
 

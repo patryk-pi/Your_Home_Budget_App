@@ -1,5 +1,5 @@
 import React from "react";
-import AppSidebar from "../AppSidebar";
+import AppSidebar from "../nav/AppSidebar";
 import AppMain from "../AppMain";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
@@ -14,7 +14,7 @@ const  SignInMain = () => {
             <div className='app__container'>
                 <AppSidebar/>
                 <AppMain>
-                    <SignUp/>
+                    <LogIn/>
                 </AppMain>
             </div>
         </>

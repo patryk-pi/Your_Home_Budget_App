@@ -1,17 +1,30 @@
 import React, {useEffect, useState, useContext, createContext} from "react";
 import dayjs from "dayjs";
-import { getDocs, collection, addDoc, doc, updateDoc } from "firebase/firestore"
-import { db } from '../../src/config/firebase'
-import { getAuth, onAuthStateChanged, } from "firebase/auth";
+import {getDocs, collection, addDoc, doc, updateDoc, getDoc} from "firebase/firestore"
+import {db} from '../../src/config/firebase'
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 
 export const AppContext = createContext(null)
 
 const AppProvider = ({children}) => {
 
+    const [user, setUser] = useState(null);
+    console.log(user)
+
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+
+        // Clean up subscription on unmount
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     const auth = getAuth();
-    const user = auth.currentUser;
 
     // DATABASE URLs
 
@@ -43,70 +56,73 @@ const AppProvider = ({children}) => {
     const goalsCollectionRef = collection(db, 'goals')
 
     // FUNCTION ADDING NEW OPERATIONS TO A DATA BASE THROUGH REST API
-/*    const handleAdd = operation => {
-        fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(operation)
-        })
-            .then(r => {
-                return r.json();
+/*        const handleAddJson = operation => {
+            fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(operation)
             })
-            .then(data => setOperations(prev => [...prev, data]))
-            .catch(err => console.log(err))
-    }*/
+                .then(r => {
+                    return r.json();
+                })
+                .then(data => setOperations(prev => [...prev, data]))
+                .catch(err => console.log(err))
+        }*/
 
     const handleAdd = async (operation) => {
         try {
-        await addDoc(operationsCollectionRef,
-            {
+            const docRef = await addDoc(operationsCollectionRef, {
                 category: operation.category,
                 description: operation.description,
                 amount: operation.amount,
                 date: operation.date,
-                user
-            })
+                user: user ? user.uid : null
+            });
+
+            const docSnapshot = await getDoc(docRef);
+            const data = docSnapshot.data();
+            setOperations(prev => [...prev, { id: docSnapshot.id, ...data }]);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
-/*    const handleAddGoal = goal => {
-        const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
-        if (index === -1) {
-            fetch(goalURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(goal),
-            })
-                .then((r) => {
-                    return r.json();
+    /*    const handleAddGoal = goal => {
+            const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
+            if (index === -1) {
+                fetch(goalURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(goal),
                 })
-                .then((data) => setGoals((prev) => [...prev, data]))
-                .catch((err) => console.log(err));
-        } else {
-            fetch(`${goalURL}/${goals[index].id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(goal),
-            })
-                .then(r => r.json())
-                .then(data => setGoals(prev => prev.map(obj => {
-                    if (obj.id === data.id) {
-                        return data;
-                    } else {
-                        return obj;
-                    }
-                })))
-                .catch((err) => console.log(err));
-        }
-    };*/
+                    .then((r) => {
+                        return r.json();
+                    })
+                    .then((data) => setGoals((prev) => [...prev, data]))
+                    .catch((err) => console.log(err));
+            } else {
+                fetch(`${goalURL}/${goals[index].id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(goal),
+                })
+                    .then(r => r.json())
+                    .then(data => setGoals(prev => prev.map(obj => {
+                        if (obj.id === data.id) {
+                            return data;
+                        } else {
+                            return obj;
+                        }
+                    })))
+                    .catch((err) => console.log(err));
+            }
+        };*/
 
     const handleAddGoal = async (goal) => {
         const index = goals.findIndex(
@@ -120,7 +136,7 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user,
+                    user: user ? user.uid : null
                 });
                 const newGoal = {
                     id: docRef.id,
@@ -134,7 +150,7 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user,
+                    user: user ? user.uid : null
                 });
                 const updatedGoal = {
                     ...goalDoc,
@@ -142,7 +158,7 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user,
+                    user: user ? user.uid : null
                 };
                 setGoals((prev) =>
                     prev.map((obj) => (obj.id === updatedGoal.id ? updatedGoal : obj))
@@ -190,50 +206,59 @@ const AppProvider = ({children}) => {
 
 
     // FETCH OPERATIONS FROM DATA BASE
+
     useEffect(() => {
-        fetch(URL)
-            .then(r => r.json())
-            .then(data => {
-                setOperations(data);
+        const getOperations = async () => {
+            try {
+                const data = await getDocs(operationsCollectionRef)
+                const filteredOperations = data.docs
+                    .filter(op => op.data().user === user?.uid)
+                    .map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+                setOperations(filteredOperations);
                 setLoadingOperations(true)
-            })
-            .catch(err => console.log(err))
-    }, []);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getOperations();
+    }, [user]);
 
     // FETCH GOALS FROM DATA BASE
     useEffect(() => {
-      const getGoals = async () => {
-          try {
-              const data = await getDocs(goalsCollectionRef)
-              const filteredData = data.docs.map(doc => ({
-                  ...doc.data(),
-                  id: doc.id
-              }))
-              setGoals(filteredData)
-          } catch (err) {
-              console.log(err)
-          }
-
-      }
-      getGoals()
-      }, []);
+        const getGoals = async () => {
+            try {
+                const data = await getDocs(goalsCollectionRef)
+                const filteredData = data.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id
+                }))
+                setGoals(filteredData)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getGoals()
+    }, [user]);
 
 
     useEffect(() => {
-       const getCategories = async () => {
-           try {
-               const data =  await getDocs(categoriesCollectionRef);
-               console.log(data)
-               const filteredData = data.docs.map(doc => ({
-                   ...doc.data(),
-                   id: doc.id
-               }))
-               setCategories(filteredData);
-           } catch (error) {
-               console.log(error)
-           }
-       };
-       getCategories();
+        const getCategories = async () => {
+            try {
+                const data = await getDocs(categoriesCollectionRef);
+                console.log(data)
+                const filteredData = data.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id
+                }))
+                setCategories(filteredData);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        getCategories();
     }, []);
 
 
@@ -283,9 +308,32 @@ const AppProvider = ({children}) => {
     }, [currentMonth]);
 
 
-
     return (
-        <AppContext.Provider value={{user, currentMonth, currentMonthString, setCurrentMonthString, currentYear, setCurrentYear,  setCurrentMonth, nextMonth, prevMonth, loadingGoals, setLoadingGoals, loadingOperations, setLoadingOperations, operations, setOperations,handleAdd, filterOperationsByMonth, filterGoalsByMonth, goals, setGoals, categories, setCategories, handleAddGoal}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{
+            user,
+            currentMonth,
+            currentMonthString,
+            setCurrentMonthString,
+            currentYear,
+            setCurrentYear,
+            setCurrentMonth,
+            nextMonth,
+            prevMonth,
+            loadingGoals,
+            setLoadingGoals,
+            loadingOperations,
+            setLoadingOperations,
+            operations,
+            setOperations,
+            handleAdd,
+            filterOperationsByMonth,
+            filterGoalsByMonth,
+            goals,
+            setGoals,
+            categories,
+            setCategories,
+            handleAddGoal
+        }}>{children}</AppContext.Provider>
     )
 }
 
