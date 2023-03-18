@@ -36,7 +36,9 @@ const GoalsSetter = () => {
                     overflow: 'scroll',
                     height: '100%',
                     borderRadius: '20px',
-                    padding: '1rem'
+                    padding: '1rem',
+                    bgcolor: 'white',
+                    boxShadow: 2
 
                 }}>
 
@@ -60,7 +62,9 @@ const GoalsSetter = () => {
                     overflow: 'scroll',
                     height: '100%',
                     borderRadius: '20px',
-                    padding: '1rem'
+                    padding: '1rem',
+                    bgcolor: 'white',
+                    boxShadow: 2
 
                 }}>
                     <GoalsTable/>

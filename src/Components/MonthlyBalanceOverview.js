@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {AppContext} from "../context/AppProvider";
-
+import { Box } from "@mui/material"
 
 
 const MonthlyBalanceOverview = () => {
@@ -11,13 +11,15 @@ const MonthlyBalanceOverview = () => {
     } = useContext(AppContext);
 
     return (
-        <div style={{
+        <Box sx={{
             border: '1px solid lightgray',
             borderRadius: '20px',
             padding: '2rem',
             marginBottom: '2rem',
             display: "flex",
             justifyContent: "space-between",
+            bgcolor: 'white',
+            boxShadow: 2
         }}>
             <div style={{
                 display: "flex",
@@ -113,7 +115,7 @@ const MonthlyBalanceOverview = () => {
 
             </div>
             </div>
-        </div>
+        </Box>
     )
 }
 

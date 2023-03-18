@@ -20,6 +20,7 @@ const ExpenseAndIncomeGraph = () => {
                 gap: '2rem',
                 flexShrink: 1,
                 flexDirection: 'column'
+
             }}>
 
                 <MonthlyBalanceOverview style={{padding: '2rem'}}/>
@@ -28,7 +29,8 @@ const ExpenseAndIncomeGraph = () => {
                     display: 'flex',
                     height: 'calc(100% - 20rem)',
                     gap: '2rem',
-                    width: '100%'
+                    width: '100%',
+
                 }}>
                     <div style={{ flex: 1 }}>
                         <h2 className={'expense__income__graph__header'}>Wpływy</h2>

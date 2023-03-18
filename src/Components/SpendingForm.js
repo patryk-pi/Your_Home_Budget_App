@@ -97,6 +97,8 @@ const SpendingForm = () => {
                 maxHeight: '53rem',
                 borderRadius: '20px',
                 padding: '1rem',
+                background: 'white',
+                boxShadow: 2
 
             }}>
                 <FormFilterButtons filterCategories={filterCategories}/>

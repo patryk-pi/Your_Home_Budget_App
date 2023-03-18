@@ -24,15 +24,6 @@ const SpendingsOverview = () => {
         user
     } = useContext(AppContext);
 
-
-
-console.log(user)
-
-
-
-
-
-
     return (
         <>
             <SpendingsOverviewHeader />

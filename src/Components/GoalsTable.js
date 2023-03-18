@@ -12,7 +12,7 @@ const GoalsTable = () => {
         <Box sx={{
             padding: '2rem',
             height: '100%',
-            overflow: 'scroll'
+            overflow: 'scroll',
         }}>
             <Table size="lg"
                    stripe='even'

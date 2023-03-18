@@ -14,11 +14,11 @@ const AppProvider = ({children}) => {
     const [user, setUser] = useState(null);
     console.log(user)
 
+
     useEffect(() => {
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
-
         });
 
         // Clean up subscription on unmount
@@ -234,7 +234,9 @@ const AppProvider = ({children}) => {
         const getGoals = async () => {
             try {
                 const data = await getDocs(goalsCollectionRef)
-                const filteredData = data.docs.map(doc => ({
+                const filteredData = data.docs
+                    .filter(op => op.data().user === user?.uid)
+                    .map(doc => ({
                     ...doc.data(),
                     id: doc.id
                 }))

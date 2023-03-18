@@ -43,7 +43,9 @@ const SpendingsTable = () => {
             borderRadius: '20px',
             padding: '2rem',
             height: 'calc(100% - 15rem)',
-            overflow: 'scroll'
+            overflow: 'scroll',
+            bgcolor: 'white',
+            boxShadow: 2
         }}>
     <Table size="lg"
            stripe='even'

@@ -83,7 +83,8 @@ const GoalSetForm = ({description, type}) => {
                             gap: '2rem',
                             alignItems: 'center',
                             justifyContent: 'space-between',
-                            marginBottom: '1.5rem'
+                            margin: '1.5rem 0',
+                            padding: '0 2rem'
                         }}>
                             <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}} >
                             <h3 className='goal__set__header'>{description}</h3>

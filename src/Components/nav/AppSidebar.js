@@ -49,6 +49,7 @@ const AppSidebar = () => {
                 { !user ?
                     <>
                 <Link style={linkStyle} to='/'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zaloguj</Button></Link>
+                        <Link style={linkStyle} to='/signup'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zarejestruj</Button></Link>
                     </> :
                     <>
                 <Link style={linkStyle} to='/overview'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></Link>

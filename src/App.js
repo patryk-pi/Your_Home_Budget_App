@@ -8,6 +8,8 @@ import MonthlyProgressMain from "./Components/monthlyProgress/MonthlyProgressMai
 import SignInMain from "./Components/auth/SingInMain";
 import ProtectedRoute from "./Components/nav/ProtectedRoute";
 import AppSidebar from "./Components/nav/AppSidebar";
+import SignUpMain from "./Components/auth/SingUpMain";
+import LoggedInRoute from "./Components/nav/LoggedInRoute";
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
                     <AppSidebar />
                     <Routes>
                         <Route path="/" element={<SignInMain />} />
+                        <Route path="/signup" element={<SignUpMain />} />
                         <Route element={<ProtectedRoute mode={'loggedIn'} />}>
                             <Route path="/overview" element={<OverviewMain />} />
                             <Route path="/goals" element={<GoalsSetterMain />} />
