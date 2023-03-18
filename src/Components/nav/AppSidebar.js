@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 import {Button} from "@mui/material";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import PieChartIcon from '@mui/icons-material/PieChart';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import logo from "../../img/CompanyLogo.png";

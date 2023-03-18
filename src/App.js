@@ -1,24 +1,27 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import AppProvider from "./context/AppProvider";
-import Navbar from "./Components/Navbar";
 import OverviewMain from "./Components/OverviewMain";
 import GoalsSetterMain from "./Components/GoalsSetterMain";
 import ExpenseStructureMain from "./Components/expenseStructure/ExpenseStructureMain";
 import MonthlyProgressMain from "./Components/monthlyProgress/MonthlyProgressMain";
 import SignInMain from "./Components/auth/SingInMain";
 import ProtectedRoute from "./Components/nav/ProtectedRoute";
+import AppSidebar from "./Components/nav/AppSidebar";
 
 function App() {
 
-
     return (
         <>
+            <div className="app__container">
             <AppProvider>
+
+
                 <HashRouter>
+                    <AppSidebar />
                     <Routes>
                         <Route path="/" element={<SignInMain />} />
-                        <Route element={<ProtectedRoute />}>
+                        <Route element={<ProtectedRoute mode={'loggedIn'} />}>
                             <Route path="/overview" element={<OverviewMain />} />
                             <Route path="/goals" element={<GoalsSetterMain />} />
                             <Route path="/expensestructure" element={<ExpenseStructureMain />} />
@@ -27,6 +30,7 @@ function App() {
                     </Routes>
                 </HashRouter>
             </AppProvider>
+            </div>
         </>
     );
 }

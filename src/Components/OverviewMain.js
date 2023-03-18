@@ -8,14 +8,12 @@ import SpendingsOverview from "./SpendingsOverview";
 const OverviewMain = () => {
     return (
         <>
-            <div className='app__container'>
 
-                <AppSidebar/>
                 <AppMain>
                     <SpendingsOverview/>
 
                 </AppMain>
-            </div>
+
         </>
     )
 }

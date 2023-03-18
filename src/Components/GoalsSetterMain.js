@@ -9,14 +9,12 @@ import GoalsSetter from "./GoalsSetter";
 const OverviewMain = () => {
     return (
         <>
-            <div className='app__container'>
 
-                <AppSidebar/>
                 <AppMain>
                     <GoalsSetter />
 
                 </AppMain>
-            </div>
+
         </>
     )
 }

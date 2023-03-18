@@ -11,12 +11,9 @@ import {Login} from "@mui/icons-material";
 const  SignInMain = () => {
     return (
         <>
-            <div className='app__container'>
-                <AppSidebar/>
                 <AppMain>
                     <LogIn/>
                 </AppMain>
-            </div>
         </>
     )
 }

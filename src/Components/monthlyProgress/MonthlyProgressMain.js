@@ -9,12 +9,11 @@ import MonthlyProgress from "./MonthlyProgress";
 const  MonthlyProgressMain = () => {
     return (
         <>
-            <div className='app__container'>
-                <AppSidebar/>
+
                 <AppMain>
                     <MonthlyProgress />
                 </AppMain>
-            </div>
+
         </>
     )
 }

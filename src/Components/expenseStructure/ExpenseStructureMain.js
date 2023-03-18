@@ -9,12 +9,11 @@ import ExpenseAndIncomeGraph from "./ExpenseAndIncomeGraph";
 const ExpenseStructureMain = () => {
     return (
         <>
-            <div className='app__container'>
-                <AppSidebar/>
+
                 <AppMain>
                     <ExpenseAndIncomeGraph  />
                 </AppMain>
-            </div>
+
         </>
     )
 }

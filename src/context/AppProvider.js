@@ -3,11 +3,13 @@ import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
 
 
 export const AppContext = createContext(null)
 
 const AppProvider = ({children}) => {
+
 
     const [user, setUser] = useState(null);
     console.log(user)
@@ -16,6 +18,7 @@ const AppProvider = ({children}) => {
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
+
         });
 
         // Clean up subscription on unmount
@@ -24,7 +27,7 @@ const AppProvider = ({children}) => {
         };
     }, []);
 
-    const auth = getAuth();
+
 
     // DATABASE URLs
 
