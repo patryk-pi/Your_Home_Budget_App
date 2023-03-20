@@ -13,8 +13,13 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   overflow-x: hidden;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
+ body {
+   background: rgb(0,55,87);
+   background: linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%);
+ }
+
 
 
 .MuiInputBase-input {

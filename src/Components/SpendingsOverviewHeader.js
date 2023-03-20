@@ -30,6 +30,7 @@ const SpendingsOverviewHeader = () => {
             justifyContent: "space-between",
             alignItems: 'center',
             padding: '3rem 0 0',
+            marginBottom: '2rem'
         }}>
             <IconButton size='large' onClick={prevMonth} sx={{
                 marginLeft: '27rem',

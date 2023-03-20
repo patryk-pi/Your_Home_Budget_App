@@ -7,6 +7,7 @@ import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
 import {AppContext} from "../context/AppProvider";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
+import SnackbarInfo from "./SnackbarInfo";
 
 
 
@@ -30,7 +31,7 @@ const SpendingForm = () => {
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
     const [openError, setOpenError] = useState(false)
-    const [openSucces, setOpenSucces] = useState(false)
+    const [openSuccess, setOpenSuccess] = useState(false)
 
     const [filteredCategory, setFilteredCategory] = useState([])
 
@@ -60,7 +61,7 @@ const SpendingForm = () => {
             date: dayjs(date).format('DD/MM/YYYY'),
         });
 
-        setOpenSucces(true)
+        setOpenSuccess(true)
         setAmount('');
         setCategory('');
         setDate(dayjs(new Date()).format('MM/DD/YYYY'));
@@ -69,13 +70,6 @@ const SpendingForm = () => {
 
     console.log(user)
 
-    // HANDLER FUNCTION FOR SNACKBAR AND ALERT
-    const handleClose = (event, reason, setter) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setter(false);
-    };
 
 
 
@@ -158,46 +152,8 @@ const SpendingForm = () => {
                                         renderInput={(props) => <TextField {...props}/>} label={'Select date'}/>
                         </LocalizationProvider>
                         <Button type={'submit'}>Dodaj</Button>
-                        <Snackbar
-                            open={openError}
-                            autoHideDuration={4000}
-                            onClose={() => handleClose(null, null, setOpenError)}
-                            severity="error"
-                        >
-                            <Alert onClose={() => handleClose(null, null, setOpenError)} severity="error" sx={{
-                                width: '100%',
-                                fontSize: '1.4rem',
-                                color: 'white',
-                                fontWeight: '700',
-
-                            }}
-                                   variant='filled'
-                            >
-                                Uzupełnij wszystkie pola!
-                            </Alert>
-                        </Snackbar>
-                        <Snackbar
-                            open={openSucces}
-                            autoHideDuration={4000}
-                            onClose={() => handleClose(null, null, setOpenSucces)}
-                            severity="success"
-                        >
-                            <Alert onClose={() => handleClose(null, null, setOpenSucces)} severity="success"
-                                   sx={{
-                                width: '100%',
-                                fontSize: '1.4rem',
-                                color: 'white',
-                                fontWeight: '700',
-
-
-                            }}
-                                   variant='filled'
-
-                            >
-
-                                Dodano!
-                            </Alert>
-                        </Snackbar>
+                        <SnackbarInfo severity={'error'} openState={openError} setOpenState={setOpenError} message={'Uzupełnij wszystkie pola!'} />
+                        <SnackbarInfo severity={'success'} openState={openSuccess} setOpenState={setOpenSuccess} message={'Dodano!'} />
                     </FormControl>
                 </form>
             </Box>

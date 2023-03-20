@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {Button} from "@mui/material";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -25,15 +25,23 @@ const AppSidebar = () => {
 
     const buttonStyle = {
         height: '7rem',
-        fontSize: '1.5rem',
+        fontSize: '1.3rem',
         display: 'flex',
         justifyContent: 'space-between',
-        padding: '1.5rem'
+        padding: '2.5rem',
+        color: 'white',
+        fontWeight: 600
     }
 
     const linkStyle = {
         textDecoration: 'none',
+        cursor: 'pointer'
+    }
 
+    const activeStyle = {
+        background: 'rgba(255,255,255,0.2)',
+        textDecoration: 'none',
+        cursor: 'pointer'
     }
 
 
@@ -48,14 +56,14 @@ const AppSidebar = () => {
                 </div>
                 { !user ?
                     <>
-                <Link style={linkStyle} to='/'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zaloguj</Button></Link>
-                        <Link style={linkStyle} to='/signup'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zarejestruj</Button></Link>
+                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zaloguj</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/signup'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Zarejestruj</Button></NavLink>
                     </> :
                     <>
-                <Link style={linkStyle} to='/overview'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></Link>
-                <Link style={linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></Link>
-                <Link style={linkStyle} to='/expensestructure'><Button endIcon={<QueryStatsIcon/>} sx={buttonStyle} fullWidth={true}>Struktura wydatków</Button></Link>
-                <Link style={linkStyle} to='/monthlyprogress'><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Status celów</Button></Link>
+                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/overview'><Button endIcon={<CalendarMonthIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></NavLink>
+                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></NavLink>
+                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/expensestructure'><Button endIcon={<QueryStatsIcon/>} sx={buttonStyle} fullWidth={true}>Struktura wydatków</Button></NavLink>
+                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/monthlyprogress'><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Status celów</Button></NavLink>
                 <Button style={linkStyle} onClick={handleLogout}><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Wyloguj</Button></Button>
                     </>}
 

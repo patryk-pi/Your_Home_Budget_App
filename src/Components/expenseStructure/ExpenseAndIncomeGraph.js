@@ -14,7 +14,7 @@ const ExpenseAndIncomeGraph = () => {
             <SpendingsOverviewHeader/>
 
             <Box sx={{
-                height: 'calc(100% - 8rem)',
+                height: 'calc(100% - 10rem)',
                 display: 'flex',
                 padding: '2rem',
                 gap: '2rem',

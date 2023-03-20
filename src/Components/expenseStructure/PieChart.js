@@ -66,8 +66,11 @@ const PieChart = ({ graphStyle, transaction }) => {
                 labels: {
                     // Filter labels to only show those rendered in the chart
                     filter: (label, index) => data.datasets[0].data[index] !== 0,
+                    color: 'white',
                     font: {
-                        size: 14,
+                        size: 12,
+                        weight: 600,
+                        family: 'Open Sans'
                     },
 
                 },

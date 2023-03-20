@@ -19,7 +19,7 @@ const MonthlyBalanceOverview = () => {
             display: "flex",
             justifyContent: "space-between",
             bgcolor: 'white',
-            boxShadow: 2
+            boxShadow: 2,
         }}>
             <div style={{
                 display: "flex",
