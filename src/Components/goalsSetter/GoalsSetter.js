@@ -2,8 +2,8 @@ import React, {useContext} from "react";
 
 import GoalSetForm from "./GoalSetForm";
 
-import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
-import {AppContext} from "../context/AppProvider";
+import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
+import {AppContext} from "../../context/AppProvider";
 import {Box} from '@mui/material'
 import GoalsTable from "./GoalsTable";
 

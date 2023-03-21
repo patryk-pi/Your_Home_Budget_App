@@ -1,23 +1,17 @@
-import React, {useEffect, useState, useContext} from 'react';
-import Avatar from '@mui/material/Avatar';
+import React, {useState, useContext} from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import Copyright from "./Copyright";
-
 import {auth, googleProvider} from '../.././config/firebase';
-import {getAuth, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
-import {Alert, InputAdornment, Snackbar} from "@mui/material";
+import {sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
+import { InputAdornment} from "@mui/material";
 import SnackbarInfo from "../SnackbarInfo";
 import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
 import {Lock} from "@mui/icons-material";
 import {NavLink, useNavigate} from "react-router-dom";
 import {AppContext} from "../../context/AppProvider";
@@ -48,17 +42,38 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
 
     const [openWrongMail, setOpenWrongMail] = useState(false);
+    const [openNoMail, setOpenNoMail] = useState(false);
     const [openWrongPassword, setOpenWrongPassword] = useState(false);
+    const [openSentPassword, setOpenSentPassword] = useState(false);
     // HANDLER FUNCTION FOR SNACKBAR AND ALERT
 
 
+    const triggerResetEmail = async (e) => {
+e.preventDefault();
+        try {
+            await sendPasswordResetEmail(auth, email);
 
+            setOpenSentPassword(true);
+        } catch (error) {
+
+            const errorCode = error.code
+
+            if (errorCode === 'auth/missing') {
+                setOpenNoMail(true)
+            }
+
+            if (errorCode === 'auth/invalid-email') {
+                setOpenNoMail(true)
+            }
+        }
+
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/overview');
+            navigate('/');
         } catch (error) {
 
             const errorCode = error.code
@@ -220,8 +235,8 @@ const SignIn = () => {
                             </Box>
                                 <Grid container>
                                     <Grid item xs>
-                                        <NavLink className="form__link" to='/'>
-                                            Nie pamiętasz hasła?
+                                        <NavLink onClick={triggerResetEmail} className="form__link" to='/'>
+                                        Nie pamiętasz hasła?
                                         </NavLink>
                                     </Grid>
                                     <Grid item>
@@ -236,8 +251,10 @@ const SignIn = () => {
                     </Container>
                 </ThemeProvider>
             </Box>
-            <SnackbarInfo severity={'error'} openState={openWrongMail} setOpenState={setOpenWrongMail} message={'Podany adres email jest nieprawidłowy!'} />
-            <SnackbarInfo severity={'error'} openState={openWrongPassword} setOpenState={setOpenWrongPassword} message={'Nieprawidłowe hasło!'} />
+            <SnackbarInfo severity={'error'} openState={openWrongMail} setOpenState={setOpenWrongMail} message={'Podany adres email jest nieprawidłowy.'} />
+            <SnackbarInfo severity={'error'} openState={openNoMail} setOpenState={setOpenNoMail} message={'Podaj adres email.'} />
+            <SnackbarInfo severity={'error'} openState={openWrongPassword} setOpenState={setOpenWrongPassword} message={'Nieprawidłowe hasło.'} />
+            <SnackbarInfo severity={'success'} openState={openSentPassword} setOpenState={setOpenSentPassword} message={'Wysłano linka do resetowania hasła.'} />
 
         </Box>
 );

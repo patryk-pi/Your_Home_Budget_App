@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import {AppContext} from "../context/AppProvider";
+import {AppContext} from "../../context/AppProvider";
 import { Box } from "@mui/material"
-import variables from '../scss/settings/_variables.scss'
+import variables from '../../scss/settings/_variables.scss'
 
 
 const MonthlyBalanceOverview = () => {

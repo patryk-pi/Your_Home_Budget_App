@@ -103,7 +103,18 @@ const PieChart = ({ graphStyle, transaction }) => {
     if (data.datasets[0].data.every((sum) => sum === 0)) {
         return (
             <>
-                <h1>Brak danych dotyczących {transaction === 'income' ? 'wpływów' : 'wydatków'} :(</h1>
+                <div style={{
+                    display: "flex",
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%'
+                }}>
+                <h1 style={{
+                    color: 'white',
+                    fontSize: '2rem',
+                    fontWeight: 600,
+                }}>Brak danych dotyczących {transaction === 'income' ? 'wpływów' : 'wydatków'} </h1>
+                </div>
             </>
         );
     }

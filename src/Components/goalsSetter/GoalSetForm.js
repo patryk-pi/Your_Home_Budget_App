@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import {Button, FormControl, TextField, Box} from "@mui/material";
 import {NumericFormat} from "react-number-format";
 import dayjs from "dayjs";
-import {AppContext} from "../context/AppProvider";
+import {AppContext} from "../../context/AppProvider";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -94,7 +94,7 @@ const GoalSetForm = ({description, type}) => {
                         sx={{
                             boxShadow: 3,
                             transition: 'all .1s',
-                            color: '#ffca00',
+                            color: '#f08c00',
                             '&:active': {
                                 boxShadow: 1,
                             },

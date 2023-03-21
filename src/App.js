@@ -1,8 +1,8 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import AppProvider from "./context/AppProvider";
-import OverviewMain from "./Components/OverviewMain";
-import GoalsSetterMain from "./Components/GoalsSetterMain";
+import OverviewMain from "./Components/spendingsTable/OverviewMain";
+import GoalsSetterMain from "./Components/goalsSetter/GoalsSetterMain";
 import ExpenseStructureMain from "./Components/expenseStructure/ExpenseStructureMain";
 import MonthlyProgressMain from "./Components/monthlyProgress/MonthlyProgressMain";
 import SignInMain from "./Components/auth/SingInMain";
@@ -28,9 +28,10 @@ function App() {
                         <Route path="/login" element={<SignInMain />} />
                         <Route path="/signup" element={<SignUpMain />} />
                         <Route element={<ProtectedRoute  />}>
-                            <Route path="/" element={<OverviewMain />} />
+                            <Route path="/" element={<ExpenseStructureMain />} />
+                            <Route path="/expensestructure" element={<OverviewMain />} />
                             <Route path="/goals" element={<GoalsSetterMain />} />
-                            <Route path="/expensestructure" element={<ExpenseStructureMain />} />
+
                             <Route path="/monthlyprogress" element={<MonthlyProgressMain />} />
                         </Route>
                     </Routes>

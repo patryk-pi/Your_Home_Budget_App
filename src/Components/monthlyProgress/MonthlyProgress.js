@@ -1,5 +1,5 @@
 import React, { useState, useContext} from "react";
-import MonthlyBalanceOverview from "../MonthlyBalanceOverview";
+import MonthlyBalanceOverview from "../spendingsTable/MonthlyBalanceOverview";
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import GoalProgressBar from "./GoalProgressBar";
 import {AppContext} from "../../context/AppProvider";

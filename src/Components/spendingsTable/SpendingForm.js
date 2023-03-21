@@ -5,9 +5,9 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import FormFilterButtons from "./FilterButtons";
 import {NumericFormat} from "react-number-format";
-import {AppContext} from "../context/AppProvider";
+import {AppContext} from "../../context/AppProvider";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-import SnackbarInfo from "./SnackbarInfo";
+import SnackbarInfo from "../SnackbarInfo";
 
 
 

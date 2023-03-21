@@ -4,10 +4,10 @@ import SpendingForm from "./SpendingForm";
 import {Box} from "@mui/material";
 import MonthlyBalanceOverview from "./MonthlyBalanceOverview";
 import {ProgressBar} from "react-loader-spinner";
-import variables from '../scss/settings/_variables.scss'
-import {AppContext} from "../context/AppProvider";
+import variables from '../../scss/settings/_variables.scss'
+import {AppContext} from "../../context/AppProvider";
 
-import SpendingsOverviewHeader from "./SpendingsOverviewHeader";
+import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 
 const {colorPrimary} = variables
 

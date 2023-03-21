@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {AppContext} from "../context/AppProvider";
+import {AppContext} from "../../context/AppProvider";
 import {Box} from "@mui/material";
 import Table from "@mui/joy/Table";
 

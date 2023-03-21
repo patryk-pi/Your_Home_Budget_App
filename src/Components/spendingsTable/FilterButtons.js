@@ -3,7 +3,7 @@ import {Button} from "@mui/material";
 import SavingsIcon from '@mui/icons-material/Savings';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import {ThemeProvider, createTheme} from "@mui/material/styles";
-import variables from '../scss/settings/_variables.scss'
+import variables from '../../scss/settings/_variables.scss'
 
 const {colorPrimary} = variables
 

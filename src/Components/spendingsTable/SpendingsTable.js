@@ -1,9 +1,9 @@
 import React, {useContext, useState} from "react";
 import Table from "@mui/joy/Table";
-import {AppContext} from "../context/AppProvider";
+import {AppContext} from "../../context/AppProvider";
 import {Box, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import variables from "../scss/settings/_variables.scss"
+import variables from "../../scss/settings/_variables.scss"
 
 const SpendingsTable = () => {
 

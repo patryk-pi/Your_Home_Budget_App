@@ -3,7 +3,7 @@ import {Box} from '@mui/material'
 
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import PieChart from "./PieChart";
-import MonthlyBalanceOverview from "../MonthlyBalanceOverview";
+import MonthlyBalanceOverview from "../spendingsTable/MonthlyBalanceOverview";
 
 
 const ExpenseAndIncomeGraph = () => {
