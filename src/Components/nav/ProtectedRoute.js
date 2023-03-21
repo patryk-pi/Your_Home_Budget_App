@@ -4,10 +4,11 @@ import {AppContext} from "../../context/AppProvider";
 
 const ProtectedRoute = () => {
 
-    const {user} = useContext(AppContext);
-    const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const {user, loadingUser} = useContext(AppContext);
+
+    if(loadingUser) {
+        return null
+    }
 
     if (!user) {
         return <Navigate to="/login"  replace/>;

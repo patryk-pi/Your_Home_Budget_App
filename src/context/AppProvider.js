@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {useNavigate} from "react-router-dom";
+
 
 
 export const AppContext = createContext(null)
@@ -12,13 +12,14 @@ const AppProvider = ({children}) => {
 
 
     const [user, setUser] = useState(null);
-    console.log(user)
-
+    const [loadingUser, setLoadingUser] = useState(true)
 
     useEffect(() => {
         const auth = getAuth();
+        setLoadingUser(true)
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
+            setLoadingUser(false);
         });
 
         // Clean up subscription on unmount
@@ -353,7 +354,8 @@ const AppProvider = ({children}) => {
             categories,
             setCategories,
             handleAddGoal,
-            handleDelete
+            handleDelete,
+            loadingUser
         }}>{children}</AppContext.Provider>
     )
 }

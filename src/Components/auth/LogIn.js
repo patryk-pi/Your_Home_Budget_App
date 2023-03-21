@@ -77,7 +77,7 @@ const SignIn = () => {
     const handleClickGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
-            navigate('/overview');
+            navigate('/');
         } catch (error) {
             console.log(error)
         }

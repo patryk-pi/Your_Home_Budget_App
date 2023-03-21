@@ -77,30 +77,30 @@ const GoalSetForm = ({description, type}) => {
     if (isDisabled) {
         return (
             <>
-                        <Box sx={{
-                            display: 'flex',
-                            width: '100%',
-                            gap: '2rem',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            margin: '1.5rem 0',
-                            padding: '0 2rem'
-                        }}>
-                            <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}} >
-                            <h3 className='goal__set__header'>{description}</h3>
-                        </div>
-                            <p>Cel na ten miesiąc dodany!</p>
-                            <Button
-                                sx={{
-                                    boxShadow: 3,
-                                    transition: 'all .1s',
-                                    color: '#ffca00',
-                                    '&:active': {
-                                        boxShadow: 1,
-                                    },
-                                }}
-                                startIcon={<EditIcon/>} type={'button'} onClick={handleEdit}>Edytuj</Button>
-                        </Box>
+                <Box sx={{
+                    display: 'flex',
+                    width: '100%',
+                    gap: '2rem',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    margin: '1.5rem 0',
+                    padding: '0 2rem'
+                }}>
+                    <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}} >
+                        <h3 className='goal__set__header'>{description}</h3>
+                    </div>
+                    <p>Cel na ten miesiąc dodany!</p>
+                    <Button
+                        sx={{
+                            boxShadow: 3,
+                            transition: 'all .1s',
+                            color: '#ffca00',
+                            '&:active': {
+                                boxShadow: 1,
+                            },
+                        }}
+                        startIcon={<EditIcon/>} type={'button'} onClick={handleEdit}>Edytuj</Button>
+                </Box>
 
             </>
         )

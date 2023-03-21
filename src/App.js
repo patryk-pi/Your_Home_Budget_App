@@ -14,6 +14,8 @@ import LoggedInRoute from "./Components/nav/LoggedInRoute";
 function App() {
 
 
+
+
     return (
         <>
             <div className="app__container">
@@ -25,9 +27,8 @@ function App() {
                     <Routes>
                         <Route path="/login" element={<SignInMain />} />
                         <Route path="/signup" element={<SignUpMain />} />
-                        <Route element={<ProtectedRoute mode={'loggedIn'} />}>
-                            <Route path='/' />
-                            <Route path="/overview" element={<OverviewMain />} />
+                        <Route element={<ProtectedRoute  />}>
+                            <Route path="/" element={<OverviewMain />} />
                             <Route path="/goals" element={<GoalsSetterMain />} />
                             <Route path="/expensestructure" element={<ExpenseStructureMain />} />
                             <Route path="/monthlyprogress" element={<MonthlyProgressMain />} />
