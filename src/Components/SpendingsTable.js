@@ -1,12 +1,14 @@
 import React, {useContext, useState} from "react";
 import Table from "@mui/joy/Table";
 import {AppContext} from "../context/AppProvider";
-import {Box} from "@mui/material";
-
+import {Box, IconButton} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import variables from "../scss/settings/_variables.scss"
 
 const SpendingsTable = () => {
 
-    const {operations, filterOperationsByMonth} = useContext(AppContext);
+    const {operations, filterOperationsByMonth, handleDelete} = useContext(AppContext);
+    const {colorRed} = variables
 
     // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
     if (operations
@@ -61,6 +63,7 @@ const SpendingsTable = () => {
             <th className='spendings__table__head'>Opis</th>
             <th className='spendings__table__head'>Kwota</th>
             <th className='spendings__table__head'>Data</th>
+            <th className='spendings__table__head spendings__table__last-column'>Usuń</th>
 
         </tr>
         </thead>
@@ -82,6 +85,13 @@ const SpendingsTable = () => {
                         useGrouping: 'always'
                     })}</td>
                     <td>{date}</td>
+                    <td className='spendings__table__last-column'>
+                        <IconButton onClick={() => handleDelete(id)} aria-label="delete" sx={{color: colorRed}}>
+                        <DeleteIcon sx={{
+                            fontSize: '2rem'
+                        }
+                        } />
+                    </IconButton></td>
                 </tr>
             ))}
         </tbody>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext, createContext} from "react";
 import dayjs from "dayjs";
-import {getDocs, collection, addDoc, doc, updateDoc, getDoc} from "firebase/firestore"
+import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import {useNavigate} from "react-router-dom";
@@ -91,6 +91,21 @@ const AppProvider = ({children}) => {
             console.log(error);
         }
     }
+    console.log(operations)
+
+    const handleDelete = async (operationId) => {
+        try {
+            // delete operation from Firebase
+            await deleteDoc(doc(operationsCollectionRef, operationId));
+
+            // remove operation from the table
+            setOperations((prev) => {
+                return prev.filter((op) => op.id !== operationId);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     /*    const handleAddGoal = goal => {
             const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
@@ -337,7 +352,8 @@ const AppProvider = ({children}) => {
             setGoals,
             categories,
             setCategories,
-            handleAddGoal
+            handleAddGoal,
+            handleDelete
         }}>{children}</AppContext.Provider>
     )
 }
