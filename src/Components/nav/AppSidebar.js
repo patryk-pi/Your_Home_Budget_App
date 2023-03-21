@@ -11,6 +11,7 @@ import logo from "../../img/CompanyLogo.png";
 import {auth} from '../../config/firebase'
 import { signOut } from 'firebase/auth'
 import {AppContext} from "../../context/AppProvider";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const AppSidebar = () => {
 
@@ -66,7 +67,7 @@ const AppSidebar = () => {
                 <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></NavLink>
                 <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/expensestructure'><Button endIcon={<QueryStatsIcon/>} sx={buttonStyle} fullWidth={true}>Struktura wydatków</Button></NavLink>
                 <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/monthlyprogress'><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Status celów</Button></NavLink>
-                <Button style={linkStyle} onClick={handleLogout} endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Wyloguj</Button>
+                <Button style={linkStyle} onClick={handleLogout} endIcon={<LogoutIcon/>} sx={buttonStyle} fullWidth={true}>Wyloguj</Button>
                     </>}
 
             </nav>

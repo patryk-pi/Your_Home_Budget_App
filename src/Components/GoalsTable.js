@@ -40,7 +40,7 @@ const GoalsTable = () => {
                         <tr key={id} >
                             <td>{category}</td>
                             <td>{type === 'expense' ? 'Wydatki' : 'Wpływy'}</td>
-                            <td>{goal.toLocaleString('pl', {
+                            <td className={goal < 0 ? "spendings__table__expense" : "spendings__table__income"}>{goal.toLocaleString('pl', {
                                 style: 'currency',
                                 currency: 'PLN',
                                 minimumFractionDigits: 2,

@@ -8,12 +8,12 @@
     }
 
     &__expense {
-      color: red;
+      color: $color-red;
       font-weight: 700;
     }
 
     &__income {
-      color: green;
+      color: $color-green;
       font-weight: 700;
     }
 

@@ -2,10 +2,16 @@
 
 $color-primary:#003757;
 $color-primary-light-1: #003757;
+$color-green: #2b8a3e;
+$color-red: #c92a2a;
+$color-gray-text: #868e96;
 
 :export {
   colorPrimary: $color-primary;
-  colorPrimaryLight1: $color-primary-light-1
+  colorPrimaryLight1: $color-primary-light-1;
+  colorGreen: $color-green;
+  colorRed: $color-red;
+  colorGrayText: $color-gray-text;
 }
 
 //WIDTH

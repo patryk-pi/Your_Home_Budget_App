@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import {AppContext} from "../context/AppProvider";
 import { Box } from "@mui/material"
+import variables from '../scss/settings/_variables.scss'
 
 
 const MonthlyBalanceOverview = () => {
+
+    const {colorGreen, colorRed, colorGrayText} = variables;
 
     const {
         operations,
@@ -37,7 +40,7 @@ const MonthlyBalanceOverview = () => {
                 }}>Wpływy: </h2>
                 <h2 style={{
                     fontSize: '3rem',
-                    color: 'green',
+                    color: colorGreen,
                     fontWeight: '700'
                 }}>{
                     operations
@@ -67,7 +70,7 @@ const MonthlyBalanceOverview = () => {
                     Wydatki:</h2> <h2
                 style={{
                     fontSize: '3rem',
-                    color: 'red',
+                    color: colorRed,
                     fontWeight: '700'
                 }}
             >{
@@ -96,7 +99,7 @@ const MonthlyBalanceOverview = () => {
                 }}>Bilans: </h2>
                 <h2 style={{
                     fontSize: '3rem',
-                    color: "lightgrey",
+                    color: colorGrayText,
                     fontWeight: '700'
                 }}>{
                     operations
