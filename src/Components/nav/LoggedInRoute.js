@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+/*import React, { useContext } from "react";
 import { Navigate, Route } from "react-router-dom";
 import { AppContext } from "../../context/AppProvider";
 
@@ -12,4 +12,4 @@ const LoggedInRoute = ({ element: Component, ...rest }) => {
     return <Route element={<Component />} {...rest} />;
 };
 
-export default LoggedInRoute;
+export default LoggedInRoute;*/

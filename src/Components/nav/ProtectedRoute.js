@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
     const location = useLocation();
 
     if (!user) {
-        return <Navigate to="/"  replace/>;
+        return <Navigate to="/login"  replace/>;
     }
 
     return <Outlet/>

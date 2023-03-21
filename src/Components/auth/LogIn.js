@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,12 +13,14 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import Copyright from "./Copyright";
 
 import {auth, googleProvider} from '../.././config/firebase';
-import {signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
+import {getAuth, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
 import {Alert, InputAdornment, Snackbar} from "@mui/material";
 import SnackbarInfo from "../SnackbarInfo";
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import {Lock} from "@mui/icons-material";
+import {NavLink, useNavigate} from "react-router-dom";
+import {AppContext} from "../../context/AppProvider";
 
 
 const theme = createTheme({
@@ -30,7 +32,6 @@ const theme = createTheme({
                     content: 'none',
                 },
             },
-
         },
     },
     typography: {
@@ -40,6 +41,9 @@ const theme = createTheme({
 
 const SignIn = () => {
 
+    const navigate = useNavigate();
+    const { user } = useContext(AppContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -48,15 +52,19 @@ const SignIn = () => {
     // HANDLER FUNCTION FOR SNACKBAR AND ALERT
 
 
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            navigate('/overview');
         } catch (error) {
 
             const errorCode = error.code
             console.log(error.code)
-            if (errorCode === 'auth/invalid-email') {
+
+            if (errorCode === 'auth/invalid-email' || errorCode === 'auth/user-not-found') {
                 setOpenWrongMail(true)
             }
 
@@ -69,6 +77,7 @@ const SignIn = () => {
     const handleClickGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
+            navigate('/overview');
         } catch (error) {
             console.log(error)
         }
@@ -82,7 +91,10 @@ const SignIn = () => {
         setPassword(event.target.value);
     };
 
+
+
     return (
+
         <Box sx={{
             padding: '2rem',
             display: 'flex',
@@ -112,7 +124,7 @@ const SignIn = () => {
                                 alignItems: 'center',
                             }}
                         >
-                         
+
                             <h1 style={{
                                 fontSize: '3rem',
                                 fontWeight: 700
@@ -208,14 +220,14 @@ const SignIn = () => {
                             </Box>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link href="#" variant="body2">
+                                        <NavLink className="form__link" to='/'>
                                             Nie pamiętasz hasła?
-                                        </Link>
+                                        </NavLink>
                                     </Grid>
                                     <Grid item>
-                                        <Link href="#" variant="body2">
+                                        <NavLink className="form__link" to="/signup">
                                             {"Nie masz konta? Zarejestruj się!"}
-                                        </Link>
+                                        </NavLink>
                                     </Grid>
                                 </Grid>
                             </Box>

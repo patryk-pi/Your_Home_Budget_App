@@ -1,0 +1,18 @@
+.form {
+  &__link {
+    transition: .3s all;
+    border-bottom: 2px solid transparent;
+
+    *,
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: #555
+    }
+
+    &:hover,
+    &:visited {
+      border-bottom: 2px solid #003757;
+    }
+  }
+}

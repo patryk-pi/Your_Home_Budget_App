@@ -16,8 +16,11 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {auth, googleProvider} from '../.././config/firebase'
 import {createUserWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 import Copyright from "./Copyright";
-import {Alert, Snackbar} from "@mui/material";
+import {Alert, InputAdornment, Snackbar} from "@mui/material";
 import SnackbarInfo from "../SnackbarInfo";
+import EmailIcon from "@mui/icons-material/Email";
+import {Lock} from "@mui/icons-material";
+import {NavLink} from "react-router-dom";
 
 
 const SignUp = () => {
@@ -60,6 +63,16 @@ const SignUp = () => {
     }
 
     const theme = createTheme({
+        overrides: {
+            MuiInputBase: {
+                input: {
+                    border: 'none',
+                    '&::before': {
+                        content: 'none',
+                    },
+                },
+            },
+        },
         typography: {
             fontSize: 20
         }
@@ -78,10 +91,10 @@ const SignUp = () => {
             padding: '2rem',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            fontFamily: 'Open Sans'
         }}>
             <Box sx={{
-
 
                 border: '1px solid lightgray',
                 overflow: 'scroll',
@@ -92,45 +105,82 @@ const SignUp = () => {
 
             }}>
                 <ThemeProvider theme={theme}>
-                    <Container component="main" maxWidth="xs">
+                    <Container component="main" maxWidth='xs'>
                         <CssBaseline/>
                         <Box
                             sx={{
-                                marginTop: 8,
+                                marginTop: 5,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
                             }}
                         >
-                            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                                <LockOutlinedIcon/>
-                            </Avatar>
-                            <Typography component="h1" variant="h5" align='center'>
+
+                            <h1 style={{
+                                fontSize: '3rem',
+                                fontWeight: 700,
+                                textAlign: "center"
+                            }}>
                                 Zarejestruj się w SmartSpend i zacznij oszczędzać już dziś!
-                            </Typography>
+                            </h1>
                             <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField
+                                            margin="normal"
                                             required
                                             fullWidth
                                             id="email"
-                                            label="Adres Email"
+                                            label="Adres email"
                                             name="email"
                                             autoComplete="email"
+                                            autoFocus
                                             onChange={handleEmailChange}
+                                            variant='filled'
+                                            className='inputRounded'
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position='start'>
+                                                        <EmailIcon />
+                                                    </InputAdornment>
+                                                ),
+                                                disableUnderline: true,
+                                            }}
+                                            InputLabelProps={{
+                                                style:{
+                                                    fontFamily: 'Open Sans',
+                                                    color: 'rgba(0,55,87,1)'
+                                                }
+                                            }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
+                                            margin="normal"
                                             required
                                             fullWidth
                                             name="password"
                                             label="Hasło"
                                             type="password"
                                             id="password"
-                                            autoComplete="new-password"
+                                            autoComplete="current-password"
                                             onChange={handlePasswordChange}
+                                            variant='filled'
+                                            className='inputRounded'
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position='start'>
+                                                        <Lock />
+                                                    </InputAdornment>
+                                                ),
+                                                disableUnderline: true,
+                                            }}
+                                            InputLabelProps={{
+                                                style:{
+                                                    fontFamily: 'Open Sans',
+                                                    color: 'rgba(0,55,87,1)'
+                                                }
+                                            }}
                                         />
                                     </Grid>
 
@@ -139,29 +189,41 @@ const SignUp = () => {
                                     type="submit"
                                     fullWidth
                                     variant="contained"
-                                    sx={{mt: 3, mb: 2}}
-                                    onSubmit={handleSubmit}
+                                    InputLabelProps={{
+                                        style:{
+                                            fontFamily: 'Open Sans',
+                                            color: 'rgba(0,55,87,1)'
+                                        }
+                                    }}
+                                    sx={{
+                                        mt: 3,
+                                        mb: 2,
+                                        background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',
+                                        fontFamily: 'Open Sans',
+
+                                    }}
                                 >
-                                    Sign Up
+                                    Zarejestruj się
+                                </Button>
+                                <Button
+
+                                    variant="contained"
+                                    sx={{ fontFamily: 'Open Sans',mt: 3, mb: 2,  background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',}}
+                                    type='button'
+                                    fullWidth
+                                    onClick={signInWithGoogle}
+                                >
+                                   Zarejestruj się przez Google
                                 </Button>
                                 <Grid container justifyContent="flex-end">
                                     <Grid item>
-                                        <Link href="#" variant="body2">
+                                        <NavLink className="form__link" to='/login' variant="body2">
                                             Masz już konto? Zaloguj się!
-                                        </Link>
+                                        </NavLink>
                                     </Grid>
                                 </Grid>
                             </Box>
-                            <Button
 
-                                type="button"
-                                fullWidth
-                                variant="contained"
-                                sx={{mt: 3, mb: 2}}
-                                onClick={signInWithGoogle}
-                            >
-                                Google
-                            </Button>
                         </Box>
                         <Copyright sx={{mt: 5}}/>
                     </Container>
