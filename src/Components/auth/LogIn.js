@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -16,11 +14,25 @@ import Copyright from "./Copyright";
 
 import {auth, googleProvider} from '../.././config/firebase';
 import {signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
-import {Alert, Snackbar} from "@mui/material";
+import {Alert, InputAdornment, Snackbar} from "@mui/material";
 import SnackbarInfo from "../SnackbarInfo";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import {Lock} from "@mui/icons-material";
 
 
 const theme = createTheme({
+    overrides: {
+        MuiInputBase: {
+            input: {
+                border: 'none',
+                '&::before': {
+                    content: 'none',
+                },
+            },
+
+        },
+    },
     typography: {
         fontSize: 20
     }
@@ -75,7 +87,8 @@ const SignIn = () => {
             padding: '2rem',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            fontFamily: 'Open Sans'
         }}>
             <Box sx={{
 
@@ -93,18 +106,19 @@ const SignIn = () => {
                         <CssBaseline/>
                         <Box
                             sx={{
-                                marginTop: 9,
+                                marginTop: 5,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
                             }}
                         >
-                            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                                <LockOutlinedIcon/>
-                            </Avatar>
-                            <Typography component="h1" variant="h5">
+                         
+                            <h1 style={{
+                                fontSize: '3rem',
+                                fontWeight: 700
+                            }}>
                                 Zaloguj
-                            </Typography>
+                            </h1>
                             <Box component="form" onSubmit={handleSubmit} noValidate sx={{
                                 mt: 1,
                             }}>
@@ -118,6 +132,22 @@ const SignIn = () => {
                                     autoComplete="email"
                                     autoFocus
                                     onChange={handleEmailChange}
+                                    variant='filled'
+                                    className='inputRounded'
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position='start'>
+                                                <EmailIcon />
+                                            </InputAdornment>
+                                        ),
+                                        disableUnderline: true,
+                                    }}
+                                    InputLabelProps={{
+                                        style:{
+                                            fontFamily: 'Open Sans',
+                                            color: 'rgba(0,55,87,1)'
+                                        }
+                                    }}
 
                                 />
                                 <TextField
@@ -130,15 +160,52 @@ const SignIn = () => {
                                     id="password"
                                     autoComplete="current-password"
                                     onChange={handlePasswordChange}
+                                    variant='filled'
+                                    className='inputRounded'
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position='start'>
+                                                <Lock />
+                                            </InputAdornment>
+                                        ),
+                                        disableUnderline: true,
+                                    }}
+                                    InputLabelProps={{
+                                        style:{
+                                            fontFamily: 'Open Sans',
+                                            color: 'rgba(0,55,87,1)'
+                                        }
+                                    }}
+
                                 />
                                 <Button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
-                                    sx={{mt: 3, mb: 2}}
+                                    InputLabelProps={{
+                                        style:{
+                                            fontFamily: 'Open Sans',
+                                            color: 'rgba(0,55,87,1)'
+                                        }
+                                    }}
+                                    sx={{
+                                        mt: 3,
+                                        mb: 2,
+                                        background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',
+                                        fontFamily: 'Open Sans',
+
+                                }}
                                 >
                                     Zaloguj
                                 </Button>
+                                <Button
+                                    variant="contained"
+                                    sx={{ fontFamily: 'Open Sans',mt: 3, mb: 2,  background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',}}
+                                    type='button'
+                                    fullWidth
+
+                                    onClick={handleClickGoogle}>Zaloguj przez Google </Button>
+                            </Box>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#" variant="body2">
@@ -152,12 +219,7 @@ const SignIn = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
-                            <Button
-                                variant="contained"
-                                sx={{mt: 3, mb: 2}}
-                                type='button'
-                                onClick={handleClickGoogle}>Zaloguj przez Google </Button>
-                        </Box>
+
                         <Copyright sx={{mt: 8, mb: 4}}/>
                     </Container>
                 </ThemeProvider>

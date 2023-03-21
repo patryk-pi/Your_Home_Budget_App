@@ -20,8 +20,18 @@ html {
    background: linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%);
  }
 
+.inputRounded .MuiFilledInput-root {
+  border-radius: 50px;
+  transition: .3s all ease-in;
+
+  &:focus-within{
+    outline: 2px solid rgba(0,96,135,1);
+  }
+}
 
 
 .MuiInputBase-input {
   font-size: 1.8rem;
+
 }
+
