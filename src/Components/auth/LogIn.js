@@ -89,7 +89,8 @@ e.preventDefault();
         }
     };
 
-    const handleClickGoogle = async () => {
+    const handleClickGoogle = async (e) => {
+        e.preventDefault();
         try {
             await signInWithPopup(auth, googleProvider);
             navigate('/');

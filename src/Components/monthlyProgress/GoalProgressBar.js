@@ -59,7 +59,7 @@ const GoalProgressBar = ({currentCategory}) => {
                     flexBasis: '50%'
                 }}>
                 <div><span>Cel:</span> <span
-                    style={{fontWeight: 600,}}> {!currentGoal ? 0 : currentGoal.toLocaleString('pl', {
+                    style={{fontWeight: 600,}}> {!currentGoal ? 0 : Math.abs(currentGoal).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,
@@ -67,7 +67,7 @@ const GoalProgressBar = ({currentCategory}) => {
                     }
                 )}</span></div>
                 <div><span>Operacje: </span><span
-                    style={{fontWeight: 600,}}> {currentOperations.toLocaleString('pl', {
+                    style={{fontWeight: 600,}}> {Math.abs(currentOperations).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,
@@ -75,7 +75,7 @@ const GoalProgressBar = ({currentCategory}) => {
                     }
                 )}</span></div>
                 <div><span>Różnica: </span><span
-                    style={{fontWeight: 600,}}>{(currentGoal ? currentOperations - currentGoal : currentOperations).toLocaleString('pl', {
+                    style={{fontWeight: 600,}}>{(currentGoal ? Math.abs(currentOperations - currentGoal) : currentOperations).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,

@@ -14,8 +14,6 @@ const GoalsSetter = () => {
     const { categories } = useContext(AppContext)
 
 
-    // FUNCTION CREATING AN OBJECT WITH THE GOAL FOR THE SELECTED MONTH AND CATEGORY
-
 
     return (
         <>

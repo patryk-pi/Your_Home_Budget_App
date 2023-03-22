@@ -9,13 +9,10 @@ import SignInMain from "./Components/auth/SingInMain";
 import ProtectedRoute from "./Components/nav/ProtectedRoute";
 import AppSidebar from "./Components/nav/AppSidebar";
 import SignUpMain from "./Components/auth/SingUpMain";
-import LoggedInRoute from "./Components/nav/LoggedInRoute";
+
 
 function App() {
-
-
-
-
+    
     return (
         <>
             <div className="app__container">
@@ -31,7 +28,6 @@ function App() {
                             <Route path="/" element={<ExpenseStructureMain />} />
                             <Route path="/expensestructure" element={<OverviewMain />} />
                             <Route path="/goals" element={<GoalsSetterMain />} />
-
                             <Route path="/monthlyprogress" element={<MonthlyProgressMain />} />
                         </Route>
                     </Routes>
