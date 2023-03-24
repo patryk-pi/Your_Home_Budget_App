@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-
+import {convertCurrency} from "../config/currencyAPI";
 
 
 export const AppContext = createContext(null)
@@ -27,7 +27,6 @@ const AppProvider = ({children}) => {
             unsubscribe();
         };
     }, []);
-
 
 
     // DATABASE URLs
@@ -60,34 +59,40 @@ const AppProvider = ({children}) => {
     const goalsCollectionRef = collection(db, 'goals')
 
     // FUNCTION ADDING NEW OPERATIONS TO A DATA BASE THROUGH REST API
-/*        const handleAddJson = operation => {
-            fetch(URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(operation)
-            })
-                .then(r => {
-                    return r.json();
+    /*        const handleAddJson = operation => {
+                fetch(URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(operation)
                 })
-                .then(data => setOperations(prev => [...prev, data]))
-                .catch(err => console.log(err))
-        }*/
+                    .then(r => {
+                        return r.json();
+                    })
+                    .then(data => setOperations(prev => [...prev, data]))
+                    .catch(err => console.log(err))
+            }*/
 
     const handleAdd = async (operation) => {
+        if (operation.currency !== 'PLN') {
+            const convertedAmount = await convertCurrency(operation.currency, 'PLN', operation.amount);
+            console.log(convertedAmount)
+        }
+
         try {
             const docRef = await addDoc(operationsCollectionRef, {
                 category: operation.category,
                 description: operation.description,
+                currency: operation.currency,
                 amount: operation.amount,
                 date: operation.date,
-                user: user ? user.uid : null
+                user: user ? user.uid : null,
             });
 
             const docSnapshot = await getDoc(docRef);
             const data = docSnapshot.data();
-            setOperations(prev => [...prev, { id: docSnapshot.id, ...data }]);
+            setOperations(prev => [...prev, {id: docSnapshot.id, ...data}]);
         } catch (error) {
             console.log(error);
         }
@@ -253,9 +258,9 @@ const AppProvider = ({children}) => {
                 const filteredData = data.docs
                     .filter(op => op.data().user === user?.uid)
                     .map(doc => ({
-                    ...doc.data(),
-                    id: doc.id
-                }))
+                        ...doc.data(),
+                        id: doc.id
+                    }))
                 setGoals(filteredData)
             } catch (err) {
                 console.log(err)
