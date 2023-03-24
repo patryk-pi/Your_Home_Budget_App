@@ -33,7 +33,8 @@ const MonthlyBalanceOverview = () => {
             <div style={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center"
+                alignItems: "center",
+                marginBottom: '.5rem'
             }}>
                 <h2 style={{
                     fontSize: '3rem'
@@ -62,7 +63,8 @@ const MonthlyBalanceOverview = () => {
             <div style={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center"
+                alignItems: "center",
+                marginBottom: '.5rem'
             }}>
                 <h2 style={{
                     fontSize: '3rem'

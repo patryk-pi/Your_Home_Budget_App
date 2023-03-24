@@ -6,8 +6,8 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 Chart.register(ArcElement, Colors, Tooltip, Legend, ChartDataLabels);
 
-const PieChart = ({ graphStyle, transaction }) => {
-    const { operations, filterOperationsByMonth, operationMonth, prevMonth, nextMonth } = useContext(AppContext);
+const PieChart = ({ transaction }) => {
+    const { operations, filterOperationsByMonth } = useContext(AppContext);
 
     // Filter transactions by income or expense
     const filteredOperations =

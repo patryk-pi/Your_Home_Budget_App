@@ -27,7 +27,7 @@ const ExpenseAndIncomeGraph = () => {
 
                 <Box sx={{
                     display: 'flex',
-                    height: 'calc(100% - 20rem)',
+                    height: 'calc(100% - 21.5rem)',
                     gap: '2rem',
                     width: '100%',
 
