@@ -1,7 +1,7 @@
-const myHeaders = new Headers();
+export const myHeaders = new Headers();
 myHeaders.append("apikey", "RFnf6Q9l1Zg5oHTMouqeBMgZ13l9SvkI");
 
-const requestOptions = {
+export const requestOptions = {
     method: 'GET',
     redirect: 'follow',
     headers: myHeaders

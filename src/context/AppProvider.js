@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {convertCurrency} from "../config/currencyAPI";
+import {convertCurrency, requestOptions} from "../config/currencyAPI";
 
 
 export const AppContext = createContext(null)
@@ -75,29 +75,39 @@ const AppProvider = ({children}) => {
             }*/
 
     const handleAdd = async (operation) => {
-        if (operation.currency !== 'PLN') {
-            const convertedAmount = await convertCurrency(operation.currency, 'PLN', operation.amount);
-            console.log(convertedAmount)
-        }
-
         try {
-            const docRef = await addDoc(operationsCollectionRef, {
-                category: operation.category,
-                description: operation.description,
-                currency: operation.currency,
-                amount: operation.amount,
-                date: operation.date,
-                user: user ? user.uid : null,
-            });
+            if (operation.currency !== 'PLN') {
+                const absAmount = Math.abs(operation.amount);
+                fetch(`https://api.apilayer.com/fixer/convert?to=PLN&from=${operation.currency}&amount=${absAmount}`, requestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        operation.amount = operation.amount > 0 ? result.result : -result.result
+                        addDocToCollection();
+                    })
+                    .catch(error => console.log('error', error));
+            } else {
+                addDocToCollection();
+            }
 
-            const docSnapshot = await getDoc(docRef);
-            const data = docSnapshot.data();
-            setOperations(prev => [...prev, {id: docSnapshot.id, ...data}]);
+            async function addDocToCollection() {
+                const docRef = await addDoc(operationsCollectionRef, {
+                    category: operation.category,
+                    description: operation.description,
+                    currency: operation.currency,
+                    amount: operation.amount,
+                    date: operation.date,
+                    user: user ? user.uid : null,
+                });
+
+                const docSnapshot = await getDoc(docRef);
+                const data = docSnapshot.data();
+                setOperations(prev => [...prev, {id: docSnapshot.id, ...data}]);
+            }
         } catch (error) {
             console.log(error);
         }
     }
-    console.log(operations)
+
 
     const handleDelete = async (operationId) => {
         try {
