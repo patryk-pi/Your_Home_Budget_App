@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {convertCurrency, requestOptions} from "../config/currencyAPI";
+import { requestOptions } from "../config/currencyAPI";
+import SnackbarInfo from "../Components/SnackbarInfo";
 
 
 export const AppContext = createContext(null)
@@ -56,7 +57,16 @@ const AppProvider = ({children}) => {
 
     const categoriesCollectionRef = collection(db, 'categories');
     const operationsCollectionRef = collection(db, 'operations');
-    const goalsCollectionRef = collection(db, 'goals')
+    const goalsCollectionRef = collection(db, 'goals');
+
+
+    const [openError, setOpenError] = useState(false);
+    const [openSuccess, setOpenSuccess] = useState(false);
+    const [openExchange, setOpenExchange] = useState(false);
+
+    const [operationAmount, setOperationAmount] = useState(0);
+    const [exchangeAmount, setExchangeAmount] = useState(0);
+    const [operationCurrency, setOperationCurrency] = useState('');
 
     // FUNCTION ADDING NEW OPERATIONS TO A DATA BASE THROUGH REST API
     /*        const handleAddJson = operation => {
@@ -81,23 +91,32 @@ const AppProvider = ({children}) => {
                 fetch(`https://api.apilayer.com/fixer/convert?to=PLN&from=${operation.currency}&amount=${absAmount}`, requestOptions)
                     .then(response => response.json())
                     .then(result => {
-                        operation.amount = operation.amount > 0 ? result.result : -result.result
-                        addDocToCollection();
+                        if (result && result.result !== undefined) {
+                            operation.amount = operation.amount > 0 ? result.result.toFixed(2) : -result.result.toFixed(2);
+                            addDocToCollection();
+                        } else {
+                            console.log('Error fetching exchange rate data');
+                        }
                     })
                     .catch(error => console.log('error', error));
             } else {
-                addDocToCollection();
+                await addDocToCollection();
             }
 
             async function addDocToCollection() {
                 const docRef = await addDoc(operationsCollectionRef, {
                     category: operation.category,
                     description: operation.description,
-                    currency: operation.currency,
                     amount: operation.amount,
                     date: operation.date,
                     user: user ? user.uid : null,
                 });
+
+                if (operation.currency === 'PLN') {
+                    setOpenSuccess(true);
+                } else {
+                    setOpenExchange(true);
+                }
 
                 const docSnapshot = await getDoc(docRef);
                 const data = docSnapshot.data();
@@ -345,6 +364,7 @@ const AppProvider = ({children}) => {
 
 
     return (
+
         <AppContext.Provider value={{
             user,
             currentMonth,
@@ -370,9 +390,18 @@ const AppProvider = ({children}) => {
             setCategories,
             handleAddGoal,
             handleDelete,
-            loadingUser
-        }}>{children}</AppContext.Provider>
-    )
+            loadingUser,
+            openError,
+            setOpenError,
+            openSuccess,
+            setOpenSuccess,
+            openExchange,
+            setOpenExchange
+        }}>{children}
+
+        </AppContext.Provider>
+
+)
 }
 
 export default AppProvider

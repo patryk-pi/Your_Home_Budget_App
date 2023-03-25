@@ -19,7 +19,7 @@ const SpendingForm = () => {
         }
     });
 
-    const {categories, handleAdd, user} = useContext(AppContext)
+    const {categories, handleAdd, setOpenError, openError, openSuccess, setOpenSuccess, openExchange, setOpenExchange} = useContext(AppContext)
 
 
     const [category, setCategory] = useState('');
@@ -28,8 +28,7 @@ const SpendingForm = () => {
     const [date, setDate] = useState(dayjs(new Date()));
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
-    const [openError, setOpenError] = useState(false)
-    const [openSuccess, setOpenSuccess] = useState(false)
+
     const [currency, setCurrency] = useState('PLN')
 
     const [filteredCategory, setFilteredCategory] = useState([])
@@ -60,12 +59,13 @@ const SpendingForm = () => {
             date: dayjs(date).format('DD/MM/YYYY'),
         });
 
-        setOpenSuccess(true)
+        // setOpenSuccess(true)
+        
         setAmount('');
         setCategory('');
         setDate(dayjs(new Date()).format('MM/DD/YYYY'));
         setDescription('');
-        setCurrency('PLN')
+        setCurrency('PLN');
     }
 
 
@@ -183,6 +183,8 @@ const SpendingForm = () => {
                                           message={'Uzupełnij wszystkie pola!'}/>
                             <SnackbarInfo severity={'success'} openState={openSuccess} setOpenState={setOpenSuccess}
                                           message={'Dodano!'}/>
+                            <SnackbarInfo severity={'warning'} openState={openExchange} setOpenState={setOpenExchange}
+                                          message={`Przekonwetowano na PLN`}/>
                         </FormControl>
                     </form>
                 </Box>
