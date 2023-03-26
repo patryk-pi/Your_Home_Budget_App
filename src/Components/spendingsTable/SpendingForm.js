@@ -60,7 +60,7 @@ const SpendingForm = () => {
         });
 
         // setOpenSuccess(true)
-        
+
         setAmount('');
         setCategory('');
         setDate(dayjs(new Date()).format('MM/DD/YYYY'));

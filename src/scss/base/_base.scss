@@ -21,14 +21,15 @@ html {
  }
 
 .inputRounded .MuiFilledInput-root {
+  transition: .2s all ease-in;
+  box-shadow: none;
   border-radius: 50px;
-  transition: .3s all ease-in;
-  outline: 2px solid transparent;
 
   &:focus-within{
-    outline: 2px solid rgba(0,96,135,1);
+    box-shadow: 0 0 0 2px rgba(0,96,135,1);
   }
 }
+
 
 
 .MuiInputBase-input {
