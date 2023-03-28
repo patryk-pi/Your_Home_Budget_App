@@ -24,18 +24,18 @@ const MonthlyBalanceOverview = () => {
             bgcolor: 'white',
             boxShadow: 2,
         }}>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                width: '100%'
-            }}>
-            <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: '.5rem'
-            }}>
+            <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+                width='100%'
+           >
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                marginBottom='.5rem'
+            >
                 <h2 style={{
                     fontSize: '3rem'
                 }}>Wpływy: </h2>
@@ -58,7 +58,7 @@ const MonthlyBalanceOverview = () => {
                         })
                 }
                 </h2>
-            </div>
+            </Box>
 
             <div style={{
                 display: "flex",
@@ -119,7 +119,7 @@ const MonthlyBalanceOverview = () => {
                 }</h2>
 
             </div>
-            </div>
+            </Box>
         </Box>
     )
 }

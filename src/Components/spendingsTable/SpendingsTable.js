@@ -1,23 +1,20 @@
-import React, {useContext, useState} from "react";
-import Table from "@mui/joy/Table";
+import React, {useContext} from "react";
 import {AppContext} from "../../context/AppProvider";
-import {Box, IconButton} from "@mui/material";
+import {Box, IconButton, useTheme, ThemeProvider} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import variables from "../../scss/settings/_variables.scss"
+import variables from "../../scss/settings/_variables.scss";
+import {DataGrid} from "@mui/x-data-grid";
+
 
 const SpendingsTable = () => {
-
     const {operations, filterOperationsByMonth, handleDelete} = useContext(AppContext);
-    const {colorRed} = variables
+    const {colorRed, colorGreen} = variables;
+    const theme = useTheme();
 
     // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
-    if (operations
-        .filter((operation) => filterOperationsByMonth(operation)).length === 0 ) {
+    if (operations.filter((operation) => filterOperationsByMonth(operation)).length === 0) {
         return (
-
             <div style={{
-
-
                 border: '1px solid lightgray',
                 borderRadius: '20px',
                 padding: '2rem',
@@ -26,20 +23,76 @@ const SpendingsTable = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
-
-
             }}>
-            <h1 style={{
-                fontSize: '3rem'
-            }}>Brak danych :(</h1>
+                <h1 style={{fontSize: '3rem'}}>Brak danych :(</h1>
             </div>
-        )
+        );
     }
+    ;
 
 
     // RENDER OPERATIONS FOR CHOSEN MONTH
-    return (
+    const columns = [
+        {field: 'category', headerName: 'Kategoria', flex: 1, headerAlign: 'center', align: 'center'},
+        {field: 'description', headerName: 'Opis', flex: 1, headerAlign: 'center', align: 'center'},
+        {
+            field: 'amount',
+            headerName: 'Kwota',
+            type: 'number',
+            flex: 1,
+            headerAlign: 'center', align: 'center',
+            renderCell: (params) => {
+                const amount = Number(params.value);
+                return (
 
+                        <Box
+
+                            sx={{
+                                color: amount < 0 ? colorRed : colorGreen,
+                                fontWeight: 700,
+                                fontFamily: 'Open Sans'
+                            }}
+                        >
+                            {amount.toLocaleString('pl', {
+                                style: 'currency',
+                                currency: 'PLN',
+                                minimumFractionDigits: 2,
+                                useGrouping: 'always'
+                            })}
+                        </Box>
+                );
+            },
+
+        },
+        {field: 'date', headerName: 'Data', flex: 1, headerAlign: 'center', align: 'center'},
+        {
+            field: 'id',
+            headerName: 'Usuń',
+            flex: 0,
+            sortable: false,
+            headerAlign: 'center', align: 'center',
+
+            renderCell: (params) => (
+                <IconButton onClick={() => handleDelete(params.value)} aria-label="delete" sx={{color: colorRed}}>
+                    <DeleteIcon sx={{fontSize: '2rem'}}/>
+                </IconButton>
+            ),
+        },
+    ];
+
+    const rows = operations
+        .filter(operation => filterOperationsByMonth(operation))
+        .map(({
+                  category,
+                  description,
+                  amount,
+                  date,
+                  id
+              }) => {
+            return {id, category, description, amount, date};
+        });
+
+    return (
         <Box sx={{
             border: '1px solid lightgray',
             borderRadius: '20px',
@@ -47,57 +100,40 @@ const SpendingsTable = () => {
             height: 'calc(100% - 15rem)',
             overflow: 'scroll',
             bgcolor: 'white',
-            boxShadow: 2
+            boxShadow: 2,
+            fontSize: '2rem',
+
+            '& .MuiDataGrid-root': {
+                border: 'none',
+                fontSize: '1.5rem',
+                textAlign: 'center',
+            },
+            '& .MuiDataGrid-cell': {
+                borderBottom: 'none'
+            },
+            '& .MuiDataGrid-columnHeaders': {
+                fontWeight: 700,
+                borderBottom: 'none'
+            },
+            '& .MuiDataGrid-virtualScroller': {},
+            '& .MuiDataGrid-footerContainer': {
+                borderTop: 'none',
+
+            },
+            '& .MuiCheckbox-root': {}
+
         }}>
-    <Table size="lg"
-           stripe='even'
-            borderAxis={"none"}
-           sx={{
-               textAlign: 'center',
-               fontSize: '1.4rem',
-           }}
-           >
-        <thead >
-        <tr >
-            <th className='spendings__table__head'>Kategoria</th>
-            <th className='spendings__table__head'>Opis</th>
-            <th className='spendings__table__head'>Kwota</th>
-            <th className='spendings__table__head'>Data</th>
-            <th className='spendings__table__head spendings__table__last-column'>Usuń</th>
+            <DataGrid
+                rows={rows}
+                columns={columns}
 
-        </tr>
-        </thead>
-
-        {/*FILTERING OPERATIONS BY CURRENT MONTH (TAKEN FROM CONTEXT)*/}
-
-        <tbody>
-        {operations
-            .filter(operation => filterOperationsByMonth(operation))
-            .map(({category, description, amount, date, id}) => (
-                <tr key={id} >
-                    <td>{category}</td>
-                    <td>{description}</td>
-                    <td className={amount < 0 ? "spendings__table__expense" : "spendings__table__income"}>{amount
-                        .toLocaleString('pl', {
-                        style: 'currency',
-                        currency: 'PLN',
-                        minimumFractionDigits: 2,
-                        useGrouping: 'always'
-                    })}</td>
-                    <td>{date}</td>
-                    <td className='spendings__table__last-column'>
-                        <IconButton onClick={() => handleDelete(id)} aria-label="delete" sx={{color: colorRed}}>
-                        <DeleteIcon sx={{
-                            fontSize: '2rem'
-                        }
-                        } />
-                    </IconButton></td>
-                </tr>
-            ))}
-        </tbody>
-    </Table>
+                pageSize={10}
+                disableSelectionOnClick={true}
+                disableColumnMenu={true}
+                density="compact"
+            />
         </Box>
-    )
-}
+    );
+};
 
 export default SpendingsTable;

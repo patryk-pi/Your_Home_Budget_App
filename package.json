@@ -9,7 +9,7 @@
     "@mui/joy": "^5.0.0-alpha.68",
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.11",
-    "@mui/x-data-grid": "^5.17.25",
+    "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
     "@ramonak/react-progress-bar": "^5.0.3",
     "@testing-library/jest-dom": "^5.16.5",

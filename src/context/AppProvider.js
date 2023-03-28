@@ -141,42 +141,7 @@ const AppProvider = ({children}) => {
             console.log(error);
         }
     };
-
-    /*    const handleAddGoal = goal => {
-            const index = goals.findIndex(obj => obj.monthAndYear === goal.monthAndYear && obj.category === goal.category);
-            if (index === -1) {
-                fetch(goalURL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(goal),
-                })
-                    .then((r) => {
-                        return r.json();
-                    })
-                    .then((data) => setGoals((prev) => [...prev, data]))
-                    .catch((err) => console.log(err));
-            } else {
-                fetch(`${goalURL}/${goals[index].id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(goal),
-                })
-                    .then(r => r.json())
-                    .then(data => setGoals(prev => prev.map(obj => {
-                        if (obj.id === data.id) {
-                            return data;
-                        } else {
-                            return obj;
-                        }
-                    })))
-                    .catch((err) => console.log(err));
-            }
-        };*/
-
+    
     const handleAddGoal = async (goal) => {
         const index = goals.findIndex(
             (obj) =>
