@@ -8,7 +8,7 @@ import {DataGrid, GridToolbar, plPL, plPl} from "@mui/x-data-grid";
 
 const SpendingsTable = () => {
     const {operations, filterOperationsByMonth, handleDelete} = useContext(AppContext);
-    const {colorRed, colorGreen} = variables;
+    const {colorRed, colorGreen, colorPrimary} = variables;
 
     // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
     if (operations.filter((operation) => filterOperationsByMonth(operation)).length === 0) {
@@ -23,7 +23,7 @@ const SpendingsTable = () => {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                <h1 style={{fontSize: '3rem'}}>Brak danych :(</h1>
+                <h1 style={{fontSize: '3rem', color: 'white', fontWeight:700}}>Brak danych :(</h1>
             </div>
         );
     }
@@ -115,14 +115,15 @@ const SpendingsTable = () => {
                 background: 'rgba(153,185,192,0.2)'
             },
             '& .MuiDataGrid-row:nth-child(2n):hover': {
-                background: 'rgba(153,185,192,0.38)'
+                background: 'rgba(0,157,189,0.35)'
             },
+
             '& .MuiDataGrid-cell': {
                 borderBottom: 'none'
             },
             '& .MuiDataGrid-columnHeaders': {
                 borderBottom: 'none',
-                backgroundColor: 'rgb(64,135,157)',
+                backgroundColor: colorPrimary,
                 color: 'white',
             },
             '& .MuiDataGrid-columnHeaderTitle': {
@@ -130,21 +131,30 @@ const SpendingsTable = () => {
             },
             '& .MuiDataGrid-footerContainer': {
                 borderTop: 'none',
-                backgroundColor: 'rgb(64,135,157)',
+                backgroundColor: colorPrimary,
             },
             '& .MuiTablePagination-root': {
                 color: 'white !important',
+                fontSize: '1.2rem'
             },
             '& .MuiDataGrid-menuIcon .MuiSvgIcon-root': {
                color: 'white'
             },
             '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-
-                color: 'rgb(64,135,157)',
+                color: colorPrimary,
             },
             '& .MuiBadge-badge': {
-                backgroundColor: 'rgb(64,135,157)',
+                backgroundColor:colorPrimary,
             },
+            '& .MuiTablePagination-displayedRows': {
+                color: 'white !important',
+                fontSize: '1.2rem'
+            },
+            '& .MuiTablePagination-selectLabel': {
+                color: 'white !important',
+                fontSize: '1.2rem'
+            },
+
 
         }}>
             <DataGrid
@@ -152,6 +162,7 @@ const SpendingsTable = () => {
                 columns={columns}
                 slots={{ toolbar: GridToolbar }}
                 localeText={plPL.components.MuiDataGrid.defaultProps.localeText}
+                rowSelection={false}
             />
         </Box>
     );
