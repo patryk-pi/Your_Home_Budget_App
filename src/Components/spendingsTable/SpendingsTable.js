@@ -3,7 +3,7 @@ import {AppContext} from "../../context/AppProvider";
 import {Box, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import variables from "../../scss/settings/_variables.scss";
-import {DataGrid, GridToolbar} from "@mui/x-data-grid";
+import {DataGrid, GridToolbar, plPL, plPl} from "@mui/x-data-grid";
 
 
 const SpendingsTable = () => {
@@ -133,7 +133,6 @@ const SpendingsTable = () => {
                 backgroundColor: 'rgb(64,135,157)',
             },
             '& .MuiTablePagination-root': {
-
                 color: 'white !important',
             },
             '& .MuiDataGrid-menuIcon .MuiSvgIcon-root': {
@@ -142,14 +141,17 @@ const SpendingsTable = () => {
             '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
 
                 color: 'rgb(64,135,157)',
-            }
+            },
+            '& .MuiBadge-badge': {
+                backgroundColor: 'rgb(64,135,157)',
+            },
 
         }}>
             <DataGrid
                 rows={rows}
                 columns={columns}
-                components={{ Toolbar: GridToolbar }}
-
+                slots={{ toolbar: GridToolbar }}
+                localeText={plPL.components.MuiDataGrid.defaultProps.localeText}
             />
         </Box>
     );
