@@ -1,15 +1,14 @@
 import React, {useContext} from "react";
 import {AppContext} from "../../context/AppProvider";
-import {Box, IconButton, useTheme, ThemeProvider} from "@mui/material";
+import {Box, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import variables from "../../scss/settings/_variables.scss";
-import {DataGrid} from "@mui/x-data-grid";
+import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 
 
 const SpendingsTable = () => {
     const {operations, filterOperationsByMonth, handleDelete} = useContext(AppContext);
     const {colorRed, colorGreen} = variables;
-    const theme = useTheme();
 
     // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
     if (operations.filter((operation) => filterOperationsByMonth(operation)).length === 0) {
@@ -28,7 +27,6 @@ const SpendingsTable = () => {
             </div>
         );
     }
-    ;
 
 
     // RENDER OPERATIONS FOR CHOSEN MONTH
@@ -102,35 +100,56 @@ const SpendingsTable = () => {
             bgcolor: 'white',
             boxShadow: 2,
             fontSize: '2rem',
+            display: 'grid',
 
             '& .MuiDataGrid-root': {
                 border: 'none',
                 fontSize: '1.5rem',
                 textAlign: 'center',
+
+            },
+            '& .MuiDataGrid-row:hover': {
+                background: 'rgba(0,157,189,0.35)'
+            },
+            '& .MuiDataGrid-row:nth-child(2n)': {
+                background: 'rgba(153,185,192,0.2)'
+            },
+            '& .MuiDataGrid-row:nth-child(2n):hover': {
+                background: 'rgba(153,185,192,0.38)'
             },
             '& .MuiDataGrid-cell': {
                 borderBottom: 'none'
             },
             '& .MuiDataGrid-columnHeaders': {
-                fontWeight: 700,
-                borderBottom: 'none'
+                borderBottom: 'none',
+                backgroundColor: 'rgb(64,135,157)',
+                color: 'white',
             },
-            '& .MuiDataGrid-virtualScroller': {},
+            '& .MuiDataGrid-columnHeaderTitle': {
+                fontWeight: 700
+            },
             '& .MuiDataGrid-footerContainer': {
                 borderTop: 'none',
-
+                backgroundColor: 'rgb(64,135,157)',
             },
-            '& .MuiCheckbox-root': {}
+            '& .MuiTablePagination-root': {
+
+                color: 'white !important',
+            },
+            '& .MuiDataGrid-menuIcon .MuiSvgIcon-root': {
+               color: 'white'
+            },
+            '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+
+                color: 'rgb(64,135,157)',
+            }
 
         }}>
             <DataGrid
                 rows={rows}
                 columns={columns}
+                components={{ Toolbar: GridToolbar }}
 
-                pageSize={10}
-                disableSelectionOnClick={true}
-                disableColumnMenu={true}
-                density="compact"
             />
         </Box>
     );
