@@ -51,22 +51,9 @@ const GoalsSetter = () => {
                     })}
 
                 </Box>
-                <Box sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: "65%",
-                    border: '1px solid lightgray',
-                    overflow: 'scroll',
-                    height: '100%',
-                    borderRadius: '20px',
-                    padding: '1rem',
-                    bgcolor: 'white',
-                    boxShadow: 2
 
-                }}>
                     <GoalsTable/>
-                </Box>
+
             </Box>
         </>
     )

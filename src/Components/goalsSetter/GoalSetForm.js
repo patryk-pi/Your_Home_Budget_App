@@ -46,7 +46,7 @@ const GoalSetForm = ({description, type}) => {
     }, [filteredRecords])
 
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setCategoryAndGoal({
             monthAndYear,
@@ -54,7 +54,7 @@ const GoalSetForm = ({description, type}) => {
             type,
             goal: type === 'expense' ? -goal : goal
         });
-        setIsDisabled(true)
+        setIsDisabled(true);
     };
 
     const handleEdit = (e) => {
@@ -119,8 +119,7 @@ const GoalSetForm = ({description, type}) => {
                           setGoalType(type)
                           console.log(description, type)
                       }}
-                      onSubmit={handleSubmit}
-                >
+                      onSubmit={handleSubmit}>
                     <h3 className='goal__set__header_form'>{description}</h3>
                     <FormControl
                         fullWidth={true}
