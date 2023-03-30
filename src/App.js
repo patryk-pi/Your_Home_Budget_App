@@ -11,12 +11,14 @@ import AppSidebar from "./Components/nav/AppSidebar";
 import SignUpMain from "./Components/auth/SingUpMain";
 
 
+
 function App() {
     
     return (
         <>
             <div className="app__container">
             <AppProvider>
+
 
 
                 <HashRouter>
@@ -32,6 +34,7 @@ function App() {
                         </Route>
                     </Routes>
                 </HashRouter>
+
             </AppProvider>
             </div>
         </>

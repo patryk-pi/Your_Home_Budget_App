@@ -1,14 +1,16 @@
 import React, {useContext} from "react";
 import {AppContext} from "../../context/AppProvider";
-import {Box, IconButton } from "@mui/material";
+import {Box, IconButton, useTheme} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import variables from "../../scss/settings/_variables.scss";
-import {DataGrid, GridToolbar, plPL, plPl} from "@mui/x-data-grid";
+import {DataGrid, GridToolbar, plPL} from "@mui/x-data-grid";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 
 
 const SpendingsTable = () => {
     const {operations, filterOperationsByMonth, handleDelete} = useContext(AppContext);
-    const {colorRed, colorGreen, colorPrimary} = variables;
+    const {colorRed, colorGreen, colorPrimary, colorPrimaryLight1} = variables;
+
 
     // RENDER INFO ABOUT NO OPERATIONS IN THE CHOSEN MONTH
     if (operations.filter((operation) => filterOperationsByMonth(operation)).length === 0) {
@@ -27,6 +29,13 @@ const SpendingsTable = () => {
             </div>
         );
     }
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: colorPrimary
+            },
+        }})
 
 
     // RENDER OPERATIONS FOR CHOSEN MONTH
@@ -91,6 +100,7 @@ const SpendingsTable = () => {
         });
 
     return (
+        <ThemeProvider theme={theme}>
         <Box sx={{
             border: '1px solid lightgray',
             borderRadius: '20px',
@@ -127,7 +137,8 @@ const SpendingsTable = () => {
                 color: 'white',
             },
             '& .MuiDataGrid-columnHeaderTitle': {
-                fontWeight: 700
+                fontWeight: 700,
+
             },
             '& .MuiDataGrid-footerContainer': {
                 borderTop: 'none',
@@ -156,6 +167,7 @@ const SpendingsTable = () => {
             },
 
 
+
         }}>
             <DataGrid
                 rows={rows}
@@ -165,6 +177,7 @@ const SpendingsTable = () => {
                 rowSelection={false}
             />
         </Box>
+        </ThemeProvider>
     );
 };
 
