@@ -109,7 +109,7 @@ const GoalsTable = () => {
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    disableSelectionOnClick
+                    rowSelection={false}
                     slots={{ toolbar: GridToolbar }}
                     localeText={plPL.components.MuiDataGrid.defaultProps.localeText}
                 />

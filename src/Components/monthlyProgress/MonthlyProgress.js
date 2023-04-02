@@ -1,21 +1,19 @@
-import React, { useState, useContext} from "react";
-import MonthlyBalanceOverview from "../spendingsTable/MonthlyBalanceOverview";
+import React, { useContext} from "react";
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import GoalProgressBar from "./GoalProgressBar";
 import {AppContext} from "../../context/AppProvider";
-import ProgressBar from "@ramonak/react-progress-bar";
-import { Box } from '@mui/material'
+import {Accordion, AccordionSummary, Box, Typography} from '@mui/material'
+import {ExpandMoreOutlined} from "@mui/icons-material";
 
 const MonthlyProgress = () => {
 
-    const {categories, operations, filterOperationsByMonth, goals, filterGoalsByMonth} = useContext(AppContext);
-
+    const {categories} = useContext(AppContext);
 
 
     return (
         <>
 
-            <SpendingsOverviewHeader />
+            <SpendingsOverviewHeader/>
 
             <Box sx={{
 
@@ -25,29 +23,50 @@ const MonthlyProgress = () => {
                 overflow: 'scroll',
                 marginTop: '2rem'
             }}>
+                <Accordion sx={{
+                    background: 'transparent',
+                    boxShadow: 0,
 
-            {categories.map((category) => {
-
-                return (
-                    <Box sx={{
+                }}>
+                    <AccordionSummary sx={{
+                        background: 'white',
+                        marginBottom: '2rem',
                         border: '3px solid lightgray',
                         borderRadius: '20px',
-                        padding: '2rem',
-                        marginBottom: '2rem',
-                        boxShadow: 1,
-                        bgcolor: 'white'
-                    }}>
-                        <h2 style={{
-                            fontSize: '1.6rem',
-                            fontWeight: 600,
-                            marginBottom: '1rem'
-                        }}>{category.description}</h2>
-                        <GoalProgressBar currentCategory={category} />
-                    </Box>
-                )
-            })}
 
-    </Box>
+                    }} expandIcon={<ExpandMoreOutlined/>}>
+                        <Typography align='center' sx={{
+                            fontSize: '3rem',
+                            fontWeight: 700,
+                            textTransform: 'uppercase',
+                            width: '100%'
+                        }}>Szczegółowy status celów</Typography>
+                    </AccordionSummary>
+
+                        {categories.map((category) => {
+
+                            return (
+                                <Box sx={{
+                                    border: '3px solid lightgray',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    marginBottom: '2rem',
+                                    boxShadow: 1,
+                                    bgcolor: 'white'
+                                }}>
+                                    <h2 style={{
+                                        fontSize: '1.6rem',
+                                        fontWeight: 600,
+                                        marginBottom: '1rem'
+                                    }}>{category.description}</h2>
+                                    <GoalProgressBar currentCategory={category}/>
+                                </Box>
+                            )
+                        })}
+
+                </Accordion>
+
+            </Box>
         </>
     )
 }

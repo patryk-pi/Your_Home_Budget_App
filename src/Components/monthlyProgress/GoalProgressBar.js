@@ -32,9 +32,9 @@ const GoalProgressBar = ({currentCategory}) => {
     let backgroundColor;
 
     if ((currentOperations < 0 && percentCompleted < 100) || (currentOperations > 0 && percentCompleted > 100)) {
-        backgroundColor = colorGreen
+        backgroundColor = colorGreen;
     } else {
-        backgroundColor = colorRed
+        backgroundColor = colorRed;
     }
 
 
