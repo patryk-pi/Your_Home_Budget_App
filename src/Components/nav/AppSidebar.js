@@ -1,15 +1,13 @@
 import React, {useContext} from "react";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Button} from "@mui/material";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import logo from "../../img/CompanyLogo.png";
 import {auth} from '../../config/firebase'
-import { signOut } from 'firebase/auth'
+import {signOut} from 'firebase/auth'
 import {AppContext} from "../../context/AppProvider";
 import LogoutIcon from '@mui/icons-material/Logout';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
@@ -57,19 +55,35 @@ const AppSidebar = () => {
                 flexDirection: 'column'
             }}>
                 <div className={'navbar__container'}>
-                <img src={logo} alt={"logo"} className={'navbar__logo'}/>
+                    <img src={logo} alt={"logo"} className={'navbar__logo'}/>
                 </div>
-                { !user ?
+                {!user ?
                     <>
-                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/login'><Button endIcon={<LoginIcon/>}   sx={buttonStyle}  fullWidth={true}>Zaloguj</Button></NavLink>
-                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/signup'><Button endIcon={<PersonAddIcon/>}   sx={buttonStyle}  fullWidth={true}>Zarejestruj</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/login'>
+                            <Button
+                            endIcon={<LoginIcon/>} sx={buttonStyle} fullWidth={true}>Zaloguj</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/signup'>
+                            <Button
+                            endIcon={<PersonAddIcon/>} sx={buttonStyle} fullWidth={true}>Zarejestruj</Button></NavLink>
                     </> :
                     <>
-                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/'><Button endIcon={<DonutLargeIcon/>}   sx={buttonStyle}  fullWidth={true}>Przegląd miesięczny</Button></NavLink>
-                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/expensestructure'><Button endIcon={<TableViewIcon/>} sx={buttonStyle} fullWidth={true}>Tabela operacji</Button></NavLink>
-                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/goals'><Button endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele miesięczne</Button></NavLink>
-                <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/monthlyprogress'><Button endIcon={<TrackChangesIcon/>} sx={buttonStyle} fullWidth={true}>Status celów</Button></NavLink>
-                <Button style={linkStyle} onClick={handleLogout} endIcon={<LogoutIcon/>} sx={buttonStyle} fullWidth={true}>Wyloguj</Button>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/'>
+                            <Button
+                            endIcon={<DonutLargeIcon/>} sx={buttonStyle} fullWidth={true}>Przegląd
+                            miesięczny</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle}
+                                 to='/expensestructure'><Button endIcon={<TableViewIcon/>} sx={buttonStyle}
+                                                                fullWidth={true}>Tabela operacji</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle} to='/goals'>
+                            <Button
+                            endIcon={<EmojiEventsIcon/>} sx={buttonStyle} fullWidth={true}>Cele
+                            miesięczne</Button></NavLink>
+                        <NavLink style={({isActive}) => isActive ? activeStyle : linkStyle}
+                                 to='/monthlyprogress'>
+                            <Button endIcon={<TrackChangesIcon/>} sx={buttonStyle}
+                                                               fullWidth={true}>Status celów</Button></NavLink>
+                        <Button style={linkStyle} onClick={handleLogout} endIcon={<LogoutIcon/>} sx={buttonStyle}
+                                fullWidth={true}>Wyloguj</Button>
                     </>}
 
             </nav>

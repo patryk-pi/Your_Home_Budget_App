@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useContext} from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import {AppContext} from "../../context/AppProvider";
 import variables from '../../scss/settings/_variables.scss'
@@ -58,34 +58,43 @@ const GoalProgressBar = ({currentCategory}) => {
                     fontSize: '1.5rem',
                     flexBasis: '50%'
                 }}>
-                <div><span>Cel:</span> <span
+                <div>
+                    <span>Cel:</span>
+                    <span
                     style={{fontWeight: 600,}}> {!currentGoal ? 0 : Math.abs(currentGoal).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,
                         useGrouping: 'always'
                     }
-                )}</span></div>
-                <div><span>Operacje: </span><span
+                )}</span>
+                </div>
+                <div>
+                    <span>Operacje: </span>
+                    <span
                     style={{fontWeight: 600,}}> {Math.abs(currentOperations).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,
                         useGrouping: 'always'
                     }
-                )}</span></div>
-                <div><span>Różnica: </span><span
+                )}</span>
+                </div>
+                <div>
+                    <span>Różnica: </span>
+                    <span
                     style={{fontWeight: 600,}}>{(currentGoal ? Math.abs(currentOperations - currentGoal) : currentOperations).toLocaleString('pl', {
                         style: 'currency',
                         currency: 'PLN',
                         minimumFractionDigits: 2,
                         useGrouping: 'always'
                     }
-                )}</span></div>
+                )}</span>
+                </div>
             </Box>
         </>
 
-)
+    )
 
 }
 

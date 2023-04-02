@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Pie } from 'react-chartjs-2';
-import { AppContext } from '../../context/AppProvider';
-import { Chart, ArcElement, Colors, Tooltip, Legend } from 'chart.js';
+import React, {useContext, useState, useEffect} from 'react';
+import {Pie} from 'react-chartjs-2';
+import {AppContext} from '../../context/AppProvider';
+import {Chart, ArcElement, Colors, Tooltip, Legend} from 'chart.js';
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 Chart.register(ArcElement, Colors, Tooltip, Legend, ChartDataLabels);
 
-const PieChart = ({ transaction }) => {
-    const { operations, filterOperationsByMonth } = useContext(AppContext);
+const PieChart = ({transaction}) => {
+    const {operations, filterOperationsByMonth} = useContext(AppContext);
 
     // Filter transactions by income or expense
     const filteredOperations =
         transaction === 'income'
-            ? operations.filter(({ amount }) => amount > 0)
-            : operations.filter(({ amount }) => amount < 0)
+            ? operations.filter(({amount}) => amount > 0)
+            : operations.filter(({amount}) => amount < 0)
 
 
     const [categories, setCategories] = useState([]);
@@ -22,7 +22,7 @@ const PieChart = ({ transaction }) => {
     useEffect(() => {
         const categories = [...new Set(filteredOperations
             .filter((operation) => filterOperationsByMonth(operation))
-            .map(({ category }) => category))];
+            .map(({category}) => category))];
         setCategories(categories);
     }, [filterOperationsByMonth]);
 
@@ -39,7 +39,7 @@ const PieChart = ({ transaction }) => {
                         filteredOperations
                             .filter((operation) => filterOperationsByMonth(operation))
                             .filter((operation) => operation.category === category)
-                            .reduce((sum, { amount }) => sum + amount, 0)
+                            .reduce((sum, {amount}) => sum + amount, 0)
                 ),
                 backgroundColor: colors.slice(0, categories.length),
                 hoverBackgroundColor: colors.slice(0, categories.length),
@@ -86,7 +86,7 @@ const PieChart = ({ transaction }) => {
                 formatter: (value, context) => {
                     const total = context.chart.data.datasets[0].data.reduce((acc, cur) => acc + cur);
                     const percentage = ((value / total) * 100).toFixed(0) + '%';
-                    return value === 0 ? '' :percentage;
+                    return value === 0 ? '' : percentage;
                 },
                 color: 'white',
                 font: {
@@ -109,11 +109,11 @@ const PieChart = ({ transaction }) => {
                     alignItems: 'center',
                     height: '100%'
                 }}>
-                <h1 style={{
-                    color: 'white',
-                    fontSize: '2rem',
-                    fontWeight: 600,
-                }}>Brak danych dotyczących {transaction === 'income' ? 'wpływów' : 'wydatków'} </h1>
+                    <h1 style={{
+                        color: 'white',
+                        fontSize: '2rem',
+                        fontWeight: 600,
+                    }}>Brak danych dotyczących {transaction === 'income' ? 'wpływów' : 'wydatków'} </h1>
                 </div>
             </>
         );
@@ -121,7 +121,7 @@ const PieChart = ({ transaction }) => {
 
     return (
         <>
-            <Pie data={data} options={options} />
+            <Pie data={data} options={options}/>
         </>
     );
 };

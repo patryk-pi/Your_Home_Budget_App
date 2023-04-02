@@ -36,7 +36,6 @@ const theme = createTheme({
 const SignIn = () => {
 
     const navigate = useNavigate();
-    const { user } = useContext(AppContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

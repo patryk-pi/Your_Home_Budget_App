@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {AppContext} from "../../context/AppProvider";
-import {Box, IconButton, useTheme} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import variables from "../../scss/settings/_variables.scss";
 import {DataGrid, GridToolbar, plPL} from "@mui/x-data-grid";

@@ -1,18 +1,10 @@
 import React, {useContext} from "react";
-import {Box, createStyles, IconButton} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {AppContext} from "../context/AppProvider";
 
 
-/*const useStyles = createStyles(theme => ({
-    button: {
-        color: theme.color.primary.main
-    },
-    box: {
-
-    }
-}))*/
 
 const SpendingsOverviewHeader = () => {
   /*  const styles = useStyles();*/

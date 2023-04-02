@@ -11,13 +11,12 @@ import GoalsTable from "./GoalsTable";
 const GoalsSetter = () => {
 
     // STATES
-    const { categories } = useContext(AppContext)
-
+    const {categories} = useContext(AppContext)
 
 
     return (
         <>
-            <SpendingsOverviewHeader />
+            <SpendingsOverviewHeader/>
             <Box sx={{
                 height: 'calc(100% - 10rem)',
                 display: 'flex',
@@ -52,7 +51,7 @@ const GoalsSetter = () => {
 
                 </Box>
 
-                    <GoalsTable/>
+                <GoalsTable/>
 
             </Box>
         </>

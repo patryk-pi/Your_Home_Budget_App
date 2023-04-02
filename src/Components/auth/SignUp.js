@@ -11,7 +11,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {auth, googleProvider} from '../.././config/firebase'
 import {createUserWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 import Copyright from "./Copyright";
-import {Alert, InputAdornment, Snackbar} from "@mui/material";
+import {InputAdornment} from "@mui/material";
 import SnackbarInfo from "../SnackbarInfo";
 import EmailIcon from "@mui/icons-material/Email";
 import {Lock} from "@mui/icons-material";
@@ -60,7 +60,6 @@ const SignUp = () => {
         }
 
     }
-
 
 
     const theme = createTheme({
@@ -142,13 +141,13 @@ const SignUp = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start'>
-                                                        <EmailIcon />
+                                                        <EmailIcon/>
                                                     </InputAdornment>
                                                 ),
                                                 disableUnderline: true,
                                             }}
                                             InputLabelProps={{
-                                                style:{
+                                                style: {
                                                     fontFamily: 'Open Sans',
                                                     color: 'rgba(0,55,87,1)'
                                                 }
@@ -171,13 +170,13 @@ const SignUp = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start'>
-                                                        <Lock />
+                                                        <Lock/>
                                                     </InputAdornment>
                                                 ),
                                                 disableUnderline: true,
                                             }}
                                             InputLabelProps={{
-                                                style:{
+                                                style: {
                                                     fontFamily: 'Open Sans',
                                                     color: 'rgba(0,55,87,1)'
                                                 }
@@ -191,7 +190,7 @@ const SignUp = () => {
                                     fullWidth
                                     variant="contained"
                                     InputLabelProps={{
-                                        style:{
+                                        style: {
                                             fontFamily: 'Open Sans',
                                             color: 'rgba(0,55,87,1)'
                                         }
@@ -209,12 +208,17 @@ const SignUp = () => {
                                 <Button
 
                                     variant="contained"
-                                    sx={{ fontFamily: 'Open Sans',mt: 3, mb: 2,  background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',}}
+                                    sx={{
+                                        fontFamily: 'Open Sans',
+                                        mt: 3,
+                                        mb: 2,
+                                        background: 'linear-gradient(149deg, rgba(0,55,87,1) 0%, rgba(0,96,135,1) 46%, rgba(0,157,189,1) 86%)',
+                                    }}
                                     type='button'
                                     fullWidth
                                     onClick={signInWithGoogle}
                                 >
-                                   Zarejestruj się przez Google
+                                    Zarejestruj się przez Google
                                 </Button>
                                 <Grid container justifyContent="flex-end">
                                     <Grid item>
@@ -229,9 +233,12 @@ const SignUp = () => {
                         <Copyright sx={{mt: 5}}/>
                     </Container>
                 </ThemeProvider>
-                <SnackbarInfo severity={'error'} openState={openWrongMail} setOpenState={setOpenWrongMail} message={'Podany adres email jest nieprawidłowy!'} />
-                <SnackbarInfo severity={'error'} openState={openWeakPassword} setOpenState={setOpenWeakPassword} message={'Hasło musi składać się z minimum 6 znaków!'} />
-                <SnackbarInfo severity={'warning'} openState={mailInUse} setOpenState={setMailInUse} message={'Podany adres email jest już w użyciu. '} />
+                <SnackbarInfo severity={'error'} openState={openWrongMail} setOpenState={setOpenWrongMail}
+                              message={'Podany adres email jest nieprawidłowy!'}/>
+                <SnackbarInfo severity={'error'} openState={openWeakPassword} setOpenState={setOpenWeakPassword}
+                              message={'Hasło musi składać się z minimum 6 znaków!'}/>
+                <SnackbarInfo severity={'warning'} openState={mailInUse} setOpenState={setMailInUse}
+                              message={'Podany adres email jest już w użyciu. '}/>
 
             </Box>
         </Box>

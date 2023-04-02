@@ -32,13 +32,12 @@ const GoalSetForm = ({description, type}) => {
     }, [currentMonth, currentYear]);
 
 
-
     useEffect(() => {
         setFilteredRecords(goals.filter(goalRecord => filterGoalsByMonth(goalRecord)));
     }, [goals, currentMonth, currentYear]);
 
     useEffect(() => {
-        if (filteredRecords.some(({ category }) => category === description)) {
+        if (filteredRecords.some(({category}) => category === description)) {
             setIsDisabled(true)
         } else {
             setIsDisabled(false)
@@ -86,7 +85,7 @@ const GoalSetForm = ({description, type}) => {
                     margin: '1.5rem 0',
                     padding: '0 2rem'
                 }}>
-                    <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}} >
+                    <div style={{flexBasis: '20%', display: 'flex', alignItems: 'center'}}>
                         <h3 className='goal__set__header'>{description}</h3>
                     </div>
                     <p>Cel na ten miesiąc dodany!</p>
@@ -106,7 +105,6 @@ const GoalSetForm = ({description, type}) => {
         )
 
     }
-
 
 
     if (!isDisabled) {
@@ -159,7 +157,6 @@ const GoalSetForm = ({description, type}) => {
                                 startIcon={<AddCircleOutlineIcon/>} type={'submit'}>Dodaj</Button>
                         </Box>
                     </FormControl>
-
                 </form>
 
 

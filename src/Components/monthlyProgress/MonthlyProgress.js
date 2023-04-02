@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, {useContext} from "react";
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import GoalProgressBar from "./GoalProgressBar";
 import {AppContext} from "../../context/AppProvider";
@@ -43,26 +43,26 @@ const MonthlyProgress = () => {
                         }}>Szczegółowy status celów</Typography>
                     </AccordionSummary>
 
-                        {categories.map((category) => {
+                    {categories.map((category) => {
 
-                            return (
-                                <Box sx={{
-                                    border: '3px solid lightgray',
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    marginBottom: '2rem',
-                                    boxShadow: 1,
-                                    bgcolor: 'white'
-                                }}>
-                                    <h2 style={{
-                                        fontSize: '1.6rem',
-                                        fontWeight: 600,
-                                        marginBottom: '1rem'
-                                    }}>{category.description}</h2>
-                                    <GoalProgressBar currentCategory={category}/>
-                                </Box>
-                            )
-                        })}
+                        return (
+                            <Box sx={{
+                                border: '3px solid lightgray',
+                                borderRadius: '20px',
+                                padding: '2rem',
+                                marginBottom: '2rem',
+                                boxShadow: 1,
+                                bgcolor: 'white'
+                            }}>
+                                <h2 style={{
+                                    fontSize: '1.6rem',
+                                    fontWeight: 600,
+                                    marginBottom: '1rem'
+                                }}>{category.description}</h2>
+                                <GoalProgressBar currentCategory={category}/>
+                            </Box>
+                        )
+                    })}
 
                 </Accordion>
 

@@ -1,4 +1,3 @@
-import react from 'react'
 import {Alert, Snackbar} from "@mui/material";
 import React from "react";
 
@@ -23,7 +22,6 @@ const SnackbarInfo = ({openState, setOpenState, severity, message}) => {
                 fontSize: '1.4rem',
                 color: 'white',
                 fontWeight: '700',
-
             }}
                    variant='filled'
             >

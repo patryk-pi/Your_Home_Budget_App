@@ -1,10 +1,10 @@
-import React, {useEffect, useState, useContext, createContext} from "react";
+import React, {useEffect, useState, createContext} from "react";
 import dayjs from "dayjs";
 import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
 import {db} from '../../src/config/firebase'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { requestOptions } from "../config/currencyAPI";
-import SnackbarInfo from "../Components/SnackbarInfo";
+
 
 
 export const AppContext = createContext(null)
@@ -29,12 +29,7 @@ const AppProvider = ({children}) => {
         };
     }, []);
 
-
-    // DATABASE URLs
-
-    const URL = "http://localhost:3005/operations";
-    const goalURL = "http://localhost:3005/goals";
-    const categoriesURL = "http://localhost:3005/categories";
+    
 
     // DATES STATES
     const [currentMonthString, setCurrentMonthString] = useState('');
