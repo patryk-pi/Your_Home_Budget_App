@@ -1,23 +1,27 @@
-import React, {useEffect, useState, createContext} from "react";
+import React, { useEffect, useState, createContext } from "react";
 import dayjs from "dayjs";
-import {getDocs, collection, addDoc, doc, updateDoc, getDoc, deleteDoc} from "firebase/firestore"
-import {db} from '../../src/config/firebase'
-import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {
+    getDocs,
+    collection,
+    addDoc,
+    doc,
+    updateDoc,
+    getDoc,
+    deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../src/config/firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { requestOptions } from "../config/currencyAPI";
 
+export const AppContext = createContext(null);
 
-
-export const AppContext = createContext(null)
-
-const AppProvider = ({children}) => {
-
-
+const AppProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loadingUser, setLoadingUser] = useState(true)
+    const [loadingUser, setLoadingUser] = useState(true);
 
     useEffect(() => {
         const auth = getAuth();
-        setLoadingUser(true)
+        setLoadingUser(true);
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
             setLoadingUser(false);
@@ -29,10 +33,8 @@ const AppProvider = ({children}) => {
         };
     }, []);
 
-    
-
     // DATES STATES
-    const [currentMonthString, setCurrentMonthString] = useState('');
+    const [currentMonthString, setCurrentMonthString] = useState("");
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -50,10 +52,9 @@ const AppProvider = ({children}) => {
 
     const [categories, setCategories] = useState([]);
 
-    const categoriesCollectionRef = collection(db, 'categories');
-    const operationsCollectionRef = collection(db, 'operations');
-    const goalsCollectionRef = collection(db, 'goals');
-
+    const categoriesCollectionRef = collection(db, "categories");
+    const operationsCollectionRef = collection(db, "operations");
+    const goalsCollectionRef = collection(db, "goals");
 
     const [openError, setOpenError] = useState(false);
     const [openSuccess, setOpenSuccess] = useState(false);
@@ -61,7 +62,7 @@ const AppProvider = ({children}) => {
 
     const [operationAmount, setOperationAmount] = useState(0);
     const [exchangeAmount, setExchangeAmount] = useState(0);
-    const [operationCurrency, setOperationCurrency] = useState('');
+    const [operationCurrency, setOperationCurrency] = useState("");
 
     // FUNCTION ADDING NEW OPERATIONS TO A DATA BASE THROUGH REST API
     /*        const handleAddJson = operation => {
@@ -81,19 +82,25 @@ const AppProvider = ({children}) => {
 
     const handleAdd = async (operation) => {
         try {
-            if (operation.currency !== 'PLN') {
+            if (operation.currency !== "PLN") {
                 const absAmount = Math.abs(operation.amount);
-                fetch(`https://api.apilayer.com/fixer/convert?to=PLN&from=${operation.currency}&amount=${absAmount}`, requestOptions)
-                    .then(response => response.json())
-                    .then(result => {
+                fetch(
+                    `https://api.apilayer.com/fixer/convert?to=PLN&from=${operation.currency}&amount=${absAmount}`,
+                    requestOptions
+                )
+                    .then((response) => response.json())
+                    .then((result) => {
                         if (result && result.result !== undefined) {
-                            operation.amount = operation.amount > 0 ? result.result.toFixed(2) : -result.result.toFixed(2);
+                            operation.amount =
+                                operation.amount > 0
+                                    ? result.result.toFixed(2)
+                                    : -result.result.toFixed(2);
                             addDocToCollection();
                         } else {
-                            console.log('Error fetching exchange rate data');
+                            console.log("Error fetching exchange rate data");
                         }
                     })
-                    .catch(error => console.log('error', error));
+                    .catch((error) => console.log("error", error));
             } else {
                 await addDocToCollection();
             }
@@ -107,7 +114,7 @@ const AppProvider = ({children}) => {
                     user: user ? user.uid : null,
                 });
 
-                if (operation.currency === 'PLN') {
+                if (operation.currency === "PLN") {
                     setOpenSuccess(true);
                 } else {
                     setOpenExchange(true);
@@ -115,13 +122,15 @@ const AppProvider = ({children}) => {
 
                 const docSnapshot = await getDoc(docRef);
                 const data = docSnapshot.data();
-                setOperations(prev => [...prev, {id: docSnapshot.id, ...data}]);
+                setOperations((prev) => [
+                    ...prev,
+                    { id: docSnapshot.id, ...data },
+                ]);
             }
         } catch (error) {
             console.log(error);
         }
-    }
-
+    };
 
     const handleDelete = async (operationId) => {
         try {
@@ -136,11 +145,12 @@ const AppProvider = ({children}) => {
             console.log(error);
         }
     };
-    
+
     const handleAddGoal = async (goal) => {
         const index = goals.findIndex(
             (obj) =>
-                obj.monthAndYear === goal.monthAndYear && obj.category === goal.category
+                obj.monthAndYear === goal.monthAndYear &&
+                obj.category === goal.category
         );
         try {
             if (index === -1) {
@@ -149,7 +159,7 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user: user ? user.uid : null
+                    user: user ? user.uid : null,
                 });
                 const newGoal = {
                     id: docRef.id,
@@ -163,7 +173,7 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user: user ? user.uid : null
+                    user: user ? user.uid : null,
                 });
                 const updatedGoal = {
                     ...goalDoc,
@@ -171,10 +181,12 @@ const AppProvider = ({children}) => {
                     category: goal.category,
                     type: goal.type,
                     goal: goal.goal,
-                    user: user ? user.uid : null
+                    user: user ? user.uid : null,
                 };
                 setGoals((prev) =>
-                    prev.map((obj) => (obj.id === updatedGoal.id ? updatedGoal : obj))
+                    prev.map((obj) =>
+                        obj.id === updatedGoal.id ? updatedGoal : obj
+                    )
                 );
             }
         } catch (error) {
@@ -182,60 +194,58 @@ const AppProvider = ({children}) => {
         }
     };
 
-
     // FUNCTION FILTERING OPERATIONS BY MONTH
-    const filterOperationsByMonth = operation => {
-        const operationMonth = dayjs(operation.date, 'DD/MM/YYYY').month();
-        const operationYear = dayjs(operation.date, 'DD/MM/YYYY').year();
-        return operationMonth === currentMonth && operationYear === currentYear
-    }
+    const filterOperationsByMonth = (operation) => {
+        const operationMonth = dayjs(operation.date, "DD/MM/YYYY").month();
+        const operationYear = dayjs(operation.date, "DD/MM/YYYY").year();
+        return operationMonth === currentMonth && operationYear === currentYear;
+    };
 
-    const filterGoalsByMonth = goal => {
-        const operationMonth = dayjs(goal.monthAndYear, 'MM/YYYY').month();
-        const operationYear = dayjs(goal.monthAndYear, 'MM/YYYY').year();
-        return operationMonth === currentMonth && operationYear === currentYear
-    }
+    const filterGoalsByMonth = (goal) => {
+        const operationMonth = dayjs(goal.monthAndYear, "MM/YYYY").month();
+        const operationYear = dayjs(goal.monthAndYear, "MM/YYYY").year();
+        return operationMonth === currentMonth && operationYear === currentYear;
+    };
 
     // HANDLER FUNCTIONS FOR NEXT AND PREVIOUS MONTH BUTTONS
     const nextMonth = () => {
-        setCurrentMonth(prev => {
-            return prev + 1 > 11 ? 0 : prev + 1
-        })
+        setCurrentMonth((prev) => {
+            return prev + 1 > 11 ? 0 : prev + 1;
+        });
 
         if (currentMonth + 1 > 11) {
-            setCurrentYear(prev => prev + 1)
+            setCurrentYear((prev) => prev + 1);
         }
-    }
+    };
 
     const prevMonth = () => {
-        setCurrentMonth(prev => {
-            return prev - 1 < 0 ? 11 : prev - 1
-        })
+        setCurrentMonth((prev) => {
+            return prev - 1 < 0 ? 11 : prev - 1;
+        });
 
         if (currentMonth - 1 < 0) {
-            setCurrentYear(prev => prev - 1)
+            setCurrentYear((prev) => prev - 1);
         }
-    }
-
+    };
 
     // FETCH OPERATIONS FROM DATA BASE
 
     useEffect(() => {
         const getOperations = async () => {
             try {
-                const data = await getDocs(operationsCollectionRef)
+                const data = await getDocs(operationsCollectionRef);
                 const filteredOperations = data.docs
-                    .filter(op => op.data().user === user?.uid)
+                    .filter((op) => op.data().user === user?.uid)
                     .map((doc) => ({
                         id: doc.id,
                         ...doc.data(),
                     }));
                 setOperations(filteredOperations);
-                setLoadingOperations(true)
+                setLoadingOperations(true);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        }
+        };
         getOperations();
     }, [user]);
 
@@ -243,125 +253,122 @@ const AppProvider = ({children}) => {
     useEffect(() => {
         const getGoals = async () => {
             try {
-                const data = await getDocs(goalsCollectionRef)
+                const data = await getDocs(goalsCollectionRef);
                 const filteredData = data.docs
-                    .filter(op => op.data().user === user?.uid)
-                    .map(doc => ({
+                    .filter((op) => op.data().user === user?.uid)
+                    .map((doc) => ({
                         ...doc.data(),
-                        id: doc.id
-                    }))
-                setGoals(filteredData)
+                        id: doc.id,
+                    }));
+                setGoals(filteredData);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        }
-        getGoals()
+        };
+        getGoals();
     }, [user]);
-
 
     useEffect(() => {
         const getCategories = async () => {
             try {
                 const data = await getDocs(categoriesCollectionRef);
-                console.log(data)
-                const filteredData = data.docs.map(doc => ({
+                console.log(data);
+                const filteredData = data.docs.map((doc) => ({
                     ...doc.data(),
-                    id: doc.id
-                }))
+                    id: doc.id,
+                }));
                 setCategories(filteredData);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         };
         getCategories();
     }, []);
 
-
     // SET CURRENT MONTH TO STRING FOR UI
     useEffect(() => {
         switch (currentMonth) {
             case 0:
-                setCurrentMonthString('Styczeń');
+                setCurrentMonthString("Styczeń");
                 break;
             case 1:
-                setCurrentMonthString('Luty');
+                setCurrentMonthString("Luty");
                 break;
             case 2:
-                setCurrentMonthString('Marzec');
+                setCurrentMonthString("Marzec");
                 break;
             case 3:
-                setCurrentMonthString('Kwiecień');
+                setCurrentMonthString("Kwiecień");
                 break;
             case 4:
-                setCurrentMonthString('Maj');
+                setCurrentMonthString("Maj");
                 break;
             case 5:
-                setCurrentMonthString('Czerwiec');
+                setCurrentMonthString("Czerwiec");
                 break;
             case 6:
-                setCurrentMonthString('Lipiec');
+                setCurrentMonthString("Lipiec");
                 break;
             case 7:
-                setCurrentMonthString('Sierpień');
+                setCurrentMonthString("Sierpień");
                 break;
             case 8:
-                setCurrentMonthString('Wrzesień');
+                setCurrentMonthString("Wrzesień");
                 break;
             case 9:
-                setCurrentMonthString('Październik');
+                setCurrentMonthString("Październik");
                 break;
             case 10:
-                setCurrentMonthString('Listopad');
+                setCurrentMonthString("Listopad");
                 break;
             case 11:
-                setCurrentMonthString('Grudzień');
+                setCurrentMonthString("Grudzień");
                 break;
             default:
-                setCurrentMonthString('');
+                setCurrentMonthString("");
                 break;
         }
     }, [currentMonth]);
 
-
     return (
-
-        <AppContext.Provider value={{
-            user,
-            currentMonth,
-            currentMonthString,
-            setCurrentMonthString,
-            currentYear,
-            setCurrentYear,
-            setCurrentMonth,
-            nextMonth,
-            prevMonth,
-            loadingGoals,
-            setLoadingGoals,
-            loadingOperations,
-            setLoadingOperations,
-            operations,
-            setOperations,
-            handleAdd,
-            filterOperationsByMonth,
-            filterGoalsByMonth,
-            goals,
-            setGoals,
-            categories,
-            setCategories,
-            handleAddGoal,
-            handleDelete,
-            loadingUser,
-            openError,
-            setOpenError,
-            openSuccess,
-            setOpenSuccess,
-            openExchange,
-            setOpenExchange
-        }}>{children}
-
+        <AppContext.Provider
+            value={{
+                user,
+                currentMonth,
+                currentMonthString,
+                setCurrentMonthString,
+                currentYear,
+                setCurrentYear,
+                setCurrentMonth,
+                nextMonth,
+                prevMonth,
+                loadingGoals,
+                setLoadingGoals,
+                loadingOperations,
+                setLoadingOperations,
+                operations,
+                setOperations,
+                handleAdd,
+                filterOperationsByMonth,
+                filterGoalsByMonth,
+                goals,
+                setGoals,
+                categories,
+                setCategories,
+                handleAddGoal,
+                handleDelete,
+                loadingUser,
+                openError,
+                setOpenError,
+                openSuccess,
+                setOpenSuccess,
+                openExchange,
+                setOpenExchange,
+            }}
+        >
+            {children}
         </AppContext.Provider>
+    );
+};
 
-)
-}
-
-export default AppProvider
+export default AppProvider;

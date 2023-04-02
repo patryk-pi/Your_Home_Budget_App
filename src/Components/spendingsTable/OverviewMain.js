@@ -8,7 +8,6 @@ const OverviewMain = () => {
         <>
             <AppMain>
                 <SpendingsOverview/>
-
             </AppMain>
         </>
     )
