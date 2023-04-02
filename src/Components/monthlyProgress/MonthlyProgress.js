@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import SpendingsOverviewHeader from "../SpendingsOverviewHeader";
 import GoalProgressBar from "./GoalProgressBar";
 import { AppContext } from "../../context/AppProvider";
-import { Accordion, AccordionSummary, Box, Typography } from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+    Typography,
+} from "@mui/material";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 import GoalsMonthlySummary from "./GoalsMonthlySummary";
 
@@ -22,14 +28,12 @@ const MonthlyProgress = () => {
                     marginTop: "2rem",
                 }}
             >
-                <GoalsMonthlySummary operationType="expense" />
-                <GoalsMonthlySummary operationType="income" />
-
                 <Accordion
                     sx={{
                         background: "transparent",
                         boxShadow: 0,
                     }}
+                    defaultExpanded={true}
                 >
                     <AccordionSummary
                         sx={{
@@ -49,36 +53,51 @@ const MonthlyProgress = () => {
                                 width: "100%",
                             }}
                         >
+                            Status celów miesięcznych
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <GoalsMonthlySummary operationType="expense" />
+                        <GoalsMonthlySummary operationType="income" />
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion
+                    sx={{
+                        background: "transparent",
+                        boxShadow: 0,
+                    }}
+                >
+                    <AccordionSummary
+                        sx={{
+                            background: "white",
+                            marginBottom: "2rem",
+                            border: "3px solid lightgray",
+                            borderRadius: "20px",
+                        }}
+                        expandIcon={<ExpandMoreOutlined />}
+                    >
+                        <Typography
+                            align="center"
+                            sx={{
+                                fontSize: "2rem",
+                                fontWeight: 600,
+                                textTransform: "uppercase",
+                                width: "100%",
+                            }}
+                        >
                             Szczegółowy status celów
                         </Typography>
                     </AccordionSummary>
-
-                    {categories.map((category, id) => {
-                        return (
-                            <Box
-                                sx={{
-                                    border: "3px solid lightgray",
-                                    borderRadius: "20px",
-                                    padding: "2rem",
-                                    marginBottom: "2rem",
-                                    boxShadow: 1,
-                                    bgcolor: "white",
-                                }}
-                                key={id}
-                            >
-                                <h2
-                                    style={{
-                                        fontSize: "1.6rem",
-                                        fontWeight: 600,
-                                        marginBottom: "1rem",
-                                    }}
-                                >
-                                    {category.description}
-                                </h2>
-                                <GoalProgressBar currentCategory={category} />
-                            </Box>
-                        );
-                    })}
+                    <AccordionDetails>
+                        {categories.map((category, id) => {
+                            return (
+                                <GoalProgressBar
+                                    currentCategory={category}
+                                    key={id}
+                                />
+                            );
+                        })}
+                    </AccordionDetails>
                 </Accordion>
             </Box>
         </>
