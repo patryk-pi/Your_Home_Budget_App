@@ -10,10 +10,12 @@ const GoalProgressBar = ({ currentCategory }) => {
     const { operations, filterOperationsByMonth, goals, filterGoalsByMonth } =
         useContext(AppContext);
 
-    const currentGoal = goals
+    const [currentGoal] = goals
         .filter((goal) => filterGoalsByMonth(goal))
         .filter((goal) => goal.category === currentCategory.description)
         .map((goal) => goal.goal);
+
+    console.log(currentGoal);
 
     const currentOperations = operations
         .filter((operation) => filterOperationsByMonth(operation))
@@ -41,7 +43,7 @@ const GoalProgressBar = ({ currentCategory }) => {
         backgroundColor = colorRed;
     }
 
-    if (currentGoal.length === 0) {
+    if (currentGoal === undefined) {
         return null;
     }
 
@@ -114,6 +116,7 @@ const GoalProgressBar = ({ currentCategory }) => {
                                 useGrouping: "always",
                             })}
                         </span>
+                        Ń
                     </div>
                     <div>
                         <span>Różnica: </span>
