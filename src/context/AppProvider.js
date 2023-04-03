@@ -89,7 +89,7 @@ const AppProvider = ({ children }) => {
                         if (result && result.result !== undefined) {
                             operation.amount =
                                 operation.amount > 0
-                                    ? result.result.toFixed(2)
+                                    ? +result.result.toFixed(2)
                                     : -result.result.toFixed(2);
                             addDocToCollection();
                         } else {
