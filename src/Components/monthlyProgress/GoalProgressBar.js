@@ -116,7 +116,6 @@ const GoalProgressBar = ({ currentCategory }) => {
                                 useGrouping: "always",
                             })}
                         </span>
-                        Ń
                     </div>
                     <div>
                         <span>Różnica: </span>

@@ -1,34 +1,23 @@
-.JoyTable-root {
-
-
-  .spendings__table {
-
+.spendings__table {
     &__head {
-      text-align: center;
+        text-align: center;
     }
 
     &__expense {
-      color: $color-red;
-      font-weight: 700;
+        color: $color-red;
+        font-weight: 700;
     }
 
     &__income {
-      color: $color-green;
-      font-weight: 700;
+        color: $color-green;
+        font-weight: 700;
     }
 
     &__last-column {
-      width: 10%;
+        width: 10%;
     }
-
-  }
-
-  tbody {
-
-    tr {
-      background: #f5f5f5;
-    }
-  }
-
 }
 
+.grid__category {
+    font-weight: 700;
+}

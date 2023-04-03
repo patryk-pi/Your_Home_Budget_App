@@ -60,10 +60,6 @@ const AppProvider = ({ children }) => {
     const [openSuccess, setOpenSuccess] = useState(false);
     const [openExchange, setOpenExchange] = useState(false);
 
-    const [operationAmount, setOperationAmount] = useState(0);
-    const [exchangeAmount, setExchangeAmount] = useState(0);
-    const [operationCurrency, setOperationCurrency] = useState("");
-
     // FUNCTION ADDING NEW OPERATIONS TO A DATA BASE THROUGH REST API
     /*        const handleAddJson = operation => {
                 fetch(URL, {

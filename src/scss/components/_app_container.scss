@@ -1,40 +1,37 @@
 .app {
+    &__container {
+        display: flex;
+        height: 100vh;
 
-  &__container {
-    display: flex;
-    height: 100vh;
-
-    &__heading {
-      text-align: center;
-      font-size: 5rem;
-      font-weight: 600;
-      color: white;
+        &__heading {
+            text-align: center;
+            font-size: 5rem;
+            font-weight: 600;
+            color: white;
+        }
     }
-  }
 
-  &__textfield {
-    margin-bottom: 30px;
-  }
+    &__textfield {
+        margin-bottom: 30px;
+    }
 
-  &__sidebar {
-    flex-basis: 250px;
+    &__sidebar {
+        flex-basis: 250px;
 
-    flex-shrink: 0;
-    border-right: 3px solid whitesmoke;
-  }
+        flex-shrink: 0;
+        border-right: 3px solid whitesmoke;
+    }
 
-  &__main {
-    width: calc(100vw - $aside-width);
-    flex-grow: 0;
-
-  }
-
-
-
-
+    &__main {
+        width: calc(100vw - $aside-width);
+        flex-grow: 0;
+    }
 }
 
 .spending__form .MuiInputBase-formControl {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
 }
 
+.MuiOutlinedInput-notchedOutline {
+    border: 1px solid red;
+}
