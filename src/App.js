@@ -10,29 +10,37 @@ import ProtectedRoute from "./Components/nav/ProtectedRoute";
 import AppSidebar from "./Components/nav/AppSidebar";
 import SignUpMain from "./Components/auth/SingUpMain";
 
-
-
 function App() {
-    
     return (
         <>
             <div className="app__container">
-            <AppProvider>
-                <HashRouter>
-                    <AppSidebar />
-                    <Routes>
-                        <Route path="/login" element={<SignInMain />} />
-                        <Route path="/signup" element={<SignUpMain />} />
-                        <Route element={<ProtectedRoute  />}>
-                            <Route path="/" element={<ExpenseStructureMain />} />
-                            <Route path="/expensestructure" element={<OverviewMain />} />
-                            <Route path="/goals" element={<GoalsSetterMain />} />
-                            <Route path="/monthlyprogress" element={<MonthlyProgressMain />} />
-                        </Route>
-                    </Routes>
-                </HashRouter>
-
-            </AppProvider>
+                <AppProvider>
+                    <HashRouter>
+                        <AppSidebar />
+                        <Routes>
+                            <Route path="/login" element={<SignInMain />} />
+                            <Route path="/signup" element={<SignUpMain />} />
+                            <Route element={<ProtectedRoute />}>
+                                <Route
+                                    path="/"
+                                    element={<ExpenseStructureMain />}
+                                />
+                                <Route
+                                    path="/expensestructure"
+                                    element={<OverviewMain />}
+                                />
+                                <Route
+                                    path="/goals"
+                                    element={<GoalsSetterMain />}
+                                />
+                                <Route
+                                    path="/monthlyprogress"
+                                    element={<MonthlyProgressMain />}
+                                />
+                            </Route>
+                        </Routes>
+                    </HashRouter>
+                </AppProvider>
             </div>
         </>
     );
